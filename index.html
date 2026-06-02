@@ -4500,6 +4500,7 @@ function submitCloze() {
 
 let clozePendingQuestion = null;
 let clozePendingExplanation = null;
+let clozePendingPassage = null;
 
 // 重寫 renderClozeQuestion 來儲存 pending 資料
 const _origRender = renderClozeQuestion;
@@ -4508,11 +4509,24 @@ const _origRender = renderClozeQuestion;
 function showClozeExplanation(expl) {
   if (!expl) return;
   const el = document.getElementById('clozeExplContent');
+  const t = clozeCurrentTarget;
+  const fullSentence = clozePendingPassage
+    ? clozePendingPassage.replace('[BLANK]',
+        `<strong style="color:#2b6cb0;border-bottom:2px solid #3182ce;">${t ? t.word : '___'}</strong>`)
+    : '';
+  const wordBlock = t ? `
+    <div style="background:#fefcbf;border-radius:10px;padding:14px;margin-bottom:12px;">
+      <div style="font-size:0.72rem;color:#744210;letter-spacing:1px;margin-bottom:6px;">📌 目標單字解釋</div>
+      <div style="font-size:1rem;font-weight:700;color:#2d3748;">${t.word} <span style="font-size:0.82rem;color:#a0aec0;font-weight:400;">${t.pos}</span></div>
+      <div style="font-size:0.95rem;color:#744210;margin-top:4px;">${t.zh}</div>
+    </div>` : '';
   el.innerHTML = `
+    ${fullSentence ? `
     <div style="background:#f7fafc;border-radius:10px;padding:14px;margin-bottom:12px;">
-      <div style="font-size:0.72rem;color:#a0aec0;letter-spacing:1px;margin-bottom:6px;">中文翻譯</div>
-      <div style="font-size:0.92rem;color:#2d3748;line-height:1.7;">${expl.chinese_translation}</div>
-    </div>
+      <div style="font-size:0.72rem;color:#a0aec0;letter-spacing:1px;margin-bottom:6px;">完整句子</div>
+      <div style="font-size:0.95rem;color:#2d3748;line-height:1.9;">${fullSentence}</div>
+    </div>` : ''}
+    ${wordBlock}
     <div style="background:#ebf8ff;border-radius:10px;padding:14px;margin-bottom:12px;">
       <div style="font-size:0.72rem;color:#2b6cb0;letter-spacing:1px;margin-bottom:6px;">核心觀念</div>
       <div style="font-size:0.88rem;color:#2c5282;">${expl.core_concept}</div>
@@ -4535,6 +4549,7 @@ const origRenderCloze = renderClozeQuestion;
 window.renderClozeQuestion = function(q, target) {
   clozePendingQuestion = target;
   clozePendingExplanation = q.explanation;
+  clozePendingPassage = q.passage;
   origRenderCloze(q, target);
 };
 
