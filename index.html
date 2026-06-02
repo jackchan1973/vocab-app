@@ -584,6 +584,43 @@
   .mastery-fast { background: #c6f6d5; color: #276749; }
   .mastery-mid  { background: #fefcbf; color: #744210; }
   .mastery-slow { background: #fed7d7; color: #9b2c2c; }
+
+  /* ===== 響應式設計（手機模式 ≤ 768px）===== */
+  @media (max-width: 768px) {
+    /* Header：收窄，副標題隱藏 */
+    header { padding: 10px 14px; }
+    header h1 { font-size: 1rem; }
+    header .subtitle { display: none; }
+
+    /* Nav：4 個頁籤字體縮小，確保不換行 */
+    nav button { font-size: 0.8rem; padding: 13px 4px; }
+
+    /* 頁面外邊距縮小 */
+    .page { padding: 8px; }
+
+    /* 單字卡：動作按鈕換行為 2×2 */
+    .card-scene { height: 230px; }
+    .card-actions { flex-wrap: wrap; gap: 8px; }
+    .card-actions button { flex: 1 1 45%; padding: 13px 8px; font-size: 0.92rem; }
+
+    /* 測驗：觸控區域放大 */
+    .quiz-card { padding: 18px 14px; }
+    .quiz-question { font-size: 1.15rem; }
+    .option-btn { padding: 15px 14px; font-size: 1rem; }
+    .option-row { padding: 14px 12px; font-size: 1rem; }
+    .quiz-next-btn { padding: 15px; font-size: 1.05rem; }
+
+    /* 拼字測驗輸入框 */
+    .spelling-input { font-size: 1.2rem; padding: 14px; }
+
+    /* 克漏字：雙欄 → 單欄（上方題本，下方答題卡）*/
+    #clozeLayout {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* 克漏字氣泡按鈕放大，方便手指點 */
+    .bubble { width: 68px; height: 68px; font-size: 1.25rem; }
+  }
 </style>
 </head>
 <body>
@@ -702,7 +739,7 @@
     </div>
 
     <!-- 左右雙欄 -->
-    <div style="display:grid;grid-template-columns:1fr 280px;gap:16px;align-items:start;">
+    <div id="clozeLayout" style="display:grid;grid-template-columns:1fr 280px;gap:16px;align-items:start;">
 
       <!-- 左欄：題本 -->
       <div style="background:white;border-radius:14px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,0.07);">
