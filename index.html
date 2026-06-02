@@ -629,8 +629,8 @@
 
 <header>
   <div>
-    <h1>英語核心字彙學習工具</h1>
-    <div class="subtitle">LIVE ABC 核心字彙 ｜ 2-4 級 ｜ 大考中心詞彙表</div>
+    <h1>學測複習工具</h1>
+    <div class="subtitle" id="headerSubtitle">英文 ｜ LIVE ABC 核心字彙 ｜ 2-4 級</div>
   </div>
   <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
     <button onclick="openParentModal()" style="background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.6);color:white;padding:6px 12px;border-radius:8px;cursor:pointer;font-size:0.82rem;">👨‍👦 家長查看</button>
@@ -646,6 +646,18 @@
     <div id="parentModalContent"></div>
   </div>
 </div>
+
+<!-- 科目選擇列 -->
+<div id="subjectBar" style="display:flex;gap:8px;padding:10px 16px;background:#2a4a7f;border-bottom:1px solid rgba(255,255,255,0.1);overflow-x:auto;-webkit-overflow-scrolling:touch;">
+  <button onclick="switchSubject('english', this)" class="subject-btn active-subject" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:none;font-size:0.9rem;font-weight:700;cursor:pointer;background:white;color:#2b6cb0;">英文</button>
+  <button onclick="switchSubject('chinese', this)" class="subject-btn" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.5);font-size:0.9rem;font-weight:700;cursor:pointer;background:transparent;color:white;">國文</button>
+  <button onclick="switchSubject('math', this)" class="subject-btn" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.5);font-size:0.9rem;font-weight:700;cursor:pointer;background:transparent;color:white;">數學</button>
+  <button onclick="switchSubject('social', this)" class="subject-btn" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.5);font-size:0.9rem;font-weight:700;cursor:pointer;background:transparent;color:white;">社會</button>
+  <button onclick="switchSubject('science', this)" class="subject-btn" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.5);font-size:0.9rem;font-weight:700;cursor:pointer;background:transparent;color:white;">自然</button>
+</div>
+
+<!-- 英文科目內容 -->
+<div id="subject-english">
 
 <div class="stats-bar" id="globalStats">
   <span>載入中...</span>
@@ -844,6 +856,36 @@
       <button class="reset-btn" onclick="confirmReset()">🗑 重設所有進度</button>
     </div>
   </div>
+</div>
+
+</div><!-- /subject-english -->
+
+<!-- 國文 -->
+<div id="subject-chinese" style="display:none;padding:60px 20px;text-align:center;">
+  <div style="font-size:3rem;margin-bottom:16px;">📖</div>
+  <h2 style="font-size:1.3rem;color:#2d3748;margin-bottom:8px;">國文</h2>
+  <p style="color:#a0aec0;">開發中，敬請期待</p>
+</div>
+
+<!-- 數學 -->
+<div id="subject-math" style="display:none;padding:60px 20px;text-align:center;">
+  <div style="font-size:3rem;margin-bottom:16px;">📐</div>
+  <h2 style="font-size:1.3rem;color:#2d3748;margin-bottom:8px;">數學</h2>
+  <p style="color:#a0aec0;">開發中，敬請期待</p>
+</div>
+
+<!-- 社會 -->
+<div id="subject-social" style="display:none;padding:60px 20px;text-align:center;">
+  <div style="font-size:3rem;margin-bottom:16px;">🗺️</div>
+  <h2 style="font-size:1.3rem;color:#2d3748;margin-bottom:8px;">社會</h2>
+  <p style="color:#a0aec0;">開發中，敬請期待</p>
+</div>
+
+<!-- 自然 -->
+<div id="subject-science" style="display:none;padding:60px 20px;text-align:center;">
+  <div style="font-size:3rem;margin-bottom:16px;">🔬</div>
+  <h2 style="font-size:1.3rem;color:#2d3748;margin-bottom:8px;">自然</h2>
+  <p style="color:#a0aec0;">開發中，敬請期待</p>
 </div>
 
 <script>
@@ -3953,6 +3995,29 @@ function setFilter(level) {
 }
 
 // ===== 頁面切換 =====
+function switchSubject(subject, btn) {
+  const subjects = ['english','chinese','math','social','science'];
+  const subtitles = {
+    english: '英文 ｜ LIVE ABC 核心字彙 ｜ 2-4 級',
+    chinese: '國文 ｜ 開發中',
+    math:    '數學 ｜ 開發中',
+    social:  '社會 ｜ 開發中',
+    science: '自然 ｜ 開發中',
+  };
+  subjects.forEach(s => {
+    document.getElementById('subject-' + s).style.display = s === subject ? '' : 'none';
+  });
+  document.querySelectorAll('.subject-btn').forEach(b => {
+    b.style.background = 'transparent';
+    b.style.color = 'white';
+    b.style.border = '1.5px solid rgba(255,255,255,0.5)';
+  });
+  btn.style.background = 'white';
+  btn.style.color = '#2b6cb0';
+  btn.style.border = 'none';
+  document.getElementById('headerSubtitle').textContent = subtitles[subject];
+}
+
 function switchPage(page, btn) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
