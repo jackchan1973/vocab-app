@@ -4281,6 +4281,7 @@ function updateGlobalStats() {
 // ===== 克漏字模組 =====
 let clozeCurrentAnswer = '';
 let clozeCorrectAnswer = '';
+let clozeCurrentTarget = null;
 let clozeSubmitted = false;
 let clozeSessionCount = 0;
 let clozeCorrectCount = 0;
@@ -4338,14 +4339,14 @@ async function generateClozeQuestion() {
   document.getElementById('clozeMain').style.display = 'none';
   document.getElementById('clozeError').style.display = 'none';
   document.getElementById('clozeLoading').style.display = 'block';
-  document.getElementById('clozeLoadingWord').textContent = `正在為「${target.word}」出題…`;
+  document.getElementById('clozeLoadingWord').textContent = `正在出題中…`;
   document.getElementById('clozeBtnGenerate').disabled = true;
 
   try {
     // 優先嘗試本地 Ollama（Jack 的 Mac 上可用）
     let q, source;
     try {
-      document.getElementById('clozeLoadingWord').textContent = `🤖 Ollama 出題中：「${target.word}」…`;
+      document.getElementById('clozeLoadingWord').textContent = `🤖 Ollama 出題中…`;
       q = await tryOllama(target);
       source = '🤖 Ollama 即時出題';
     } catch(ollamaErr) {
@@ -4375,6 +4376,7 @@ async function generateClozeQuestion() {
 function renderClozeQuestion(q, target) {
   clozeCurrentAnswer = '';
   clozeCorrectAnswer = q.correct_answer;
+  clozeCurrentTarget = target;
   clozeSubmitted = false;
   clozeSessionCount++;
 
@@ -4385,13 +4387,8 @@ function renderClozeQuestion(q, target) {
   document.getElementById('clozeSessionInfo').textContent =
     `本次：${clozeSessionCount} 題 ｜ 答對 ${clozeCorrectCount} 題`;
 
-  // 單字提示
-  document.getElementById('clozeWordHint').innerHTML =
-    `<span>📌 本題目標單字：</span>
-     <strong style="font-size:1rem;">${target.word}</strong>
-     <span style="color:#a0aec0;">(${target.pos})</span>
-     <span style="color:#4a5568;">${target.zh}</span>
-     <button onclick="speak('${target.word.replace(/'/g,"\\'")}');" style="background:none;border:1.5px solid #3182ce;color:#3182ce;border-radius:6px;padding:2px 8px;font-size:0.78rem;cursor:pointer;">🔊</button>`;
+  // 單字提示（交卷前隱藏，交卷後才顯示）
+  document.getElementById('clozeWordHint').innerHTML = '';
 
   // 段落（高亮 [BLANK]）
   document.getElementById('clozePassage').innerHTML =
@@ -4441,6 +4438,15 @@ function submitCloze() {
 
   const isCorrect = clozeCurrentAnswer === clozeCorrectAnswer;
   if (isCorrect) clozeCorrectCount++;
+
+  // 交卷後才顯示目標單字
+  const t = clozeCurrentTarget;
+  document.getElementById('clozeWordHint').innerHTML =
+    `<span>📌 本題目標單字：</span>
+     <strong style="font-size:1rem;">${t.word}</strong>
+     <span style="color:#a0aec0;">(${t.pos})</span>
+     <span style="color:#4a5568;">${t.zh}</span>
+     <button onclick="speak('${t.word.replace(/'/g,"\\'")}');" style="background:none;border:1.5px solid #3182ce;color:#3182ce;border-radius:6px;padding:2px 8px;font-size:0.78rem;cursor:pointer;">🔊</button>`;
 
   // 更新氣泡顏色
   ['A','B','C','D'].forEach(l => {
