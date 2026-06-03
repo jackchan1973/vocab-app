@@ -868,10 +868,21 @@
 </div>
 
 <!-- 數學 -->
-<div id="subject-math" style="display:none;padding:60px 20px;text-align:center;">
-  <div style="font-size:3rem;margin-bottom:16px;">📐</div>
-  <h2 style="font-size:1.3rem;color:#2d3748;margin-bottom:8px;">數學</h2>
-  <p style="color:#a0aec0;">開發中，敬請期待</p>
+<div id="subject-math" style="display:none;">
+  <div class="filter-bar">
+    <span>分類：</span>
+    <button class="filter-btn math-cat-btn active" onclick="setMathCategory('all', this)">全部</button>
+    <button class="filter-btn math-cat-btn" onclick="setMathCategory('代數', this)">代數</button>
+    <button class="filter-btn math-cat-btn" onclick="setMathCategory('幾何', this)">幾何</button>
+    <button class="filter-btn math-cat-btn" onclick="setMathCategory('函數', this)">函數</button>
+    <button class="filter-btn math-cat-btn" onclick="setMathCategory('統計', this)">統計</button>
+    <button class="filter-btn math-cat-btn" onclick="setMathCategory('三角', this)">三角</button>
+  </div>
+  <div style="padding:16px;">
+    <div class="quiz-progress" id="mathProgress"></div>
+    <div class="quiz-score" id="mathScore"></div>
+    <div id="mathContent"></div>
+  </div>
 </div>
 
 <!-- 社會 -->
@@ -4000,7 +4011,7 @@ function switchSubject(subject, btn) {
   const subtitles = {
     english: '英文 ｜ LIVE ABC 核心字彙 ｜ 2-4 級',
     chinese: '國文 ｜ 開發中',
-    math:    '數學 ｜ 開發中',
+    math:    '數學 ｜ 學測選擇題練習',
     social:  '社會 ｜ 開發中',
     science: '自然 ｜ 開發中',
   };
@@ -4016,6 +4027,7 @@ function switchSubject(subject, btn) {
   btn.style.color = '#2b6cb0';
   btn.style.border = 'none';
   document.getElementById('headerSubtitle').textContent = subtitles[subject];
+  if (subject === 'math') startMathQuiz();
 }
 
 function switchPage(page, btn) {
@@ -5022,6 +5034,134 @@ function revealHint() {
     btn.textContent = `💡 ${q.word[0]}${'_'.repeat(Math.max(0,q.word.length-1))}（共 ${q.word.length} 個字母）`;
     btn.disabled = true;
   }
+}
+
+// ===== 數學測驗 =====
+const MATH_QUESTIONS = [
+  { category: '代數', q: 'x² − 5x + 6 = 0，解為？', options: ['x = 1 或 6', 'x = 2 或 3', 'x = −2 或 −3', 'x = 3 或 4'], answer: 'x = 2 或 3' },
+  { category: '代數', q: '等差數列首項為 3，公差為 4，第 10 項為？', options: ['35', '39', '43', '47'], answer: '39' },
+  { category: '代數', q: 'log₂ 8 = ？', options: ['2', '3', '4', '16'], answer: '3' },
+  { category: '代數', q: '(a + b)² 展開為？', options: ['a² + b²', 'a² + 2ab + b²', 'a² − 2ab + b²', '2a² + 2b²'], answer: 'a² + 2ab + b²' },
+  { category: '代數', q: '2¹⁰ = ？', options: ['256', '512', '1024', '2048'], answer: '1024' },
+  { category: '代數', q: '等比數列首項為 2，公比為 3，第 4 項為？', options: ['18', '27', '54', '162'], answer: '54' },
+  { category: '幾何', q: '半徑為 5 的圓，面積為？', options: ['5π', '10π', '25π', '50π'], answer: '25π' },
+  { category: '幾何', q: '直角三角形兩股分別為 3 和 4，斜邊長為？', options: ['5', '6', '7', '√7'], answer: '5' },
+  { category: '幾何', q: '正三角形邊長為 6，面積為？', options: ['6√3', '9√3', '12√3', '18'], answer: '9√3' },
+  { category: '幾何', q: '正方形邊長為 4，對角線長為？', options: ['2√2', '4', '4√2', '8'], answer: '4√2' },
+  { category: '幾何', q: '圓的周長公式為？', options: ['πr', 'πr²', '2πr', '4πr'], answer: '2πr' },
+  { category: '函數', q: 'f(x) = 2x + 3，f(5) = ？', options: ['8', '10', '11', '13'], answer: '13' },
+  { category: '函數', q: 'y = x² − 4x + 3 的最小值為？', options: ['−1', '0', '1', '3'], answer: '−1' },
+  { category: '函數', q: 'y = 2ˣ，當 x = 3 時，y = ？', options: ['6', '8', '9', '16'], answer: '8' },
+  { category: '統計', q: '資料：2, 4, 6, 8, 10 的平均數為？', options: ['4', '5', '6', '7'], answer: '6' },
+  { category: '統計', q: '資料：1, 3, 5, 7, 9 的中位數為？', options: ['3', '4', '5', '7'], answer: '5' },
+  { category: '統計', q: '擲公正硬幣兩次，兩次都正面的機率為？', options: ['1/4', '1/3', '1/2', '3/4'], answer: '1/4' },
+  { category: '三角', q: 'sin 30° = ？', options: ['1/2', '√2/2', '√3/2', '1'], answer: '1/2' },
+  { category: '三角', q: 'cos 60° = ？', options: ['0', '1/2', '√2/2', '√3/2'], answer: '1/2' },
+  { category: '三角', q: 'tan 45° = ？', options: ['0', '1/√3', '1', '√3'], answer: '1' },
+];
+
+let mathCategory = 'all';
+let mathQuestions = [];
+let mathIndex = 0;
+let mathCorrect = 0;
+let mathWrong = 0;
+let mathAnswered = false;
+let _mathCurrentOpts = [];
+let _mathCurrentAnswer = '';
+
+function setMathCategory(cat, btn) {
+  mathCategory = cat;
+  document.querySelectorAll('.math-cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  startMathQuiz();
+}
+
+function startMathQuiz() {
+  const pool = mathCategory === 'all'
+    ? MATH_QUESTIONS
+    : MATH_QUESTIONS.filter(q => q.category === mathCategory);
+  if (pool.length < 1) {
+    document.getElementById('mathContent').innerHTML = '<div class="empty-state"><div class="icon">📭</div>此分類暫無題目</div>';
+    document.getElementById('mathProgress').textContent = '';
+    document.getElementById('mathScore').textContent = '';
+    return;
+  }
+  const shuffled = [...pool].sort(() => Math.random() - 0.5);
+  mathQuestions = shuffled.slice(0, Math.min(10, shuffled.length));
+  mathIndex = 0;
+  mathCorrect = 0;
+  mathWrong = 0;
+  renderMathQuestion();
+}
+
+function renderMathQuestion() {
+  document.getElementById('mathProgress').textContent = `第 ${mathIndex + 1} 題 / 共 ${mathQuestions.length} 題`;
+  document.getElementById('mathScore').innerHTML = `正確：<span class="correct">${mathCorrect}</span>　錯誤：<span class="wrong">${mathWrong}</span>`;
+  mathAnswered = false;
+  const q = mathQuestions[mathIndex];
+  _mathCurrentOpts = [...q.options].sort(() => Math.random() - 0.5);
+  _mathCurrentAnswer = q.answer;
+  document.getElementById('mathContent').innerHTML = `
+    <div class="quiz-card">
+      <div class="quiz-type-tag">${q.category}</div>
+      <div class="quiz-question" style="font-size:1.15rem;line-height:1.6;">${q.q}</div>
+      <div class="options" style="margin-top:16px;">
+        ${_mathCurrentOpts.map((o, i) => `
+          <button class="option-btn" onclick="answerMath(this, ${i})">
+            ${String.fromCharCode(65+i)}. ${o}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+    <button class="quiz-next-btn" id="mathNextBtn" style="display:none" onclick="nextMathQuestion()">
+      ${mathIndex + 1 < mathQuestions.length ? '下一題 →' : '查看結果'}
+    </button>
+  `;
+}
+
+function answerMath(btn, idx) {
+  if (mathAnswered) return;
+  mathAnswered = true;
+  const chosen = _mathCurrentOpts[idx];
+  const correct = _mathCurrentAnswer;
+  document.querySelectorAll('#mathContent .option-btn').forEach((b, i) => {
+    b.disabled = true;
+    if (_mathCurrentOpts[i] === correct) b.classList.add('correct');
+  });
+  if (chosen === correct) {
+    btn.classList.add('correct');
+    mathCorrect++;
+  } else {
+    btn.classList.add('wrong');
+    mathWrong++;
+  }
+  document.getElementById('mathScore').innerHTML = `正確：<span class="correct">${mathCorrect}</span>　錯誤：<span class="wrong">${mathWrong}</span>`;
+  document.getElementById('mathNextBtn').style.display = 'block';
+}
+
+function nextMathQuestion() {
+  mathIndex++;
+  if (mathIndex >= mathQuestions.length) {
+    showMathResult();
+  } else {
+    renderMathQuestion();
+  }
+}
+
+function showMathResult() {
+  const total = mathQuestions.length;
+  const pct = Math.round(mathCorrect / total * 100);
+  let emoji = pct >= 90 ? '🎉' : pct >= 70 ? '👍' : pct >= 50 ? '💪' : '📚';
+  document.getElementById('mathProgress').textContent = '';
+  document.getElementById('mathScore').textContent = '';
+  document.getElementById('mathContent').innerHTML = `
+    <div class="quiz-result">
+      <h2>${emoji} 測驗完成！</h2>
+      <div class="big-score">${pct}%</div>
+      <p>答對 ${mathCorrect} 題，答錯 ${mathWrong} 題，共 ${total} 題</p>
+      <button class="quiz-restart" onclick="startMathQuiz()">再測一次</button>
+    </div>
+  `;
 }
 
 // ===== 鍵盤快捷鍵 =====
