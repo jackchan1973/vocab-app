@@ -1,0 +1,648 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", sans-serif;
+    background: #f0f4f8;
+    color: #2d3748;
+    min-height: 100vh;
+  }
+
+  header {
+    background: linear-gradient(135deg, #2b6cb0, #3182ce);
+    color: white;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  header h1 { font-size: 1.2rem; font-weight: 700; }
+  header .subtitle { font-size: 0.75rem; opacity: 0.85; }
+
+  .stats-bar {
+    background: #2c5282;
+    color: white;
+    padding: 6px 20px;
+    font-size: 0.78rem;
+    display: flex;
+    gap: 20px;
+  }
+  .stats-bar span { opacity: 0.9; }
+  .stats-bar strong { opacity: 1; }
+
+  nav {
+    display: flex;
+    background: white;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  nav button {
+    flex: 1;
+    padding: 12px 8px;
+    border: none;
+    background: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: #718096;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  nav button.active {
+    color: #3182ce;
+    border-bottom-color: #3182ce;
+    background: #ebf8ff;
+  }
+  nav button:hover:not(.active) { background: #f7fafc; }
+
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .filter-bar span { font-size: 0.82rem; color: #718096; }
+  .filter-btn {
+    padding: 5px 12px;
+    border: 1.5px solid #cbd5e0;
+    border-radius: 20px;
+    background: white;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-btn.active {
+    background: #3182ce;
+    border-color: #3182ce;
+    color: white;
+  }
+  .filter-btn:hover:not(.active) { border-color: #3182ce; color: #3182ce; }
+
+  .page { display: none; padding: 16px; }
+  .page.active { display: block; }
+
+  /* ===== 單字卡 ===== */
+  .card-counter {
+    text-align: center;
+    font-size: 0.82rem;
+    color: #718096;
+    margin-bottom: 12px;
+  }
+
+  .card-scene {
+    perspective: 1000px;
+    max-width: 420px;
+    margin: 0 auto 16px;
+    height: 220px;
+    cursor: pointer;
+  }
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  .card-scene.flipped .card-inner { transform: rotateY(180deg); }
+
+  .card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    padding: 24px;
+    text-align: center;
+  }
+  .card-front {
+    background: white;
+  }
+  .card-back {
+    background: linear-gradient(135deg, #ebf8ff, #bee3f8);
+    transform: rotateY(180deg);
+  }
+
+  .card-level {
+    font-size: 0.72rem;
+    background: #3182ce;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
+  .card-word {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 6px;
+  }
+  .card-pos {
+    font-size: 0.82rem;
+    color: #a0aec0;
+    font-style: italic;
+  }
+  .card-hint { font-size: 0.75rem; color: #a0aec0; margin-top: 12px; }
+
+  .card-zh {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #2b6cb0;
+    margin-bottom: 8px;
+  }
+  .card-word-back {
+    font-size: 0.95rem;
+    color: #718096;
+    margin-bottom: 6px;
+  }
+
+  .speak-btn {
+    background: none;
+    border: 1.5px solid #3182ce;
+    color: #3182ce;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: all 0.15s;
+  }
+  .speak-btn:hover { background: #3182ce; color: white; }
+
+  .card-actions {
+    display: flex;
+    gap: 10px;
+    max-width: 420px;
+    margin: 0 auto 12px;
+  }
+  .card-actions button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 0.88rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.15s;
+  }
+  .btn-prev { background: #e2e8f0; color: #4a5568; }
+  .btn-next { background: #3182ce; color: white; }
+  .btn-mark-known { background: #48bb78; color: white; }
+  .btn-mark-hard { background: #fc8181; color: white; }
+  .btn-prev:hover { background: #cbd5e0; }
+  .btn-next:hover { background: #2c5282; }
+  .btn-mark-known:hover { background: #38a169; }
+  .btn-mark-hard:hover { background: #e53e3e; }
+
+  .shuffle-bar {
+    max-width: 420px;
+    margin: 0 auto 4px;
+    display: flex;
+    gap: 8px;
+  }
+  .shuffle-bar button {
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1.5px solid #cbd5e0;
+    background: white;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: #4a5568;
+    transition: all 0.15s;
+  }
+  .shuffle-bar button:hover { border-color: #3182ce; color: #3182ce; }
+
+  /* ===== 測驗 ===== */
+  .quiz-progress {
+    font-size: 0.82rem;
+    color: #718096;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .quiz-score {
+    text-align: center;
+    font-size: 0.82rem;
+    margin-bottom: 12px;
+  }
+  .quiz-score .correct { color: #38a169; font-weight: 700; }
+  .quiz-score .wrong { color: #e53e3e; font-weight: 700; }
+
+  .quiz-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 480px;
+    margin: 0 auto 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .quiz-type-tag {
+    font-size: 0.72rem;
+    color: #3182ce;
+    background: #ebf8ff;
+    padding: 2px 8px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+  .quiz-question {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #2d3748;
+  }
+  .quiz-question-pos {
+    font-size: 0.8rem;
+    color: #a0aec0;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .quiz-speak-btn {
+    background: none;
+    border: 1.5px solid #3182ce;
+    color: #3182ce;
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: all 0.15s;
+  }
+  .quiz-speak-btn:hover { background: #3182ce; color: white; }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .option-btn {
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    background: white;
+    text-align: left;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    color: #2d3748;
+  }
+  .option-btn:hover:not(:disabled) { border-color: #3182ce; background: #ebf8ff; }
+  .option-btn.correct { border-color: #48bb78; background: #f0fff4; color: #276749; }
+  .option-btn.wrong { border-color: #fc8181; background: #fff5f5; color: #9b2c2c; }
+  .option-btn:disabled { cursor: default; }
+
+  .quiz-next-btn {
+    display: block;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 12px;
+    background: #3182ce;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .quiz-next-btn:hover { background: #2c5282; }
+
+  .quiz-result {
+    background: white;
+    border-radius: 16px;
+    padding: 32px 24px;
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .quiz-result h2 { font-size: 1.6rem; margin-bottom: 8px; }
+  .quiz-result .big-score {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #3182ce;
+    margin: 16px 0;
+  }
+  .quiz-result p { color: #718096; margin-bottom: 20px; }
+  .quiz-restart {
+    background: #3182ce;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* ===== 進度 ===== */
+  .progress-section {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .progress-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .progress-card h3 {
+    font-size: 1rem;
+    margin-bottom: 14px;
+    color: #2d3748;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .level-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+  }
+  .level-label {
+    font-size: 0.82rem;
+    width: 52px;
+    color: #4a5568;
+    flex-shrink: 0;
+  }
+  .progress-bar-outer {
+    flex: 1;
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .progress-bar-inner {
+    height: 100%;
+    background: linear-gradient(90deg, #3182ce, #63b3ed);
+    border-radius: 5px;
+    transition: width 0.5s;
+  }
+  .progress-bar-inner.hard { background: linear-gradient(90deg, #fc8181, #feb2b2); }
+  .level-pct {
+    font-size: 0.78rem;
+    color: #718096;
+    width: 38px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .stat-box {
+    background: #f7fafc;
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+  .stat-box .num { font-size: 1.8rem; font-weight: 800; color: #3182ce; }
+  .stat-box .num.green { color: #48bb78; }
+  .stat-box .num.red { color: #fc8181; }
+  .stat-box .num.gray { color: #a0aec0; }
+  .stat-box .lbl { font-size: 0.75rem; color: #718096; margin-top: 2px; }
+
+  .reset-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1.5px solid #fc8181;
+    border-radius: 10px;
+    background: white;
+    color: #e53e3e;
+    font-size: 0.88rem;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: all 0.15s;
+  }
+  .reset-btn:hover { background: #fff5f5; }
+
+  .hard-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .hard-word-chip {
+    background: #fff5f5;
+    border: 1px solid #fed7d7;
+    color: #c53030;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .hard-word-chip:hover { background: #fed7d7; }
+  .hard-word-chip.known {
+    background: #f0fff4;
+    border-color: #9ae6b4;
+    color: #276749;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 32px;
+    color: #a0aec0;
+    font-size: 0.9rem;
+  }
+  .empty-state .icon { font-size: 2.5rem; margin-bottom: 8px; }
+
+  /* ===== 測驗模式切換 ===== */
+  .quiz-mode-bar {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #f7fafc;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .quiz-mode-btn {
+    flex: 1;
+    padding: 8px;
+    border: 2px solid #cbd5e0;
+    border-radius: 10px;
+    background: white;
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: #4a5568;
+    transition: all 0.15s;
+  }
+  .quiz-mode-btn.active {
+    border-color: #3182ce;
+    background: #ebf8ff;
+    color: #2b6cb0;
+    font-weight: 700;
+  }
+
+  /* ===== 計時條 ===== */
+  .timer-wrap {
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .timer-bar {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #48bb78, #f6ad55, #fc8181);
+    border-radius: 3px;
+    transition: width 12s linear;
+  }
+  .timer-label {
+    text-align: center;
+    font-size: 0.78rem;
+    color: #718096;
+    margin-bottom: 8px;
+  }
+
+  /* ===== 拼字測驗 ===== */
+  .spelling-input {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 1.2rem;
+    border: 2px solid #cbd5e0;
+    border-radius: 10px;
+    outline: none;
+    letter-spacing: 2px;
+    font-family: monospace;
+    transition: border-color 0.2s;
+  }
+  .spelling-input:focus { border-color: #3182ce; }
+  .spelling-input.correct { border-color: #48bb78; background: #f0fff4; }
+  .spelling-input.wrong { border-color: #fc8181; background: #fff5f5; }
+
+  /* ===== 每日目標條 ===== */
+  .daily-bar {
+    background: linear-gradient(135deg, #f0fff4, #c6f6d5);
+    border-bottom: 1px solid #9ae6b4;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.82rem;
+  }
+  .daily-bar .label { color: #276749; font-weight: 700; white-space: nowrap; }
+  .daily-bar .bar-outer {
+    flex: 1;
+    height: 8px;
+    background: #9ae6b4;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .daily-bar .bar-inner {
+    height: 100%;
+    background: #38a169;
+    border-radius: 4px;
+    transition: width 0.4s;
+  }
+  .daily-bar .count { color: #276749; white-space: nowrap; }
+  .daily-study-btn {
+    padding: 5px 12px;
+    background: #38a169;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .daily-study-btn:hover { background: #276749; }
+
+  /* ===== 熟練度標籤 ===== */
+  .mastery-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-left: 6px;
+  }
+  .mastery-fast { background: #c6f6d5; color: #276749; }
+  .mastery-mid  { background: #fefcbf; color: #744210; }
+  .mastery-slow { background: #fed7d7; color: #9b2c2c; }
+
+  /* ===== 響應式設計（手機模式 ≤ 768px）===== */
+  @media (max-width: 768px) {
+    /* Header：收窄，副標題隱藏 */
+    header { padding: 10px 14px; }
+    header h1 { font-size: 1rem; }
+    header .subtitle { display: none; }
+
+    /* Nav：4 個頁籤字體縮小，確保不換行 */
+    nav button { font-size: 0.8rem; padding: 13px 4px; }
+
+    /* 頁面外邊距縮小 */
+    .page { padding: 8px; }
+
+    /* 單字卡：動作按鈕換行為 2×2 */
+    .card-scene { height: 230px; }
+    .card-actions { flex-wrap: wrap; gap: 8px; }
+    .card-actions button { flex: 1 1 45%; padding: 13px 8px; font-size: 0.92rem; }
+
+    /* 測驗：觸控區域放大 */
+    .quiz-card { padding: 18px 14px; }
+    .quiz-question { font-size: 1.15rem; }
+    .option-btn { padding: 15px 14px; font-size: 1rem; }
+    .option-row { padding: 14px 12px; font-size: 1rem; }
+    .quiz-next-btn { padding: 15px; font-size: 1.05rem; }
+
+    /* 拼字測驗輸入框 */
+    .spelling-input { font-size: 1.2rem; padding: 14px; }
+
+    /* 克漏字：雙欄 → 單欄（上方題本，下方答題卡）*/
+    #clozeLayout {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* 克漏字氣泡按鈕放大，方便手指點 */
+    .bubble { width: 68px; height: 68px; font-size: 1.25rem; }
+  }
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.bubble {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: 3px solid #cbd5e0;
+  background: white;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #4a5568;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto;
+}
+.bubble:hover { border-color: #3182ce; color: #3182ce; background:#ebf8ff; }
+.bubble.selected { background: #2b6cb0; border-color: #2b6cb0; color: white; }
+.bubble.correct-bubble { background: #38a169; border-color: #38a169; color: white; }
+.bubble.wrong-bubble { background: #e53e3e; border-color: #e53e3e; color: white; }
+.option-row {
+  padding: 11px 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #2d3748;
+  cursor: default;
+}
+.option-row.highlight-correct { border-color: #48bb78; background: #f0fff4; }
+.option-row.highlight-wrong { border-color: #fc8181; background: #fff5f5; }

@@ -1,0 +1,23 @@
+// MATH_QUESTIONS data extracted from index.html
+const MATH_QUESTIONS = [
+  { category: '代數', q: 'x² − 5x + 6 = 0，解為？', options: ['x = 1 或 6', 'x = 2 或 3', 'x = −2 或 −3', 'x = 3 或 4'], answer: 'x = 2 或 3' },
+  { category: '代數', q: '等差數列首項為 3，公差為 4，第 10 項為？', options: ['35', '39', '43', '47'], answer: '39' },
+  { category: '代數', q: 'log₂ 8 = ？', options: ['2', '3', '4', '16'], answer: '3' },
+  { category: '代數', q: '(a + b)² 展開為？', options: ['a² + b²', 'a² + 2ab + b²', 'a² − 2ab + b²', '2a² + 2b²'], answer: 'a² + 2ab + b²' },
+  { category: '代數', q: '2¹⁰ = ？', options: ['256', '512', '1024', '2048'], answer: '1024' },
+  { category: '代數', q: '等比數列首項為 2，公比為 3，第 4 項為？', options: ['18', '27', '54', '162'], answer: '54' },
+  { category: '幾何', q: '半徑為 5 的圓，面積為？', options: ['5π', '10π', '25π', '50π'], answer: '25π' },
+  { category: '幾何', q: '直角三角形兩股分別為 3 和 4，斜邊長為？', options: ['5', '6', '7', '√7'], answer: '5' },
+  { category: '幾何', q: '正三角形邊長為 6，面積為？', options: ['6√3', '9√3', '12√3', '18'], answer: '9√3' },
+  { category: '幾何', q: '正方形邊長為 4，對角線長為？', options: ['2√2', '4', '4√2', '8'], answer: '4√2' },
+  { category: '幾何', q: '圓的周長公式為？', options: ['πr', 'πr²', '2πr', '4πr'], answer: '2πr' },
+  { category: '函數', q: 'f(x) = 2x + 3，f(5) = ？', options: ['8', '10', '11', '13'], answer: '13' },
+  { category: '函數', q: 'y = x² − 4x + 3 的最小值為？', options: ['−1', '0', '1', '3'], answer: '−1' },
+  { category: '函數', q: 'y = 2ˣ，當 x = 3 時，y = ？', options: ['6', '8', '9', '16'], answer: '8' },
+  { category: '統計', q: '資料：2, 4, 6, 8, 10 的平均數為？', options: ['4', '5', '6', '7'], answer: '6' },
+  { category: '統計', q: '資料：1, 3, 5, 7, 9 的中位數為？', options: ['3', '4', '5', '7'], answer: '5' },
+  { category: '統計', q: '擲公正硬幣兩次，兩次都正面的機率為？', options: ['1/4', '1/3', '1/2', '3/4'], answer: '1/4' },
+  { category: '三角', q: 'sin 30° = ？', options: ['1/2', '√2/2', '√3/2', '1'], answer: '1/2' },
+  { category: '三角', q: 'cos 60° = ？', options: ['0', '1/2', '√2/2', '√3/2'], answer: '1/2' },
+  { category: '三角', q: 'tan 45° = ？', options: ['0', '1/√3', '1', '√3'], answer: '1' },
+];
