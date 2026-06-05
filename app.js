@@ -66,26 +66,24 @@ function setWordStatus(word, status) {
 // ===== 篩選 =====
 function getFilteredDeck() {
   const p = loadProgress();
-  if (currentFilter === -1) {
-    return VOCAB_ALL.filter(v => p[v.word] === 'hard');
-  }
-  if (currentFilter === 0) return [...VOCAB_ALL];
-  return VOCAB_ALL.filter(v => v.level === currentFilter);
+  if (currentFilter === -1) return VOCAB_ALL.filter(v => p[v.word] === 'hard');
+  if (currentFilter === 99 && currentLessonFilter) return VOCAB_ALL.filter(v => v.lesson === currentLessonFilter);
+  return [...VOCAB_ALL];
 }
 
 function setFilter(level) {
   currentFilter = level;
-  document.querySelectorAll('.filter-btn').forEach((b, i) => {
-    const vals = [0, 2, 3, 4, -1];
-    b.classList.toggle('active', vals[i] === level);
-  });
+  currentLessonFilter = '';
+  document.querySelectorAll('#subject-english .filter-btn').forEach(b => b.classList.remove('active'));
+  // 全部按鈕 active
+  if (level === 0) document.querySelector('#subject-english .filter-btn').classList.add('active');
+  if (level === -1) document.getElementById('hardOnlyBtn').classList.add('active');
   currentDeck = getFilteredDeck();
   currentCardIndex = 0;
   isFlipped = false;
   renderCard();
   updateGlobalStats();
 
-  // 如果在測驗頁就重新開始
   if (document.getElementById('page-quiz').classList.contains('active')) {
     startQuiz();
   }
@@ -94,11 +92,27 @@ function setFilter(level) {
   }
 }
 
+let currentLessonFilter = '';
+
+function setLessonFilter(lesson, btn) {
+  currentFilter = 99;
+  currentLessonFilter = lesson;
+  document.querySelectorAll('#subject-english .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentDeck = VOCAB_ALL.filter(v => v.lesson === lesson);
+  currentCardIndex = 0;
+  isFlipped = false;
+  renderCard();
+  updateGlobalStats();
+  if (document.getElementById('page-quiz').classList.contains('active')) startQuiz();
+  if (document.getElementById('page-progress').classList.contains('active')) renderProgress();
+}
+
 // ===== 頁面切換 =====
 function switchSubject(subject, btn) {
   const subjects = ['english','chinese','math','social','science'];
   const subtitles = {
-    english: '英文 ｜ LIVE ABC 核心字彙 ｜ 2-4 級',
+    english: '英文 ｜ 第三次月考 ｜ L07 / L08 / L09 / R01 / R02 / R03',
     chinese: '國文 ｜ 開發中',
     math:    '數學 ｜ 學測選擇題練習',
     social:  '社會 ｜ 開發中',
@@ -127,6 +141,7 @@ function switchPage(page, btn) {
 
   if (page === 'quiz') startQuiz();
   if (page === 'progress') renderProgress();
+  if (page === 'reading') renderReadingMenu();
 }
 
 // ===== 發音（優先真人錄音，備援 TTS）=====
@@ -223,9 +238,11 @@ function renderCard() {
   `;
 
   back.innerHTML = `
-    <div class="card-level">Level ${v.level}</div>
+    <div class="card-level">${v.lesson || 'Level ' + v.level}</div>
     <div class="card-word-back">${v.word} <span style="color:#a0aec0;font-style:italic">(${v.pos})</span></div>
     <div class="card-zh">${v.zh}</div>
+    ${v.en_def ? `<div style="font-size:0.8rem;color:#718096;margin-top:6px;padding:6px 10px;background:#f7fafc;border-radius:6px;font-style:italic;">${v.en_def}</div>` : ''}
+    ${v.example ? `<div style="font-size:0.75rem;color:#a0aec0;margin-top:6px;line-height:1.5;border-top:1px solid #f0f0f0;padding-top:6px;"><em>${v.example}</em></div>` : ''}
     <button class="speak-btn" onclick="event.stopPropagation();speak('${v.word.replace(/'/g,"\\'")}')">🔊</button>
   `;
 
@@ -328,7 +345,7 @@ function renderQuizQuestion() {
 
   document.getElementById('quizContent').innerHTML = `
     <div class="quiz-card">
-      <div class="quiz-type-tag">選出正確的中文翻譯</div>
+      <div class="quiz-type-tag">${q.lesson ? q.lesson + ' ｜ ' : ''}選出正確的中文翻譯</div>
       <div class="quiz-question">${q.word}</div>
       <div class="quiz-question-pos">(${q.pos})</div>
       <button class="quiz-speak-btn" onclick="speak('${q.word.replace(/'/g,"\\'")}')">🔊 聽發音</button>
@@ -339,6 +356,7 @@ function renderQuizQuestion() {
           </button>
         `).join('')}
       </div>
+      <div id="quizExplain" style="display:none;margin-top:14px;padding:14px;background:#f7fafc;border-radius:10px;border-left:3px solid #3182ce;font-size:0.88rem;line-height:1.8;text-align:left;"></div>
     </div>
     <button class="quiz-next-btn" id="quizNextBtn" style="display:none" onclick="nextQuizQuestion()">
       ${quizIndex + 1 < quizQuestions.length ? '下一題 →' : '查看結果'}
@@ -376,6 +394,22 @@ function answerQuiz(btn, chosen, correct) {
   document.getElementById('quizScore').innerHTML = `正確：<span class="correct">${quizCorrect}</span>　錯誤：<span class="wrong">${quizWrong}</span>`;
   document.getElementById('quizNextBtn').style.display = 'block';
   updateGlobalStats();
+
+  // 顯示中文解析（幫助英文程度較弱的學生理解）
+  const expl = document.getElementById('quizExplain');
+  if (expl) {
+    expl.style.display = 'block';
+    expl.innerHTML =
+      `<div style="margin-bottom:6px;">
+         <strong style="font-size:1rem;color:#2b6cb0;">${q.word}</strong>
+         <span style="color:#718096;font-size:0.82rem;margin-left:4px;">${q.pos}</span>
+         <span style="margin:0 6px;color:#a0aec0;">＝</span>
+         <strong style="color:#c05621;">${q.zh}</strong>
+         ${q.lesson ? `<span style="margin-left:8px;background:#ebf8ff;color:#2b6cb0;border-radius:6px;padding:1px 7px;font-size:0.75rem;font-weight:700;">${q.lesson}</span>` : ''}
+       </div>
+       ${q.en_def ? `<div style="color:#4a5568;margin-bottom:4px;">${q.en_def}</div>` : ''}
+       ${q.example ? `<div style="color:#a0aec0;font-style:italic;font-size:0.82rem;">${q.example}</div>` : ''}`;
+  }
 }
 
 function nextQuizQuestion() {
@@ -419,15 +453,16 @@ function renderProgress() {
     <div class="stat-box"><div class="num gray">${unseen}</div><div class="lbl">尚未學習</div></div>
   `;
 
-  // 各級進度
+  // 各課次進度
   let barsHTML = '';
-  [2, 3, 4].forEach(lv => {
-    const lvWords = VOCAB_ALL.filter(v => v.level === lv);
+  ['L07','L08','L09','R01','R02','R03'].forEach(lesson => {
+    const lvWords = VOCAB_ALL.filter(v => v.lesson === lesson);
+    if (!lvWords.length) return;
     const lvKnown = lvWords.filter(v => p[v.word] === 'known').length;
     const pct = Math.round(lvKnown / lvWords.length * 100);
     barsHTML += `
       <div class="level-row">
-        <div class="level-label">Level ${lv}</div>
+        <div class="level-label">${lesson}</div>
         <div class="progress-bar-outer">
           <div class="progress-bar-inner" style="width:${pct}%"></div>
         </div>
@@ -494,49 +529,161 @@ let clozeSubmitted = false;
 let clozeSessionCount = 0;
 let clozeCorrectCount = 0;
 
-// 預存題庫（由 Python 腳本生成後填入）
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
 
 function pickTargetWord() {
   const p = loadProgress();
-  const hardWords = VOCAB_ALL.filter(v => p[v.word] === 'hard');
-  const pool = hardWords.length > 0 && Math.random() < 0.4 ? hardWords : VOCAB_ALL;
+  const deck = getFilteredDeck();
+  const basePool = deck.length > 0 ? deck : VOCAB_ALL;
+  const hardWords = basePool.filter(v => p[v.word] === 'hard');
+  const pool = hardWords.length > 0 && Math.random() < 0.4 ? hardWords : basePool;
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-async function tryOllama(target) {
-  const prompt = `You are a Taiwan high school English teacher. Generate ONE cloze test question for the word: ${target.word} (${target.pos}, Chinese: ${target.zh})\n\nReturn ONLY valid JSON (no markdown):\n{"passage":"40-60 word English passage with [BLANK] where ${target.word} goes","options":{"A":"option","B":"option","C":"option","D":"option"},"correct_answer":"letter A/B/C/D","explanation":{"chinese_translation":"中文翻譯","core_concept":"核心觀念","why_correct":"為何正確","why_others_wrong":"其他選項分析"}}`;
-
-  const res = await fetch('http://localhost:11434/api/generate', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'gemma4:latest',
-      prompt,
-      stream: false,
-      options: { temperature: 0.7, num_predict: 2000 }
-    })
-  });
-  if (!res.ok) throw new Error('Ollama 無回應');
-  const data = await res.json();
-  const raw = data.response || '';
-  const m = raw.match(/\{[\s\S]*\}/);
-  if (!m) throw new Error('格式錯誤');
-  const q = JSON.parse(m[0]);
-  if (!q.passage?.includes('[BLANK]')) throw new Error('缺少 [BLANK]');
-  if (!['A','B','C','D'].includes(q.correct_answer)) throw new Error('答案格式錯誤');
-  return q;
+function clozePrimaryWord(word) {
+  return String(word).split('/')[0].replace(/\(.+?\)/g, '').trim();
 }
 
-function getBankQuestion(target) {
-  if (CLOZE_BANK.length === 0) return null;
-  // 先找對應單字
-  const match = CLOZE_BANK.find(q => q.word === target.word);
-  if (match) return match;
-  // 找相同 level
-  const levelMatch = CLOZE_BANK.filter(q => q.level === target.level);
-  if (levelMatch.length > 0) return levelMatch[Math.floor(Math.random() * levelMatch.length)];
-  // 隨機
-  return CLOZE_BANK[clozeBankIndex++ % CLOZE_BANK.length];
+function clozePosType(pos) {
+  const p = String(pos).toLowerCase();
+  if (p.includes('v.')) return 'verb';
+  if (p.includes('adj.')) return 'adj';
+  if (p.includes('adv.')) return 'adv';
+  if (p.includes('prep.')) return 'prep';
+  return 'noun';
+}
+
+function shuffleArray(items) {
+  const arr = [...items];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function pickDistractors(target, count = 3) {
+  const targetType = clozePosType(target.pos);
+  const sameLevel = VOCAB_ALL.filter(v =>
+    v.word !== target.word &&
+    clozePosType(v.pos) === targetType &&
+    v.level === target.level
+  );
+  const sameType = VOCAB_ALL.filter(v =>
+    v.word !== target.word &&
+    clozePosType(v.pos) === targetType &&
+    v.level !== target.level
+  );
+  const fallback = VOCAB_ALL.filter(v => v.word !== target.word);
+  const picked = [];
+
+  for (const item of shuffleArray([...sameLevel, ...sameType, ...fallback])) {
+    const word = clozePrimaryWord(item.word);
+    if (!word || picked.includes(word) || word === clozePrimaryWord(target.word)) continue;
+    picked.push(word);
+    if (picked.length === count) break;
+  }
+  return picked;
+}
+
+function buildClozeQuestion(target) {
+  const word = clozePrimaryWord(target.word);
+  const type = clozePosType(target.pos);
+  const templates = {
+    noun: [
+      {
+        en: `The teacher asked the class to explain why [BLANK] was important in the story.`,
+        zh: `老師請全班說明為什麼故事中的[BLANK]很重要。`,
+        correct: `「${target.zh}」作為名詞，能自然表示句中的核心事物或概念。`
+      },
+      {
+        en: `After the discussion, everyone had a clearer idea of [BLANK].`,
+        zh: `討論之後，大家對[BLANK]有了更清楚的概念。`,
+        correct: `這裡需要名詞當作 of 後面的受詞，「${word}」符合語法與語意。`
+      }
+    ],
+    verb: [
+      {
+        en: `Before making a decision, they needed to [BLANK] the situation carefully.`,
+        zh: `做決定之前，他們需要仔細地[BLANK]這個情況。`,
+        correct: `空格接在 to 後面，需要原形動詞；「${target.zh}」符合動作語意。`
+      },
+      {
+        en: `The coach encouraged the team to [BLANK] when the challenge became difficult.`,
+        zh: `當挑戰變困難時，教練鼓勵隊伍要[BLANK]。`,
+        correct: `這裡需要一個動詞補足 encouraged...to 的句型，「${word}」可以表達主要動作。`
+      }
+    ],
+    adj: [
+      {
+        en: `The speaker gave a [BLANK] example so the students could understand the idea.`,
+        zh: `講者給了一個[BLANK]的例子，讓學生能理解這個概念。`,
+        correct: `空格放在名詞 example 前，需要形容詞；「${target.zh}」能修飾後面的名詞。`
+      },
+      {
+        en: `Her [BLANK] attitude helped the group stay focused during the project.`,
+        zh: `她[BLANK]的態度幫助小組在專案中保持專注。`,
+        correct: `這裡需要形容詞修飾 attitude，「${word}」符合形容詞位置。`
+      }
+    ],
+    adv: [
+      {
+        en: `The students listened [BLANK] while the guest shared his experience.`,
+        zh: `來賓分享經驗時，學生們[BLANK]地聆聽。`,
+        correct: `空格修飾動詞 listened，需要副詞；「${target.zh}」符合副詞用法。`
+      },
+      {
+        en: `The plan changed [BLANK] after the new rule was announced.`,
+        zh: `新規定宣布後，計畫[BLANK]地改變了。`,
+        correct: `這裡用副詞修飾 changed，「${word}」能表示動作發生的方式。`
+      }
+    ],
+    prep: [
+      {
+        en: `The report included several examples [BLANK] the main topic.`,
+        zh: `報告包含了幾個[BLANK]主題的例子。`,
+        correct: `空格需要介系詞連接 examples 和 topic，「${target.zh}」符合連接關係。`
+      },
+      {
+        en: `The class had a short discussion [BLANK] the reading passage.`,
+        zh: `全班針對閱讀文章進行了一段簡短討論。`,
+        correct: `這裡需要介系詞帶出討論的對象，「${word}」符合句型。`
+      }
+    ]
+  };
+  const template = templates[type][clozeBankIndex++ % templates[type].length];
+  const choices = shuffleArray([word, ...pickDistractors(target)]);
+  const letters = ['A','B','C','D'];
+  const options = {};
+  let correct = 'A';
+  letters.forEach((letter, index) => {
+    options[letter] = choices[index];
+    if (choices[index] === word) correct = letter;
+  });
+
+  return {
+    word: target.word,
+    pos: target.pos,
+    zh: target.zh,
+    level: target.level,
+    passage: template.en,
+    passage_zh: template.zh,
+    options,
+    correct_answer: correct,
+    explanation: {
+      chinese_translation: template.zh.replace('[BLANK]', target.zh),
+      core_concept: `測驗 ${word}（${target.zh}）在句中的 ${target.pos} 用法。`,
+      why_correct: template.correct,
+      why_others_wrong: `其他選項雖然也是單字，但詞性或語意無法自然放進這個句子。先看空格前後的句型，再用中文意思確認。`
+    }
+  };
 }
 
 async function generateClozeQuestion() {
@@ -545,22 +692,13 @@ async function generateClozeQuestion() {
   document.getElementById('clozeMain').style.display = 'none';
   document.getElementById('clozeError').style.display = 'none';
   document.getElementById('clozeLoading').style.display = 'block';
-  document.getElementById('clozeLoadingWord').textContent = `正在讀取題庫…`;
+  document.getElementById('clozeLoadingWord').textContent = `正在準備 ${target.word} 的題目…`;
   document.getElementById('clozeBtnGenerate').disabled = true;
 
   try {
-    // 線上版本優先使用內建題庫，避免等待本機 Ollama 造成出題卡住。
-    let q = getBankQuestion(target);
-    if (!q) throw new Error('題庫尚未載入，請稍後再試（題庫產生中…）');
-    const source = '📚 題庫';
-    // 用題庫的 target 覆蓋
-    target.word = q.word;
-    target.pos = q.pos;
-    target.zh = q.zh;
-    target.level = q.level;
-
+    const q = buildClozeQuestion(target);
     const badge = document.getElementById('clozeSourceBadge');
-    if (badge) badge.textContent = source;
+    if (badge) badge.textContent = `Level ${target.level}`;
     renderClozeQuestion(q, target);
   } catch(e) {
     document.getElementById('clozeLoading').style.display = 'none';
@@ -577,6 +715,9 @@ function renderClozeQuestion(q, target) {
   clozeCurrentTarget = target;
   clozeSubmitted = false;
   clozeSessionCount++;
+  clozePendingQuestion = q;
+  clozePendingExplanation = q.explanation;
+  clozePendingPassage = q.passage;
 
   document.getElementById('clozeLoading').style.display = 'none';
   document.getElementById('clozeExplanation').style.display = 'none';
@@ -597,7 +738,7 @@ function renderClozeQuestion(q, target) {
   const letters = ['A','B','C','D'];
   document.getElementById('clozeOptions').innerHTML = letters.map(l =>
     `<div class="option-row" id="optRow${l}">
-       <strong>${l}.</strong>&nbsp;&nbsp;${q.options[l]}
+       <strong>${l}.</strong>&nbsp;&nbsp;${escapeHtml(q.options[l])}
      </div>`
   ).join('');
 
@@ -612,6 +753,7 @@ function renderClozeQuestion(q, target) {
   // 重置交卷鍵
   const btn = document.getElementById('clozeSubmitBtn');
   btn.disabled = true;
+  btn.textContent = '交卷';
   btn.style.background = '#e2e8f0';
   btn.style.color = '#a0aec0';
   btn.style.cursor = 'not-allowed';
@@ -700,10 +842,6 @@ let clozePendingQuestion = null;
 let clozePendingExplanation = null;
 let clozePendingPassage = null;
 
-// 重寫 renderClozeQuestion 來儲存 pending 資料
-const _origRender = renderClozeQuestion;
-// (已在函數內直接存取)
-
 function showClozeExplanation(expl) {
   if (!expl) return;
   const el = document.getElementById('clozeExplContent');
@@ -748,15 +886,6 @@ function showClozeExplanation(expl) {
   document.getElementById('clozeExplanation').style.display = 'block';
   document.getElementById('clozeExplanation').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-
-// 修正：在 renderClozeQuestion 加入儲存 pending 資料
-const origRenderCloze = renderClozeQuestion;
-window.renderClozeQuestion = function(q, target) {
-  clozePendingQuestion = q;
-  clozePendingExplanation = q.explanation;
-  clozePendingPassage = q.passage;
-  origRenderCloze(q, target);
-};
 
 // 鍵盤 A/B/C/D 快捷鍵（克漏字頁）
 document.addEventListener('keydown', e => {
@@ -1238,3 +1367,115 @@ currentDeck = getFilteredDeck();
 renderCard();
 updateGlobalStats();
 updateDailyBar();
+
+// ===== 閱讀理解 =====
+let readingCurrentPassage = null;
+let readingQIndex = 0;
+let readingCorrect = 0;
+let readingWrong = 0;
+let readingAnswered = false;
+
+function renderReadingMenu() {
+  document.getElementById('readingContent').innerHTML = `
+    <h2 style="font-size:1.1rem;color:#2d3748;margin-bottom:4px;">閱讀理解練習</h2>
+    <p style="font-size:0.82rem;color:#a0aec0;margin-bottom:16px;">選擇課次，閱讀文章後回答問題</p>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      ${EXAM3_READING.map(r => `
+        <div style="background:white;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.07);cursor:pointer;border:1.5px solid #e2e8f0;"
+             onclick="startReading('${r.lesson}')">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-size:0.75rem;color:#718096;font-weight:700;letter-spacing:1px;">${r.lesson}</div>
+              <div style="font-size:0.95rem;font-weight:700;color:#2d3748;margin-top:2px;">${r.title}</div>
+            </div>
+            <div style="background:#ebf8ff;color:#2b6cb0;border-radius:8px;padding:4px 10px;font-size:0.8rem;font-weight:700;">${r.questions.length} 題</div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function startReading(lesson) {
+  readingCurrentPassage = EXAM3_READING.find(r => r.lesson === lesson);
+  if (!readingCurrentPassage) return;
+  readingQIndex = 0; readingCorrect = 0; readingWrong = 0;
+  renderReadingQ();
+}
+
+function renderReadingQ() {
+  const p = readingCurrentPassage;
+  if (readingQIndex >= p.questions.length) {
+    const pct = Math.round(readingCorrect / p.questions.length * 100);
+    const emoji = pct >= 90 ? '🎉' : pct >= 70 ? '👍' : pct >= 50 ? '💪' : '📚';
+    document.getElementById('readingContent').innerHTML = `
+      <div class="quiz-result">
+        <h2>${emoji} 閱讀完成！</h2>
+        <div style="font-size:0.85rem;color:#718096;margin-bottom:12px;">${p.lesson} ${p.title}</div>
+        <div class="big-score">${pct}%</div>
+        <p>答對 ${readingCorrect} 題，答錯 ${readingWrong} 題，共 ${p.questions.length} 題</p>
+        <button class="quiz-restart" onclick="renderReadingMenu()">選其他課次</button>
+        <button class="quiz-restart" style="margin-left:8px;" onclick="startReading('${p.lesson}')">再練一次</button>
+      </div>`;
+    return;
+  }
+  readingAnswered = false;
+  const q = p.questions[readingQIndex];
+  const letters = ['A','B','C','D'];
+  document.getElementById('readingContent').innerHTML = `
+    <div style="margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-size:0.8rem;font-weight:700;color:#718096;">${p.lesson} ｜ 第 ${readingQIndex+1}/${p.questions.length} 題</span>
+      <button onclick="renderReadingMenu()" style="background:none;border:1px solid #e2e8f0;border-radius:6px;padding:4px 10px;font-size:0.78rem;cursor:pointer;color:#718096;">← 課次列表</button>
+    </div>
+    <div style="background:#f7fafc;border-radius:12px;padding:16px;margin-bottom:14px;font-size:0.88rem;color:#2d3748;line-height:1.9;border-left:3px solid #3182ce;">
+      <div style="font-size:0.7rem;color:#a0aec0;letter-spacing:1px;margin-bottom:8px;">READING EXCERPT</div>
+      ${p.passage_excerpt}
+    </div>
+    <div style="background:white;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.07);">
+      <div style="font-size:1rem;font-weight:700;color:#2d3748;margin-bottom:4px;">${q.q}</div>
+      <div style="font-size:0.88rem;color:#718096;margin-bottom:14px;padding:6px 10px;background:#fefcbf;border-radius:6px;">${q.q_zh}</div>
+      <div style="display:flex;flex-direction:column;gap:8px;" id="readingOptions">
+        ${letters.filter(l => q.options[l]).map(l =>
+          `<button class="option-btn" onclick="answerReading(this,'${l}','${q.answer}')">
+             ${l}. ${escapeHtml(q.options[l])}
+           </button>`).join('')}
+      </div>
+      <div id="readingFeedback" style="display:none;margin-top:14px;padding:14px;border-radius:10px;font-size:0.88rem;line-height:1.8;"></div>
+      <button id="readingNextBtn" onclick="nextReadingQ()"
+        style="display:none;width:100%;margin-top:14px;padding:12px;background:#3182ce;color:white;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;">
+        ${readingQIndex + 1 < p.questions.length ? '下一題 →' : '查看結果'}
+      </button>
+    </div>`;
+}
+
+function answerReading(btn, chosen, correct) {
+  if (readingAnswered) return;
+  readingAnswered = true;
+  const p = readingCurrentPassage;
+  const q = p.questions[readingQIndex];
+  document.querySelectorAll('#readingOptions .option-btn').forEach(b => {
+    b.disabled = true;
+    if (b.textContent.trim()[0] === correct) b.classList.add('correct');
+  });
+  if (chosen === correct) { btn.classList.add('correct'); readingCorrect++; }
+  else { btn.classList.add('wrong'); readingWrong++; }
+  const fb = document.getElementById('readingFeedback');
+  fb.style.display = 'block';
+  fb.style.background = 'transparent';
+  fb.style.color = 'inherit';
+  fb.innerHTML = `
+    <div style="padding:12px 14px;border-radius:10px;margin-bottom:12px;background:${chosen === correct ? '#f0fff4' : '#fff5f5'};color:${chosen === correct ? '#276749' : '#9b2c2c'};">
+      <strong>${chosen === correct ? '✓ 答對了！' : `✗ 答錯！正解是 ${correct}`}</strong>
+      <span style="display:block;margin-top:6px;font-size:0.88rem;color:#4a5568;">${q.explanation}</span>
+    </div>
+    ${p.passage_zh ? `
+    <div style="background:#fefcbf;border-radius:10px;padding:14px;border-left:3px solid #d69e2e;">
+      <div style="font-size:0.72rem;color:#744210;letter-spacing:1px;margin-bottom:8px;font-weight:700;">短文中文翻譯</div>
+      <div style="font-size:0.9rem;color:#2d3748;line-height:1.9;">${p.passage_zh}</div>
+    </div>` : ''}`;
+  document.getElementById('readingNextBtn').style.display = 'block';
+  fb.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function nextReadingQ() {
+  readingQIndex++;
+  renderReadingQ();
+}

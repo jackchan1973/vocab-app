@@ -13,7 +13,7 @@
 <header>
   <div>
     <h1>學測複習工具</h1>
-    <div class="subtitle" id="headerSubtitle">英文 ｜ LIVE ABC 核心字彙 ｜ 2-4 級</div>
+    <div class="subtitle" id="headerSubtitle">英文 ｜ 第三次月考 ｜ L07 / L08 / L09 / R01 / R02 / R03</div>
   </div>
   <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
     <button onclick="openParentModal()" style="background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.6);color:white;padding:6px 12px;border-radius:8px;cursor:pointer;font-size:0.82rem;">👨‍👦 家長查看</button>
@@ -57,15 +57,19 @@
   <button class="active" onclick="switchPage('flashcard', this)">單字卡</button>
   <button onclick="switchPage('quiz', this)">測驗</button>
   <button onclick="switchPage('cloze', this)">📝 克漏字</button>
+  <button onclick="switchPage('reading', this)">📖 閱讀理解</button>
   <button onclick="switchPage('progress', this)">進度</button>
 </nav>
 
 <div class="filter-bar">
-  <span>級別篩選：</span>
+  <span>課次：</span>
   <button class="filter-btn active" onclick="setFilter(0)">全部</button>
-  <button class="filter-btn" onclick="setFilter(2)">Level 2</button>
-  <button class="filter-btn" onclick="setFilter(3)">Level 3</button>
-  <button class="filter-btn" onclick="setFilter(4)">Level 4</button>
+  <button class="filter-btn" onclick="setLessonFilter('L07',this)">L07</button>
+  <button class="filter-btn" onclick="setLessonFilter('L08',this)">L08</button>
+  <button class="filter-btn" onclick="setLessonFilter('L09',this)">L09</button>
+  <button class="filter-btn" onclick="setLessonFilter('R01',this)">R01</button>
+  <button class="filter-btn" onclick="setLessonFilter('R02',this)">R02</button>
+  <button class="filter-btn" onclick="setLessonFilter('R03',this)">R03</button>
   <button class="filter-btn" onclick="setFilter(-1)" id="hardOnlyBtn">困難單字</button>
 </div>
 
@@ -133,28 +137,18 @@
 
   <!-- 題目主體 -->
   <div id="clozeMain" style="display:none;padding:16px;max-width:900px;margin:0 auto;">
-    <!-- 上方：單字提示 -->
-    <div id="clozeWordHint" style="background:#ebf8ff;border-radius:10px;padding:10px 16px;margin-bottom:14px;font-size:0.85rem;color:#2b6cb0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-    </div>
-
-    <!-- 左右雙欄 -->
+    <div id="clozeWordHint" style="background:#ebf8ff;border-radius:10px;padding:10px 16px;margin-bottom:14px;font-size:0.85rem;color:#2b6cb0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;"></div>
     <div id="clozeLayout" style="display:grid;grid-template-columns:1fr 280px;gap:16px;align-items:start;">
-
-      <!-- 左欄：題本 -->
       <div style="background:white;border-radius:14px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,0.07);">
         <div style="font-size:0.72rem;color:#a0aec0;margin-bottom:10px;letter-spacing:1px;">READING PASSAGE</div>
         <p id="clozePassage" style="font-size:1.05rem;line-height:1.9;color:#2d3748;margin-bottom:22px;"></p>
         <hr style="border:none;border-top:1px solid #e2e8f0;margin-bottom:16px;">
         <div id="clozeOptions" style="display:flex;flex-direction:column;gap:10px;"></div>
       </div>
-
-      <!-- 右欄：答題卡 -->
       <div style="background:white;border-radius:14px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,0.07);text-align:center;">
         <div style="font-size:0.72rem;color:#a0aec0;letter-spacing:1px;margin-bottom:6px;">答　題　卡</div>
         <div style="font-size:1rem;font-weight:700;color:#2d3748;margin-bottom:18px;" id="clozeQuestionNo">第 1 題</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;" id="clozeBubbles">
-          <!-- bubbles injected by JS -->
-        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;" id="clozeBubbles"></div>
         <div style="font-size:0.75rem;color:#a0aec0;margin-bottom:16px;">按鍵盤 A / B / C / D 快速作答</div>
         <button id="clozeSubmitBtn" onclick="submitCloze()" disabled
           style="width:100%;padding:12px;background:#e2e8f0;color:#a0aec0;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:not-allowed;transition:all 0.2s;">
@@ -163,8 +157,6 @@
         <div id="clozeResultBadge" style="display:none;margin-top:14px;padding:10px;border-radius:10px;font-size:1rem;font-weight:700;"></div>
       </div>
     </div>
-
-    <!-- 解析展開 -->
     <div id="clozeExplanation" style="display:none;margin-top:16px;background:white;border-radius:14px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,0.07);">
       <h3 style="font-size:1rem;color:#2d3748;margin-bottom:16px;">📖 詳細解析</h3>
       <div id="clozeExplContent"></div>
@@ -175,14 +167,15 @@
     </div>
   </div>
 
-  <!-- 錯誤訊息 -->
   <div id="clozeError" style="display:none;text-align:center;padding:40px 20px;">
     <div style="font-size:2rem;margin-bottom:10px;">⚠️</div>
     <div style="font-size:0.95rem;color:#e53e3e;font-weight:700;" id="clozeErrorMsg"></div>
-    <button onclick="openApiKeyModal()" style="margin-top:16px;padding:8px 20px;background:#3182ce;color:white;border:none;border-radius:8px;cursor:pointer;font-size:0.9rem;">
-      設定 API Key
-    </button>
   </div>
+</div>
+
+<!-- 閱讀理解 -->
+<div id="page-reading" class="page">
+  <div id="readingContent" style="padding:16px;max-width:700px;margin:0 auto;"></div>
 </div>
 
 <!-- 進度 -->
@@ -193,7 +186,7 @@
       <div class="stat-grid" id="statGrid"></div>
     </div>
     <div class="progress-card">
-      <h3>✅ 各級別學習進度</h3>
+      <h3>✅ 各課次學習進度</h3>
       <div id="levelProgressBars"></div>
     </div>
     <div class="progress-card">
@@ -250,6 +243,7 @@
 <script src="vocab-data.js"></script>
 <script src="cloze-data.js"></script>
 <script src="math-data.js"></script>
+<script src="reading-exam3.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
