@@ -1,6 +1,39 @@
 // Unit 9 克漏字 - Part 2 Advanced（文意選填）
 // 主題：英國皇室婚禮與遊民議題（Windsor Castle）
 
+// ── 課文篇：The Street Store（直接取自課文，8個課文單字） ──
+const clozeU9Text = {
+  unit: "U09",
+  title: "The Street Store Allows the Homeless to Shop with Pride",
+  passage: `There's a saying that "(1)________ can't be choosers." Some charities offer clothes to the (2)________ for free, but there is usually little in terms of choice. A project called The Street Store is trying a different approach.
+
+The Street Store was founded in Cape Town, South Africa, by two people who worked in advertising. Noticing many homeless people near their offices, they wanted to give them the opportunity to choose what clothing they want and need. This way, they can have the same (3)________ as paying customers. Furthermore, (4)________ are present to assist them in finding the right type, size, and style.
+
+The process consists of just a few steps. First, complete an application form and download the files for creating a Street Store. Second, (5)________ with a local organization that helps the homeless, and assemble a team of volunteers. Third, find a (6)________ location and get (7)________ from local authorities to set up a Street Store there.
+
+Since the project was established in 2014, cities around the world have hosted events in collaboration with local organizations. The Street Store is one creative solution to (8)________ that makes the process of giving and receiving easy and dignified.`,
+  options: [
+    { letter: "A", word: "beggars" },
+    { letter: "B", word: "needy" },
+    { letter: "C", word: "dignity" },
+    { letter: "D", word: "volunteers" },
+    { letter: "E", word: "partner" },
+    { letter: "F", word: "suitable" },
+    { letter: "G", word: "permission" },
+    { letter: "H", word: "poverty" }
+  ],
+  blanks: [
+    { number: 1, answer: "A", word: "beggars" },
+    { number: 2, answer: "B", word: "needy" },
+    { number: 3, answer: "C", word: "dignity" },
+    { number: 4, answer: "D", word: "volunteers" },
+    { number: 5, answer: "E", word: "partner" },
+    { number: 6, answer: "F", word: "suitable" },
+    { number: 7, answer: "G", word: "permission" },
+    { number: 8, answer: "H", word: "poverty" }
+  ]
+};
+
 const clozeU9 = {
   unit: "U9",
   title: "The British Royal Wedding and the Homeless in Windsor",

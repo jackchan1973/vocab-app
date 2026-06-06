@@ -1499,10 +1499,14 @@ function nextReadingQ() {
 // ===== 文意選填 =====
 // 只收錄「文意選填」格式（頂層有 options 陣列）；U10 是選擇題克漏字，格式不同，暫不列入
 const WENCIANZE_DATA = [
-  { unit: 'U09', label: 'U09', data: typeof clozeU9 !== 'undefined' ? clozeU9 : null },
-  { unit: 'U10', label: 'U10', data: typeof clozeU10Wen !== 'undefined' ? clozeU10Wen : null },
-  { unit: 'U11', label: 'U11', data: typeof clozeU11 !== 'undefined' ? clozeU11 : null },
-  { unit: 'U12', label: 'U12', data: typeof clozeU12 !== 'undefined' ? clozeU12 : null }
+  { unit: 'U09課', label: 'U09 📖 課文篇', data: typeof clozeU9Text !== 'undefined' ? clozeU9Text : null },
+  { unit: 'U09',   label: 'U09 ✏️ 練習篇', data: typeof clozeU9 !== 'undefined' ? clozeU9 : null },
+  { unit: 'U10課', label: 'U10 📖 課文篇', data: typeof clozeU10Text !== 'undefined' ? clozeU10Text : null },
+  { unit: 'U10',   label: 'U10 ✏️ 練習篇', data: typeof clozeU10Wen !== 'undefined' ? clozeU10Wen : null },
+  { unit: 'U11課', label: 'U11 📖 課文篇', data: typeof clozeU11Text !== 'undefined' ? clozeU11Text : null },
+  { unit: 'U11',   label: 'U11 ✏️ 練習篇', data: typeof clozeU11 !== 'undefined' ? clozeU11 : null },
+  { unit: 'U12課', label: 'U12 📖 課文篇', data: typeof clozeU12Text !== 'undefined' ? clozeU12Text : null },
+  { unit: 'U12',   label: 'U12 ✏️ 練習篇', data: typeof clozeU12 !== 'undefined' ? clozeU12 : null },
 ].filter(u => u.data && Array.isArray(u.data.options));
 
 let wcCurrentData = null;

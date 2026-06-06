@@ -1,5 +1,38 @@
 // Unit 12 克漏字 - 文意選填
-// 主題：Wellness Festivals（健康節）
+// 主題：Wellness Festivals（健康節）／Finding Fortune（課文）
+
+// ── 課文篇：Finding Fortune with New Year's Traditions（直接取自課文，8個課文單字） ──
+const clozeU12Text = {
+  unit: "U12",
+  title: "Finding Fortune with New Year's Traditions",
+  passage: `All around the world, New Year's Day is celebrated with great (1)________, and many countries have their own New Year's (2)________. Let's have a look at a few (3)________ ways of celebrating the new year!
+
+Danish people (4)________ their friends by breaking dishes in front of their houses. Finding a big pile of broken dishes at your door on January 1 means that you have many friends and will have good (5)________ in the new year.
+
+The Greeks bake a special bread in which they hide a single coin to (6)________ luck and wealth. On New Year's Day, whoever gets the lucky slice is also sure to get the reward of a successful year.
+
+Scottish people believe the promise of good fortune depends on who first steps foot in their door. The owners are (7)________ as this "first-foot" approaches with gifts of salt, silver, and coal as (8)________ of plentiful food and heat in the coming year.`,
+  options: [
+    { letter: "A", word: "enthusiasm" },
+    { letter: "B", word: "traditions" },
+    { letter: "C", word: "unique" },
+    { letter: "D", word: "honor" },
+    { letter: "E", word: "fortune" },
+    { letter: "F", word: "represent" },
+    { letter: "G", word: "delighted" },
+    { letter: "H", word: "symbols" }
+  ],
+  blanks: [
+    { number: 1, answer: "A", word: "enthusiasm" },
+    { number: 2, answer: "B", word: "traditions" },
+    { number: 3, answer: "C", word: "unique" },
+    { number: 4, answer: "D", word: "honor" },
+    { number: 5, answer: "E", word: "fortune" },
+    { number: 6, answer: "F", word: "represent" },
+    { number: 7, answer: "G", word: "delighted" },
+    { number: 8, answer: "H", word: "symbols" }
+  ]
+};
 
 const clozeU12 = {
   unit: "U12",

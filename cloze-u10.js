@@ -1,4 +1,35 @@
-// Unit 10 克漏字測驗 - 主題：1918 flu / COVID
+// Unit 10 克漏字測驗 - 主題：Quarantine / 1918 flu
+
+// ── 課文篇：Quarantine's Dark History（直接取自課文，8個課文單字） ──
+const clozeU10Text = {
+  unit: "U10",
+  title: "Quarantine's Dark History",
+  passage: `Before 2020, the word "quarantine" was one that people usually only heard in Hollywood movies about out-of-control viruses. COVID-19 changed all that, and it has since become a part of our everyday (1)________. Let's take a look at how quarantine became a familiar (2)________ when it comes to prevention of virus circulation.
+
+The Bible describes several situations involving lepers—people suffering from a terrible skin disease that seemed to (3)________ through contact—being separated from healthy people. When the Black Death hit Europe in 1346, the sick were taken into special zones outside the city, and left to either recover or die. Two years later, the Italian city of Venice (4)________ a quarantine system for arriving ships. The goal of the (5)________ was to prevent (6)________ from bringing the disease into the country, and it was (7)________ that ships should stay away for 40 days.
+
+In 1907, Irish cook Mary Mallon was discovered to carry the bacteria that causes typhoid (8)________. She was charged and put in quarantine so that she could not mix with others. Love it or hate it, we must conclude that quarantine serves an important purpose: it saves lives.`,
+  options: [
+    { letter: "A", word: "vocabulary" },
+    { letter: "B", word: "theme" },
+    { letter: "C", word: "spread" },
+    { letter: "D", word: "devised" },
+    { letter: "E", word: "strategy" },
+    { letter: "F", word: "passengers" },
+    { letter: "G", word: "calculated" },
+    { letter: "H", word: "fever" }
+  ],
+  blanks: [
+    { number: 1, answer: "A", word: "vocabulary" },
+    { number: 2, answer: "B", word: "theme" },
+    { number: 3, answer: "C", word: "spread" },
+    { number: 4, answer: "D", word: "devised" },
+    { number: 5, answer: "E", word: "strategy" },
+    { number: 6, answer: "F", word: "passengers" },
+    { number: 7, answer: "G", word: "calculated" },
+    { number: 8, answer: "H", word: "fever" }
+  ]
+};
 
 // 文意選填格式（A-H，供 文意選填 tab 使用）
 const clozeU10Wen = {

@@ -1,5 +1,36 @@
 // Unit 11 克漏字 - 文意選填
-// 主題：Snow Leopards（雪豹）
+// 主題：Snow Leopards（雪豹）／A Penguin's Best Friend（課文）
+
+// ── 課文篇：A Penguin's Best Friend（直接取自課文，8個課文單字） ──
+const clozeU11Text = {
+  unit: "U11",
+  title: "A Penguin's Best Friend",
+  passage: `Australia has long had problems with animals that are not (1)________ coming to the continent and weakening or (2)________ the population of domestic animals that had already lived there for a long time. One example is the red fox, which was introduced in the 1830s by British settlers who wanted to continue their tradition of fox-hunting. Throughout the 1990s, these foxes attacked native penguins on Middle Island in southeast Australia. By 2006, there were fewer than ten healthy penguins remaining from a population of eight hundred.
+
+Things looked (3)________. Some even suggested getting rid of the red fox altogether. But most people agreed that there must be a way to keep a (4)________. Then, a local farmer suggested using Maremma sheepdogs to protect the penguins. This (5)________ of dog uses its natural (6)________ to guard cattle, sheep, and chickens. His idea was not taken (7)________ at first, but finally a pair of dogs was put on the island.
+
+The experiment achieved very positive results. The penguin population has increased to over 150. Projects are also being planned to train sheepdogs to protect other (8)________ species.`,
+  options: [
+    { letter: "A", word: "native" },
+    { letter: "B", word: "eliminating" },
+    { letter: "C", word: "desperate" },
+    { letter: "D", word: "balance" },
+    { letter: "E", word: "breed" },
+    { letter: "F", word: "instincts" },
+    { letter: "G", word: "seriously" },
+    { letter: "H", word: "endangered" }
+  ],
+  blanks: [
+    { number: 1, answer: "A", word: "native" },
+    { number: 2, answer: "B", word: "eliminating" },
+    { number: 3, answer: "C", word: "desperate" },
+    { number: 4, answer: "D", word: "balance" },
+    { number: 5, answer: "E", word: "breed" },
+    { number: 6, answer: "F", word: "instincts" },
+    { number: 7, answer: "G", word: "seriously" },
+    { number: 8, answer: "H", word: "endangered" }
+  ]
+};
 
 const clozeU11 = {
   unit: "U11",
