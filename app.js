@@ -112,7 +112,7 @@ function setLessonFilter(lesson, btn) {
 function switchSubject(subject, btn) {
   const subjects = ['english','chinese','math','social','science'];
   const subtitles = {
-    english: '英文 ｜ 第三次月考 ｜ L07 / L08 / L09 / R01 / R02 / R03',
+    english: '英文 ｜ 第三次月考 ｜ L07 / L08 / L09 / R03 / U09-U12',
     chinese: '國文 ｜ 開發中',
     math:    '數學 ｜ 學測選擇題練習',
     social:  '社會 ｜ 開發中',
@@ -456,7 +456,7 @@ function renderProgress() {
 
   // 各課次進度
   let barsHTML = '';
-  ['L07','L08','L09','R01','R02','R03','U09','U10','U11','U12'].forEach(lesson => {
+  ['L07','L08','L09','R03','U09','U10','U11','U12'].forEach(lesson => {
     const lvWords = VOCAB_ALL.filter(v => v.lesson === lesson);
     if (!lvWords.length) return;
     const lvKnown = lvWords.filter(v => p[v.word] === 'known').length;
@@ -1527,70 +1527,80 @@ function renderWenCianzeQuestion() {
   const d = wcCurrentData;
   const el = document.getElementById('wencianzeContent');
 
-  // 把 passage 裡的 (N)________ 換成可點選的空格按鈕
+  // passage：空格顯示已選單字（純顯示，不可點）
   let passageHtml = escapeHtml(d.passage).replace(/\((\d+)\)________/g, (_, n) => {
     const ans = wcUserAnswers[n];
-    const bg = ans ? '#3182ce' : '#e2e8f0';
-    const color = ans ? 'white' : '#718096';
-    return `<span id="wc-blank-${n}" onclick="wcSelectBlank(${n})"
-      style="display:inline-block;min-width:80px;padding:2px 10px;border-radius:6px;background:${bg};color:${color};
-             font-weight:700;cursor:pointer;text-align:center;transition:all 0.2s;">(${n}) ${ans || '？'}</span>`;
+    const style = ans
+      ? 'background:#3182ce;color:white;padding:1px 8px;border-radius:5px;font-weight:700;'
+      : 'background:#e2e8f0;color:#a0aec0;padding:1px 8px;border-radius:5px;';
+    return `<span style="${style}">(${n}) ${ans || '___'}</span>`;
   });
+
+  // 選項參考列
+  const optRef = d.options.map(o =>
+    `<span style="font-size:0.82rem;white-space:nowrap;"><b>${o.letter}.</b> ${o.word}</span>`
+  ).join('　');
+
+  // 答題卡：每題一行，直接點字母
+  const sheetRows = d.blanks.map(b => {
+    const rowBtns = d.options.map(o => {
+      const sel = wcUserAnswers[b.number] === o.word;
+      return `<button id="wc-opt-${b.number}-${o.letter}" onclick="wcPickAnswer(${b.number},'${o.letter}','${o.word}')"
+        style="min-width:34px;padding:5px 3px;border-radius:7px;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.15s;
+               border:1.5px solid ${sel ? '#3182ce' : '#e2e8f0'};background:${sel ? '#3182ce' : 'white'};color:${sel ? 'white' : '#2d3748'};">
+        ${o.letter}
+      </button>`;
+    }).join('');
+    const ansWord = wcUserAnswers[b.number] || '';
+    return `<div style="display:flex;align-items:center;gap:6px;padding:7px 0;border-bottom:1px solid #f0f0f0;">
+      <span style="min-width:26px;font-size:0.85rem;font-weight:700;color:#4a5568;">(${b.number})</span>
+      <div style="display:flex;gap:4px;">${rowBtns}</div>
+      <span style="font-size:0.82rem;min-width:90px;color:${ansWord ? '#3182ce' : '#a0aec0'};">${ansWord || '未選擇'}</span>
+    </div>`;
+  }).join('');
+
+  const answered = Object.keys(wcUserAnswers).length;
+  const total = d.blanks.length;
 
   el.innerHTML = `
     <div style="margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;">
       <span style="font-size:0.8rem;font-weight:700;color:#718096;">${d.unit} ｜ ${d.title}</span>
       <button onclick="renderWenCianzeMenu()" style="background:none;border:1px solid #e2e8f0;border-radius:6px;padding:4px 10px;font-size:0.78rem;cursor:pointer;color:#718096;">← 課次列表</button>
     </div>
-    <div style="background:white;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);margin-bottom:14px;">
-      <div style="font-size:0.7rem;color:#a0aec0;letter-spacing:1px;margin-bottom:10px;">CLOZE PASSAGE</div>
-      <p style="font-size:1rem;line-height:2;color:#2d3748;" id="wcPassage">${passageHtml}</p>
+    <div style="background:white;border-radius:12px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);margin-bottom:12px;">
+      <div style="font-size:0.7rem;color:#a0aec0;letter-spacing:1px;margin-bottom:8px;">PASSAGE</div>
+      <p style="font-size:0.92rem;line-height:2.1;color:#2d3748;">${passageHtml}</p>
     </div>
-    <div style="background:white;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);margin-bottom:14px;">
-      <div style="font-size:0.82rem;color:#718096;margin-bottom:12px;font-weight:700;">選項（點空格後再點選項填入）</div>
-      <div id="wcOptions" style="display:flex;flex-wrap:wrap;gap:8px;">
-        ${d.options.map(o => {
-          const used = Object.values(wcUserAnswers).includes(o.word);
-          return `<button id="wc-opt-${o.letter}" onclick="wcSelectOption('${o.letter}','${o.word}')"
-            style="padding:7px 16px;border-radius:8px;border:1.5px solid ${used ? '#a0aec0' : '#3182ce'};
-                   background:${used ? '#e2e8f0' : 'white'};color:${used ? '#a0aec0' : '#3182ce'};
-                   font-size:0.88rem;font-weight:700;cursor:pointer;">
-            ${o.letter}. ${o.word}
-          </button>`;
-        }).join('')}
+    <div style="background:white;border-radius:12px;padding:12px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);margin-bottom:12px;">
+      <div style="font-size:0.7rem;color:#a0aec0;letter-spacing:1px;margin-bottom:6px;">選項參考</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px 14px;line-height:1.9;">${optRef}</div>
+    </div>
+    <div style="background:white;border-radius:12px;padding:14px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);margin-bottom:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div style="font-size:0.7rem;color:#a0aec0;letter-spacing:1px;">答題卡　<span style="color:#cbd5e0;">點字母直接填入</span></div>
+        <div style="font-size:0.78rem;color:${answered===total?'#38a169':'#718096'};">${answered} / ${total} 已填</div>
       </div>
+      ${sheetRows}
     </div>
-    <div id="wcActiveBlankInfo" style="text-align:center;font-size:0.82rem;color:#3182ce;margin-bottom:10px;min-height:20px;"></div>
     <button onclick="submitWenCianze()" id="wcSubmitBtn"
       style="width:100%;padding:12px;background:#3182ce;color:white;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;">
       交卷
     </button>
     <div id="wcResult" style="display:none;margin-top:16px;"></div>`;
-
-  wcActiveBlank = null;
 }
 
-let wcActiveBlank = null;
-
-function wcSelectBlank(n) {
+function wcPickAnswer(blankNum, letter, word) {
   if (wcSubmitted) return;
-  wcActiveBlank = n;
-  document.getElementById('wcActiveBlankInfo').textContent = `已選擇第 (${n}) 個空格，請點選下方選項填入`;
-}
-
-function wcSelectOption(letter, word) {
-  if (wcSubmitted || !wcActiveBlank) {
-    if (!wcActiveBlank) {
-      document.getElementById('wcActiveBlankInfo').textContent = '請先點選文章中的空格，再點選項';
-    }
-    return;
-  }
-  // 如果這個詞已被用在其他空格，先清除
+  // 同一單字已用在其他空格時，先移除
   Object.keys(wcUserAnswers).forEach(k => {
-    if (wcUserAnswers[k] === word && k !== String(wcActiveBlank)) delete wcUserAnswers[k];
+    if (wcUserAnswers[k] === word && k !== String(blankNum)) delete wcUserAnswers[k];
   });
-  wcUserAnswers[wcActiveBlank] = word;
-  wcActiveBlank = null;
+  // 再次點同一選項 → 取消
+  if (wcUserAnswers[blankNum] === word) {
+    delete wcUserAnswers[blankNum];
+  } else {
+    wcUserAnswers[blankNum] = word;
+  }
   renderWenCianzeQuestion();
 }
 
