@@ -1006,9 +1006,24 @@ document.getElementById('parentModal').addEventListener('click', function(e) {
 // ===== 計時器 =====
 let quizTimer = null;
 let quizTimerStart = null;
-const QUIZ_TIME_LIMIT = 12;
+const QUIZ_TIME_LIMIT = 30;
+let quizTimerEnabled = false;
+
+function toggleQuizTimer() {
+  quizTimerEnabled = !quizTimerEnabled;
+  const btn = document.getElementById('timerToggleBtn');
+  if (btn) {
+    btn.textContent = quizTimerEnabled ? '⏱ 計時中' : '⏱ 不計時';
+    btn.style.background = quizTimerEnabled ? '#e53e3e20' : 'transparent';
+    btn.style.color = quizTimerEnabled ? '#e53e3e' : '#a0aec0';
+    btn.style.borderColor = quizTimerEnabled ? '#e53e3e' : '#e2e8f0';
+  }
+  if (!quizTimerEnabled) clearQuizTimer();
+  else startQuizTimer();
+}
 
 function startQuizTimer() {
+  if (!quizTimerEnabled) { clearQuizTimer(); return; }
   clearQuizTimer();
   quizTimerStart = Date.now();
   const bar = document.getElementById('timerBar');
@@ -1485,7 +1500,7 @@ function nextReadingQ() {
 // 只收錄「文意選填」格式（頂層有 options 陣列）；U10 是選擇題克漏字，格式不同，暫不列入
 const WENCIANZE_DATA = [
   { unit: 'U09', label: 'U09', data: typeof clozeU9 !== 'undefined' ? clozeU9 : null },
-  { unit: 'U10', label: 'U10', data: typeof clozeU10 !== 'undefined' ? clozeU10 : null },
+  { unit: 'U10', label: 'U10', data: typeof clozeU10Wen !== 'undefined' ? clozeU10Wen : null },
   { unit: 'U11', label: 'U11', data: typeof clozeU11 !== 'undefined' ? clozeU11 : null },
   { unit: 'U12', label: 'U12', data: typeof clozeU12 !== 'undefined' ? clozeU12 : null }
 ].filter(u => u.data && Array.isArray(u.data.options));

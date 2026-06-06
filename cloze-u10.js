@@ -1,4 +1,32 @@
 // Unit 10 克漏字測驗 - 主題：1918 flu / COVID
+
+// 文意選填格式（A-H，供 文意選填 tab 使用）
+const clozeU10Wen = {
+  unit: "U10",
+  title: "The 1918 Flu Pandemic",
+  passage: `COVID may have killed over 6 million people, but in 1918 there was a flu (1)________ which was much more deadly. There is no certainty about where the virus (2)________. It was first reported in Spain, which led to many wrongly calling it "The Spanish Flu", but the first cases were (3)________ in the U.S. at the end of World War I. The flu quickly (4)________ to Europe because Americans were still traveling there to clean up the mess of the war. At first, patients only suffered familiar flu-like issues such as a sore throat and a (5)________. But a few months later people's faces started turning blue, then black, before soon they were dead. Government (6)________ to reduce the death count included mask wearing, vaccines, the banning of mass (7)________, and quarantines. While it was found that these methods did help, experts (8)________ that by the end of the pandemic 25 to 50 million people had been killed.`,
+  options: [
+    { letter: "A", word: "outbreak" },
+    { letter: "B", word: "originated" },
+    { letter: "C", word: "discovered" },
+    { letter: "D", word: "spread" },
+    { letter: "E", word: "fever" },
+    { letter: "F", word: "strategies" },
+    { letter: "G", word: "gatherings" },
+    { letter: "H", word: "calculated" }
+  ],
+  blanks: [
+    { number: 1, answer: "A", word: "outbreak" },
+    { number: 2, answer: "B", word: "originated" },
+    { number: 3, answer: "C", word: "discovered" },
+    { number: 4, answer: "D", word: "spread" },
+    { number: 5, answer: "E", word: "fever" },
+    { number: 6, answer: "F", word: "strategies" },
+    { number: 7, answer: "G", word: "gatherings" },
+    { number: 8, answer: "H", word: "calculated" }
+  ]
+};
+
 const clozeU10 = {
   unit: "U10",
   title: "The 1918 Flu Pandemic",
