@@ -1327,5 +1327,779 @@ const VOCAB_ALL = [
       "registration"
     ],
     "answer": "circulation"
-  }
+  },
+{
+  "level": 3,
+  "word": "saying",
+  "pos": "n. [C]",
+  "zh": "諺語；格言",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "My grandfather had a folksy saying for almost every situation."
+},
+{
+  "level": 3,
+  "word": "beggar",
+  "pos": "n. [C]",
+  "zh": "乞丐",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "The police officer gave the beggar a sandwich and coffee."
+},
+{
+  "level": 3,
+  "word": "charity",
+  "pos": "n. [C]",
+  "zh": "慈善機構；慈善組織",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "Ellen gives money each month to a charity that helps animals."
+},
+{
+  "level": 3,
+  "word": "needy",
+  "pos": "adj.",
+  "zh": "貧窮的；生活匱乏的",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "The church provides food and clothing to needy families."
+},
+{
+  "level": 3,
+  "word": "in terms of",
+  "pos": "phr.",
+  "zh": "以……方面來看；從……來說（+ N.）",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "In terms of reliable weather, Bali is one of the best places for a vacation."
+},
+{
+  "level": 3,
+  "word": "found",
+  "pos": "vt.",
+  "zh": "興建；建立；創立（found-founded-founded）",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "He founded a tool company when he was only twenty-five years old."
+},
+{
+  "level": 3,
+  "word": "advertising",
+  "pos": "n. [U]",
+  "zh": "廣告業",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "If you work in advertising, you need to be able to make people want to buy things."
+},
+{
+  "level": 3,
+  "word": "opportunity",
+  "pos": "n. [C, U]",
+  "zh": "機會；時機",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "This business deal is the opportunity of a lifetime."
+},
+{
+  "level": 3,
+  "word": "dignity",
+  "pos": "n. [U]",
+  "zh": "尊嚴；高尚",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "Michael lost a lot when his company failed, but he still had his dignity."
+},
+{
+  "level": 3,
+  "word": "volunteer",
+  "pos": "n. [C]",
+  "zh": "志願者；義工",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "Louis volunteers at the history museum every weekend."
+},
+{
+  "level": 3,
+  "word": "leather",
+  "pos": "adj.",
+  "zh": "皮革的",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "My wallet is made of leather."
+},
+{
+  "level": 3,
+  "word": "exact",
+  "pos": "adj.",
+  "zh": "確切的；精準的",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "I don't remember the exact amount I paid for this coat."
+},
+{
+  "level": 3,
+  "word": "partner",
+  "pos": "vi.",
+  "zh": "（使）合作；與……合夥（之後常接介系詞 with）",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "The company has partnered with a local hospital to help bring health care to the poorest people in the town."
+},
+{
+  "level": 3,
+  "word": "assemble",
+  "pos": "vt./vi.",
+  "zh": "集合",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "At 8:00 a.m., the students assemble outside for morning exercises."
+},
+{
+  "level": 3,
+  "word": "suitable",
+  "pos": "adj.",
+  "zh": "合適的；適宜的",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "I don't think shorts are suitable clothing during cold weather."
+},
+{
+  "level": 3,
+  "word": "permission",
+  "pos": "n. [U]",
+  "zh": "許可；准許",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "You need permission from your parents to go on the school trip."
+},
+{
+  "level": 3,
+  "word": "authority",
+  "pos": "n. [C]",
+  "zh": "行政管理機構；權威人士；專家（指「當局；官方」時則用複數 the authorities）",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "The authorities do not do enough to prevent crime in that neighborhood."
+},
+{
+  "level": 3,
+  "word": "poster",
+  "pos": "n. [C]",
+  "zh": "海報；大幅廣告",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "Linda hung a poster of her favorite singer in her bedroom."
+},
+{
+  "level": 3,
+  "word": "host",
+  "pos": "vt.",
+  "zh": "主辦；主持；以主人身分招待",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "Athens played host to the 2004 Summer Olympic Games."
+},
+{
+  "level": 3,
+  "word": "poverty",
+  "pos": "n. [U]",
+  "zh": "貧窮；貧困",
+  "lesson": "U09",
+  "en_def": "",
+  "example": "People who live in poverty often do not get enough food."
+},
+{
+  "level": 3,
+  "word": "vocabulary",
+  "pos": "n. [U, C]",
+  "zh": "字彙（量）；詞彙（量）",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "Barbara's plan was to increase her vocabulary by learning 15 new words a day."
+},
+{
+  "level": 3,
+  "word": "theme",
+  "pos": "n. [C]",
+  "zh": "主題；主旋律",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "Have you been to that new bar with the Hawaiian theme?"
+},
+{
+  "level": 3,
+  "word": "circulation",
+  "pos": "n. [U, C]",
+  "zh": "流通；循環；（報刊等的）發行量",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "The new coins were taken out of circulation shortly after they were put in."
+},
+{
+  "level": 3,
+  "word": "describe",
+  "pos": "vt.",
+  "zh": "描述；形容",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "Josie described what it was like to swim with dolphins."
+},
+{
+  "level": 3,
+  "word": "situation",
+  "pos": "n. [C]",
+  "zh": "情況；處境",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "Frankie hates being in loud and crowded situations."
+},
+{
+  "level": 3,
+  "word": "spread",
+  "pos": "vt.",
+  "zh": "（使）傳播；（使）擴散（三態同形）",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "News of the singer's death quickly spread around the globe."
+},
+{
+  "level": 3,
+  "word": "contact",
+  "pos": "n. [U, C]",
+  "zh": "聯繫；接觸",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "Leroy made contact with his boss after he arrived at the hotel."
+},
+{
+  "level": 3,
+  "word": "separate",
+  "pos": "vt./vi.",
+  "zh": "分開",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "Lisa and I stayed in separate rooms."
+},
+{
+  "level": 3,
+  "word": "zone",
+  "pos": "n. [C]",
+  "zh": "區域",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "Unlike the rest of the hospital, the children's zone was painted a light pink."
+},
+{
+  "level": 3,
+  "word": "recover",
+  "pos": "vi.",
+  "zh": "復原",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "It took a few months for the athlete to recover from his injury."
+},
+{
+  "level": 3,
+  "word": "devise",
+  "pos": "vt.",
+  "zh": "設計；想出；策劃",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "Jerry devised a new way to make tea."
+},
+{
+  "level": 3,
+  "word": "strategy",
+  "pos": "n. [C, U]",
+  "zh": "策略；行動計畫；[U] 戰略",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "I'm looking for strategies to make my business grow."
+},
+{
+  "level": 3,
+  "word": "passenger",
+  "pos": "n. [C]",
+  "zh": "乘客",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "The passengers weren't hurt in the car accident."
+},
+{
+  "level": 3,
+  "word": "calculate",
+  "pos": "vt./vi.",
+  "zh": "計算；估計",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "I will need a minute to calculate the cost of the vacation for each person."
+},
+{
+  "level": 3,
+  "word": "whenever",
+  "pos": "conj.",
+  "zh": "每當……；不論何時",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "Whenever I visit a new location, I like to explore it on foot."
+},
+{
+  "level": 3,
+  "word": "fever",
+  "pos": "n. [U, C]",
+  "zh": "發燒；發熱",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "Her fever got worse during the night."
+},
+{
+  "level": 3,
+  "word": "discover",
+  "pos": "vt.",
+  "zh": "發現；發覺",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "The police tried to discover the woman's connection to the thief."
+},
+{
+  "level": 3,
+  "word": "charge",
+  "pos": "vi.",
+  "zh": "控告",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "Jeff was charged with the murder of a local restaurant owner."
+},
+{
+  "level": 3,
+  "word": "permanently",
+  "pos": "adv.",
+  "zh": "永久地；長久不變地",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "Greg quit smoking permanently five years ago."
+},
+{
+  "level": 3,
+  "word": "conclude",
+  "pos": "vt.",
+  "zh": "得出結論；推斷出",
+  "lesson": "U10",
+  "en_def": "",
+  "example": "The police concluded that only one person stole the money."
+},
+{
+  "level": 3,
+  "word": "native",
+  "pos": "adj.",
+  "zh": "當地的；本地的",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "Koala bears are native to Australia."
+},
+{
+  "level": 3,
+  "word": "weaken",
+  "pos": "vt.",
+  "zh": "削弱；減弱",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "The earthquake weakened the bridge, so the city decided to build a new one."
+},
+{
+  "level": 3,
+  "word": "eliminate",
+  "pos": "vt.",
+  "zh": "消除；消滅",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "If you open this jar and put it in your refrigerator, it will eliminate all of the bad smells."
+},
+{
+  "level": 3,
+  "word": "population",
+  "pos": "n. [C]",
+  "zh": "（某地區人口或動物）總數；人口",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "More than half of the world's population lives in Asia."
+},
+{
+  "level": 3,
+  "word": "domestic",
+  "pos": "adj.",
+  "zh": "國內的；本國的",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "This airport is used for domestic flights only."
+},
+{
+  "level": 3,
+  "word": "introduce",
+  "pos": "vt.",
+  "zh": "引進",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "There was a big effect on red squirrels when gray squirrels were introduced to Great Britain."
+},
+{
+  "level": 3,
+  "word": "settler",
+  "pos": "n. [C]",
+  "zh": "移民者；開拓者",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "Early American settlers had a hard time surviving the cold weather."
+},
+{
+  "level": 3,
+  "word": "desperate",
+  "pos": "adj.",
+  "zh": "心急如焚的；迫切需要的（常接 for N. 或 to V.）",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "John is desperate to make it as an actor."
+},
+{
+  "level": 3,
+  "word": "get rid of",
+  "pos": "v. phr.",
+  "zh": "擺脫；丟棄",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "I want to get rid of some things that I no longer need."
+},
+{
+  "level": 3,
+  "word": "altogether",
+  "pos": "adv.",
+  "zh": "完全；全然",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "I thought the museum was on this street, but it's in a different part of the city altogether."
+},
+{
+  "level": 3,
+  "word": "balance",
+  "pos": "n. [S]",
+  "zh": "平衡；均衡",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "There was a nice balance of sweet and spicy dishes at dinner."
+},
+{
+  "level": 3,
+  "word": "local",
+  "pos": "adj.",
+  "zh": "當地的",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "Karen likes to eat at local restaurants when she visits a new country."
+},
+{
+  "level": 3,
+  "word": "breed",
+  "pos": "n. [C]",
+  "zh": "品種",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "I have a dog, but I do not know what breed it is."
+},
+{
+  "level": 3,
+  "word": "instinct",
+  "pos": "n. [C, U]",
+  "zh": "本能",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "Many animals have an instinct to run away when they are afraid."
+},
+{
+  "level": 3,
+  "word": "guard",
+  "pos": "vt.",
+  "zh": "守衛；看守；保護",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "The man guarded the door."
+},
+{
+  "level": 3,
+  "word": "cattle",
+  "pos": "n. [P]",
+  "zh": "牛隻（作複數名詞用）",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "Her job on the farm is to feed the cattle and sheep."
+},
+{
+  "level": 3,
+  "word": "seriously",
+  "pos": "adv.",
+  "zh": "認真地；嚴重地",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "We are seriously thinking about moving to a new apartment after the New Year."
+},
+{
+  "level": 3,
+  "word": "positive",
+  "pos": "adj.",
+  "zh": "正面的；積極的；肯定的；有益的",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "Books can have a positive influence on a child's life."
+},
+{
+  "level": 3,
+  "word": "increase",
+  "pos": "vt./vi.",
+  "zh": "增加",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "Margot wants to increase the amount of vegetables she eats every day."
+},
+{
+  "level": 3,
+  "word": "current",
+  "pos": "adj.",
+  "zh": "當前的；目前的",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "Do you like your current job, or do you want a new one?"
+},
+{
+  "level": 3,
+  "word": "project",
+  "pos": "n. [C]",
+  "zh": "計畫；專案；研究項目",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "Ernest always starts new projects, but never finishes them."
+},
+{
+  "level": 3,
+  "word": "retirement",
+  "pos": "n. [U]",
+  "zh": "退休生活；退休",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "Mr. Lee is saving for his retirement."
+},
+{
+  "level": 3,
+  "word": "acquire",
+  "pos": "vt.",
+  "zh": "獲得；取得",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "Mark acquired an old car from a friend and fixed it up like new."
+},
+{
+  "level": 3,
+  "word": "endangered",
+  "pos": "adj.",
+  "zh": "瀕臨絕種的",
+  "lesson": "U11",
+  "en_def": "",
+  "example": "The giant panda was listed as endangered for many years."
+},
+{
+  "level": 3,
+  "word": "enthusiasm",
+  "pos": "n. [U, C]",
+  "zh": "熱心；熱忱",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "The teacher was proud of her students' enthusiasm to learn."
+},
+{
+  "level": 3,
+  "word": "tradition",
+  "pos": "n. [C, U]",
+  "zh": "傳統",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "Giving presents is part of the Christmas tradition."
+},
+{
+  "level": 3,
+  "word": "unique",
+  "pos": "adj.",
+  "zh": "獨有的；獨特的；獨一無二的",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "This kind of stone is only found in Penghu, and it is very unique."
+},
+{
+  "level": 3,
+  "word": "honor",
+  "pos": "vt.",
+  "zh": "向……致敬；給予……榮譽；表揚",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "This day honors the heroes that were killed in the war."
+},
+{
+  "level": 3,
+  "word": "fortune",
+  "pos": "n. [U]",
+  "zh": "運氣；機運（尤指影響人生的機會或運氣）",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "I had the fortune of meeting my favorite actress while I was on the airplane."
+},
+{
+  "level": 3,
+  "word": "single",
+  "pos": "adj.",
+  "zh": "單一的；單身的",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "Not a single customer came into the store this morning."
+},
+{
+  "level": 3,
+  "word": "represent",
+  "pos": "vt.",
+  "zh": "代表",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "The heart on the card represents love."
+},
+{
+  "level": 3,
+  "word": "wealth",
+  "pos": "n. [U]",
+  "zh": "財富",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "The rich woman decided to give away her wealth and live simply."
+},
+{
+  "level": 3,
+  "word": "whoever",
+  "pos": "pron.",
+  "zh": "不論是誰",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "Whoever left the office last forgot to lock the door."
+},
+{
+  "level": 3,
+  "word": "reward",
+  "pos": "n. [C]",
+  "zh": "獎賞；報酬；獎勵",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "The sign says that the person who finds the lost dog will get a reward."
+},
+{
+  "level": 3,
+  "word": "promise",
+  "pos": "n. [C]",
+  "zh": "諾言",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "Davie didn't keep his promise to Jill, so she stopped talking to him."
+},
+{
+  "level": 3,
+  "word": "depend",
+  "pos": "vi.",
+  "zh": "取決於（之後接 on + N.）",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "Whether we go hiking or not will depend on the weather."
+},
+{
+  "level": 3,
+  "word": "delighted",
+  "pos": "adj.",
+  "zh": "高興的；快樂的",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "We are delighted you could join us for dinner."
+},
+{
+  "level": 3,
+  "word": "approach",
+  "pos": "vi./vt.",
+  "zh": "接近；靠近",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "Riley approached the dog slowly so he wouldn't scare it."
+},
+{
+  "level": 3,
+  "word": "symbol",
+  "pos": "n. [C]",
+  "zh": "象徵；標誌；符號",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "Let this rose be a symbol of our love."
+},
+{
+  "level": 3,
+  "word": "plentiful",
+  "pos": "adj.",
+  "zh": "豐富的；充分的",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "Although the farmers did not have a lot of money, food was plentiful."
+},
+{
+  "level": 3,
+  "word": "historical",
+  "pos": "adj.",
+  "zh": "歷史的；描述歷史的；史學的",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "The story in this movie is based on historical events."
+},
+{
+  "level": 3,
+  "word": "female",
+  "pos": "adj.",
+  "zh": "女性的；雌性的",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "There aren't many female lawyers in that law firm."
+},
+{
+  "level": 3,
+  "word": "dive",
+  "pos": "vi.",
+  "zh": "跳水；潛水（dive-dove/dived-dove/dived）",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "The three boys dove into the lake."
+},
+{
+  "level": 3,
+  "word": "freezing",
+  "pos": "adj.",
+  "zh": "寒冷的",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "It's freezing outside. Put on a coat."
+},
+{
+  "level": 3,
+  "word": "similarly",
+  "pos": "adv.",
+  "zh": "同樣地；類似地",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "Senior citizens can see the show for free. Similarly, children under twelve don't need to pay."
+},
+{
+  "level": 3,
+  "word": "difference",
+  "pos": "n. [C]",
+  "zh": "差異；分歧",
+  "lesson": "U12",
+  "en_def": "",
+  "example": "What is the difference between the two reports?"
+}
 ];

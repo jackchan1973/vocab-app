@@ -57,6 +57,7 @@
   <button class="active" onclick="switchPage('flashcard', this)">單字卡</button>
   <button onclick="switchPage('quiz', this)">測驗</button>
   <button onclick="switchPage('cloze', this)">📝 克漏字</button>
+  <button onclick="switchPage('wencianze', this)">✏️ 文意選填</button>
   <button onclick="switchPage('reading', this)">📖 閱讀理解</button>
   <button onclick="switchPage('progress', this)">進度</button>
 </nav>
@@ -70,6 +71,10 @@
   <button class="filter-btn" onclick="setLessonFilter('R01',this)">R01</button>
   <button class="filter-btn" onclick="setLessonFilter('R02',this)">R02</button>
   <button class="filter-btn" onclick="setLessonFilter('R03',this)">R03</button>
+  <button class="filter-btn" onclick="setLessonFilter('U09',this)">U09</button>
+  <button class="filter-btn" onclick="setLessonFilter('U10',this)">U10</button>
+  <button class="filter-btn" onclick="setLessonFilter('U11',this)">U11</button>
+  <button class="filter-btn" onclick="setLessonFilter('U12',this)">U12</button>
   <button class="filter-btn" onclick="setFilter(-1)" id="hardOnlyBtn">困難單字</button>
 </div>
 
@@ -173,6 +178,11 @@
   </div>
 </div>
 
+<!-- 文意選填 -->
+<div id="page-wencianze" class="page">
+  <div id="wencianzeContent" style="padding:16px;max-width:700px;margin:0 auto;"></div>
+</div>
+
 <!-- 閱讀理解 -->
 <div id="page-reading" class="page">
   <div id="readingContent" style="padding:16px;max-width:700px;margin:0 auto;"></div>
@@ -244,6 +254,10 @@
 <script src="cloze-data.js"></script>
 <script src="math-data.js"></script>
 <script src="reading-exam3.js"></script>
+<script src="cloze-u9.js"></script>
+<script src="cloze-u10.js"></script>
+<script src="cloze-u11.js"></script>
+<script src="cloze-u12.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

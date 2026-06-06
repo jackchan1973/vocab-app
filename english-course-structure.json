@@ -1,0 +1,2070 @@
+{
+  "course_structure": {
+    "exam": "第三次月考",
+    "subject": "英文",
+    "generated_date": "2026-06-05",
+    "units": [
+      {
+        "id": "L07",
+        "title": "TED Talks: Spreading Ideas for a Better World",
+        "type": "lesson",
+        "reading_strategy": "Identifying the Topic Sentence",
+        "grammar": "S + keep/leave/find + O + V-ing/p.p./adj./prep. | It is/was + adj. + that + S + V",
+        "vocabulary_count": 21,
+        "key_phrases": [
+          "as well as",
+          "for free",
+          "at present",
+          "give...a try",
+          "broaden one's horizons"
+        ]
+      },
+      {
+        "id": "L08",
+        "title": "Ban-Doh: The Most Authentic Taiwanese Eating Experience",
+        "type": "lesson",
+        "reading_strategy": "Summarizing",
+        "grammar": "(Conj.) V-ing/p.p...., S + V | Upon/On + V-ing/N..., S + V",
+        "vocabulary_count": 20,
+        "key_phrases": [
+          "take part in",
+          "take place",
+          "come about",
+          "help (...) out",
+          "hand out"
+        ]
+      },
+      {
+        "id": "L09",
+        "title": "The Story behind Eponyms",
+        "type": "lesson",
+        "reading_strategy": "Understanding Vocabulary by Context Clues",
+        "grammar": "It is said/believed/reported/...that + S + V",
+        "vocabulary_count": 19,
+        "key_phrases": [
+          "take on",
+          "later on",
+          "in the beginning",
+          "too...to...",
+          "play a/an...role (in)",
+          "think up"
+        ]
+      },
+      {
+        "id": "R01",
+        "title": "How Do You Take Your Tea, High or Low?",
+        "type": "review",
+        "reading_strategy": "Predicting / Identifying Basic Information (5W1H)",
+        "grammar": "Review of L01-L03 patterns",
+        "vocabulary_count": 16,
+        "key_phrases": [
+          "hear of",
+          "make it to",
+          "ask for",
+          "invite someone over",
+          "refer to",
+          "as...as possible"
+        ]
+      },
+      {
+        "id": "R02",
+        "title": "Note How to Really Learn",
+        "type": "review",
+        "reading_strategy": "Identifying Supporting Details / Giving Examples",
+        "grammar": "Review of L04-L06 patterns",
+        "vocabulary_count": 18,
+        "key_phrases": [
+          "break...up",
+          "fill in",
+          "on a/an...basis",
+          "make use of"
+        ]
+      },
+      {
+        "id": "R03",
+        "title": "Living above the Earth—and Beyond",
+        "type": "review",
+        "reading_strategy": "Summarizing / Understanding Vocabulary by Context Clues",
+        "grammar": "Review of L07-L09 patterns",
+        "vocabulary_count": 19,
+        "key_phrases": [
+          "out of this world",
+          "work out",
+          "work up a sweat",
+          "have a lie-down"
+        ]
+      }
+    ]
+  },
+  "vocab_questions": [
+    {
+      "lesson": "L07",
+      "word": "seek",
+      "pos": "vt.",
+      "zh": "尋求；尋找",
+      "en_def": "to look for or pursue",
+      "example": "Jenny is seeking new ways of growing her business.",
+      "choices": [
+        "hunt",
+        "seek",
+        "avoid",
+        "ignore"
+      ],
+      "answer": "seek"
+    },
+    {
+      "lesson": "L07",
+      "word": "audience",
+      "pos": "n.",
+      "zh": "觀眾；聽眾",
+      "en_def": "a group of people who gather to listen or watch",
+      "example": "Johnny wasn't nervous when speaking to an audience of over two thousand.",
+      "choices": [
+        "audience",
+        "speaker",
+        "author",
+        "performer"
+      ],
+      "answer": "audience"
+    },
+    {
+      "lesson": "L07",
+      "word": "series",
+      "pos": "n.",
+      "zh": "系列",
+      "en_def": "a group of similar events or creative works",
+      "example": "Harry Potter is a series of novels popular among readers.",
+      "choices": [
+        "series",
+        "single",
+        "episode",
+        "chapter"
+      ],
+      "answer": "series"
+    },
+    {
+      "lesson": "L07",
+      "word": "technology",
+      "pos": "n.",
+      "zh": "科技",
+      "en_def": "useful ways in which scientific knowledge is applied",
+      "example": "The rapid development in medical technology saves millions of lives.",
+      "choices": [
+        "technology",
+        "biology",
+        "philosophy",
+        "geography"
+      ],
+      "answer": "technology"
+    },
+    {
+      "lesson": "L07",
+      "word": "worth",
+      "pos": "adj.",
+      "zh": "值得……的",
+      "en_def": "good enough for; deserving",
+      "example": "The restaurant serves excellent cuisine. It's worth a try.",
+      "choices": [
+        "worthy",
+        "worth",
+        "valuable",
+        "priceless"
+      ],
+      "answer": "worth"
+    },
+    {
+      "lesson": "L07",
+      "word": "foundation",
+      "pos": "n.",
+      "zh": "基金會；基礎",
+      "en_def": "an organization established to provide money for a purpose",
+      "example": "Monica set up a foundation aimed at finding a cure for breast cancer.",
+      "choices": [
+        "foundation",
+        "association",
+        "department",
+        "bureau"
+      ],
+      "answer": "foundation"
+    },
+    {
+      "lesson": "L07",
+      "word": "conference",
+      "pos": "n.",
+      "zh": "會議；研討會",
+      "en_def": "a large formal meeting where people gather to talk about important matters",
+      "example": "Clara is attending a conference in Los Angeles.",
+      "choices": [
+        "conference",
+        "concert",
+        "contest",
+        "ceremony"
+      ],
+      "answer": "conference"
+    },
+    {
+      "lesson": "L07",
+      "word": "increasingly",
+      "pos": "adv.",
+      "zh": "愈來愈……",
+      "en_def": "more and more",
+      "example": "As summer approaches, the days become increasingly warm.",
+      "choices": [
+        "increasingly",
+        "occasionally",
+        "temporarily",
+        "gradually"
+      ],
+      "answer": "increasingly"
+    },
+    {
+      "lesson": "L07",
+      "word": "organizer",
+      "pos": "n.",
+      "zh": "組織者；籌辦者",
+      "en_def": "a person who plans or arranges a certain event",
+      "example": "The main organizer of the parade plans events for years.",
+      "choices": [
+        "organizer",
+        "volunteer",
+        "observer",
+        "investor"
+      ],
+      "answer": "organizer"
+    },
+    {
+      "lesson": "L07",
+      "word": "broad",
+      "pos": "adj.",
+      "zh": "廣泛的；寬闊的",
+      "en_def": "covering a wide variety",
+      "example": "Our school provides a broad choice of club activities.",
+      "choices": [
+        "broad",
+        "narrow",
+        "specific",
+        "limited"
+      ],
+      "answer": "broad"
+    },
+    {
+      "lesson": "L07",
+      "word": "range",
+      "pos": "n.",
+      "zh": "種類；範圍",
+      "en_def": "a selection of different things of a certain type",
+      "example": "A wide range of teas was available for customers.",
+      "choices": [
+        "range",
+        "rank",
+        "role",
+        "rate"
+      ],
+      "answer": "range"
+    },
+    {
+      "lesson": "L07",
+      "word": "field",
+      "pos": "n.",
+      "zh": "領域",
+      "en_def": "a specific area of work or study",
+      "example": "The speakers are experts in the field of space travel.",
+      "choices": [
+        "field",
+        "grade",
+        "stage",
+        "track"
+      ],
+      "answer": "field"
+    },
+    {
+      "lesson": "L07",
+      "word": "philosophy",
+      "pos": "n.",
+      "zh": "哲學",
+      "en_def": "the study of the nature of human life and thoughts",
+      "example": "Studying philosophy helped Sarah learn more about herself.",
+      "choices": [
+        "philosophy",
+        "astronomy",
+        "chemistry",
+        "biology"
+      ],
+      "answer": "philosophy"
+    },
+    {
+      "lesson": "L07",
+      "word": "launch",
+      "pos": "vt.",
+      "zh": "發行；發起",
+      "en_def": "to allow a new product, company, or website to become available to the public",
+      "example": "The company will launch their new product in France tomorrow.",
+      "choices": [
+        "launch",
+        "retire",
+        "cancel",
+        "suspend"
+      ],
+      "answer": "launch"
+    },
+    {
+      "lesson": "L07",
+      "word": "collection",
+      "pos": "n.",
+      "zh": "一批；收藏品",
+      "en_def": "a group of things or people; a set of things gathered together",
+      "example": "Megan has a large private collection of Spider-Man comic books.",
+      "choices": [
+        "collection",
+        "selection",
+        "election",
+        "rejection"
+      ],
+      "answer": "collection"
+    },
+    {
+      "lesson": "L07",
+      "word": "numerous",
+      "pos": "adj.",
+      "zh": "許多的",
+      "en_def": "many; large in number",
+      "example": "There are numerous hotels along the coast.",
+      "choices": [
+        "numerous",
+        "scarce",
+        "rare",
+        "minimal"
+      ],
+      "answer": "numerous"
+    },
+    {
+      "lesson": "L07",
+      "word": "celebrity",
+      "pos": "n.",
+      "zh": "名人",
+      "en_def": "a person who is widely known or famous",
+      "example": "All the characters became international celebrities after the drama.",
+      "choices": [
+        "celebrity",
+        "citizen",
+        "passenger",
+        "candidate"
+      ],
+      "answer": "celebrity"
+    },
+    {
+      "lesson": "L07",
+      "word": "fascination",
+      "pos": "n.",
+      "zh": "著迷；吸引力",
+      "en_def": "a strong interest in something or someone",
+      "example": "Tina watched in fascination as the movie went on.",
+      "choices": [
+        "fascination",
+        "hesitation",
+        "imagination",
+        "reputation"
+      ],
+      "answer": "fascination"
+    },
+    {
+      "lesson": "L07",
+      "word": "fiction",
+      "pos": "n.",
+      "zh": "小說",
+      "en_def": "books or stories describing imaginary characters and events",
+      "example": "Pride and Prejudice is one of the most famous examples of romantic fiction.",
+      "choices": [
+        "fiction",
+        "nonfiction",
+        "biography",
+        "poetry"
+      ],
+      "answer": "fiction"
+    },
+    {
+      "lesson": "L07",
+      "word": "discuss",
+      "pos": "vt.",
+      "zh": "探討；討論",
+      "en_def": "to share detailed opinions or ideas on a topic",
+      "example": "This topic will be discussed in detail in the next chapter.",
+      "choices": [
+        "discuss",
+        "dismiss",
+        "discover",
+        "distribute"
+      ],
+      "answer": "discuss"
+    },
+    {
+      "lesson": "L07",
+      "word": "method",
+      "pos": "n.",
+      "zh": "方式",
+      "en_def": "a specific way to do something",
+      "example": "Ben adopted an effective method of studying and got good grades.",
+      "choices": [
+        "method",
+        "motive",
+        "module",
+        "medium"
+      ],
+      "answer": "method"
+    },
+    {
+      "lesson": "L08",
+      "word": "exchange",
+      "pos": "n./vt.",
+      "zh": "交流；交換",
+      "en_def": "an arrangement by which people from different countries visit each other",
+      "example": "Heather improved her English during a six-month exchange program in Canada.",
+      "choices": [
+        "exchange",
+        "extension",
+        "expansion",
+        "expedition"
+      ],
+      "answer": "exchange"
+    },
+    {
+      "lesson": "L08",
+      "word": "expect",
+      "pos": "vt.",
+      "zh": "預期",
+      "en_def": "to hope, believe, or think that something will occur in the future",
+      "example": "Most passengers expected the train would be on time.",
+      "choices": [
+        "expect",
+        "inspect",
+        "respect",
+        "suspect"
+      ],
+      "answer": "expect"
+    },
+    {
+      "lesson": "L08",
+      "word": "shelter",
+      "pos": "vt./n.",
+      "zh": "遮蔽；庇護處",
+      "en_def": "to provide cover or protection from the weather or danger",
+      "example": "Flora uses an umbrella to shelter herself from the sunshine.",
+      "choices": [
+        "shelter",
+        "scatter",
+        "shatter",
+        "slender"
+      ],
+      "answer": "shelter"
+    },
+    {
+      "lesson": "L08",
+      "word": "fierce",
+      "pos": "adj.",
+      "zh": "強烈的；激烈的",
+      "en_def": "strong and powerful; intense",
+      "example": "The weather forecast suggested people stay indoors to avoid the fierce midday heat.",
+      "choices": [
+        "fierce",
+        "peaceful",
+        "gentle",
+        "mild"
+      ],
+      "answer": "fierce"
+    },
+    {
+      "lesson": "L08",
+      "word": "occupy",
+      "pos": "vt.",
+      "zh": "占據（空間或時間）",
+      "en_def": "to use up or take up a certain amount of space or time",
+      "example": "Finding a new dress occupied most of Joyce's time while shopping.",
+      "choices": [
+        "occupy",
+        "observe",
+        "obtain",
+        "overlook"
+      ],
+      "answer": "occupy"
+    },
+    {
+      "lesson": "L08",
+      "word": "vehicle",
+      "pos": "n.",
+      "zh": "車輛；交通工具",
+      "en_def": "a machine for transporting people or things",
+      "example": "Scooters are vehicles commonly seen on the roads in Taiwan.",
+      "choices": [
+        "vehicle",
+        "vendor",
+        "version",
+        "venture"
+      ],
+      "answer": "vehicle"
+    },
+    {
+      "lesson": "L08",
+      "word": "temporary",
+      "pos": "adj.",
+      "zh": "臨時的；暫時的",
+      "en_def": "lasting just for a short time",
+      "example": "People whose homes were destroyed can stay in a temporary shelter.",
+      "choices": [
+        "temporary",
+        "permanent",
+        "traditional",
+        "tropical"
+      ],
+      "answer": "temporary"
+    },
+    {
+      "lesson": "L08",
+      "word": "assistant",
+      "pos": "n.",
+      "zh": "助手；助理",
+      "en_def": "a person who helps someone in a higher position do a job",
+      "example": "Dr. Barry relies on a teaching assistant to help manage his classes.",
+      "choices": [
+        "assistant",
+        "principal",
+        "opponent",
+        "instructor"
+      ],
+      "answer": "assistant"
+    },
+    {
+      "lesson": "L08",
+      "word": "curious",
+      "pos": "adj.",
+      "zh": "好奇的",
+      "en_def": "eager to know something",
+      "example": "The reporter was curious about the murder case and wanted details.",
+      "choices": [
+        "curious",
+        "furious",
+        "serious",
+        "various"
+      ],
+      "answer": "curious"
+    },
+    {
+      "lesson": "L08",
+      "word": "originate",
+      "pos": "vi.",
+      "zh": "起源",
+      "en_def": "to occur or appear for the very first time",
+      "example": "Fortune cookies served at Chinese restaurants actually originated in Japan.",
+      "choices": [
+        "originate",
+        "eliminate",
+        "generate",
+        "calculate"
+      ],
+      "answer": "originate"
+    },
+    {
+      "lesson": "L08",
+      "word": "event",
+      "pos": "n.",
+      "zh": "事件",
+      "en_def": "a thing that occurs, especially something important",
+      "example": "You can learn about the world by reading articles about current events.",
+      "choices": [
+        "event",
+        "effort",
+        "effect",
+        "element"
+      ],
+      "answer": "event"
+    },
+    {
+      "lesson": "L08",
+      "word": "elder",
+      "pos": "n./adj.",
+      "zh": "長輩；較年長的",
+      "en_def": "an older person with experience and authority",
+      "example": "In many African villages, elders are deeply respected for their wisdom.",
+      "choices": [
+        "elder",
+        "leader",
+        "dealer",
+        "healer"
+      ],
+      "answer": "elder"
+    },
+    {
+      "lesson": "L08",
+      "word": "neighborhood",
+      "pos": "n.",
+      "zh": "鄰近地區",
+      "en_def": "the area which someone or something is in",
+      "example": "It will be convenient to exercise after the new sports center in our neighborhood opens.",
+      "choices": [
+        "neighborhood",
+        "nationwide",
+        "settlement",
+        "foundation"
+      ],
+      "answer": "neighborhood"
+    },
+    {
+      "lesson": "L08",
+      "word": "cooperate",
+      "pos": "vi.",
+      "zh": "合作",
+      "en_def": "to work with someone to complete a task or achieve a goal",
+      "example": "Fast-food restaurants often cooperate with toy makers to attract children.",
+      "choices": [
+        "cooperate",
+        "celebrate",
+        "communicate",
+        "concentrate"
+      ],
+      "answer": "cooperate"
+    },
+    {
+      "lesson": "L08",
+      "word": "arrange",
+      "pos": "vt./vi.",
+      "zh": "安排",
+      "en_def": "to organize or plan something",
+      "example": "Mike has arranged a trip to Japan with his family.",
+      "choices": [
+        "arrange",
+        "manage",
+        "handle",
+        "ensure"
+      ],
+      "answer": "arrange"
+    },
+    {
+      "lesson": "L08",
+      "word": "relax",
+      "pos": "vi.",
+      "zh": "放鬆",
+      "en_def": "to rest by doing something pleasant",
+      "example": "The family could just relax in the sun at the beach.",
+      "choices": [
+        "relax",
+        "reflect",
+        "reform",
+        "release"
+      ],
+      "answer": "relax"
+    },
+    {
+      "lesson": "L08",
+      "word": "container",
+      "pos": "n.",
+      "zh": "容器",
+      "en_def": "an empty object such as a bottle or box for holding things",
+      "example": "Be sure not to put food in a plastic container in the microwave.",
+      "choices": [
+        "container",
+        "conductor",
+        "competitor",
+        "commander"
+      ],
+      "answer": "container"
+    },
+    {
+      "lesson": "L08",
+      "word": "stroll",
+      "pos": "vi./n.",
+      "zh": "散步",
+      "en_def": "to walk slowly and easily, usually to relax or look around",
+      "example": "Hand in hand, the young lovers strolled along the lakeside.",
+      "choices": [
+        "stroll",
+        "scroll",
+        "patrol",
+        "control"
+      ],
+      "answer": "stroll"
+    },
+    {
+      "lesson": "L08",
+      "word": "aspect",
+      "pos": "n.",
+      "zh": "方面",
+      "en_def": "a certain feature or part of a situation, idea, or problem",
+      "example": "Location is an important aspect of tea farming.",
+      "choices": [
+        "aspect",
+        "impact",
+        "object",
+        "concept"
+      ],
+      "answer": "aspect"
+    },
+    {
+      "lesson": "L08",
+      "word": "spirit",
+      "pos": "n.",
+      "zh": "基本精神；心靈",
+      "en_def": "the unifying nature or quality of something",
+      "example": "All of these baseball players have a strong team spirit.",
+      "choices": [
+        "spirit",
+        "spiral",
+        "split",
+        "spine"
+      ],
+      "answer": "spirit"
+    },
+    {
+      "lesson": "L09",
+      "word": "general",
+      "pos": "adj.",
+      "zh": "一般的；普遍的",
+      "en_def": "not specific; relating to most things",
+      "example": "The word 'eponym' took on a more general meaning later on.",
+      "choices": [
+        "general",
+        "special",
+        "partial",
+        "formal"
+      ],
+      "answer": "general"
+    },
+    {
+      "lesson": "L09",
+      "word": "feature",
+      "pos": "vt./n.",
+      "zh": "以……為特色；特點",
+      "en_def": "to include or have as an important part",
+      "example": "The film features celebrity gossip as its main topic.",
+      "choices": [
+        "feature",
+        "fracture",
+        "fixture",
+        "failure"
+      ],
+      "answer": "feature"
+    },
+    {
+      "lesson": "L09",
+      "word": "reveal",
+      "pos": "vt.",
+      "zh": "揭露",
+      "en_def": "to make known something that was previously hidden",
+      "example": "Paparazzo worked to reveal the secret lives of celebrities.",
+      "choices": [
+        "reveal",
+        "recall",
+        "review",
+        "remove"
+      ],
+      "answer": "reveal"
+    },
+    {
+      "lesson": "L09",
+      "word": "release",
+      "pos": "vt./n.",
+      "zh": "發行；釋放",
+      "en_def": "to make available to the public for the first time",
+      "example": "After the film was released in 1960, people began using the word paparazzi.",
+      "choices": [
+        "release",
+        "replace",
+        "refresh",
+        "reflect"
+      ],
+      "answer": "release"
+    },
+    {
+      "lesson": "L09",
+      "word": "chase",
+      "pos": "vt./n.",
+      "zh": "追逐",
+      "en_def": "to pursue someone or something in order to catch them",
+      "example": "Paparazzi are photographers who chase celebrities around.",
+      "choices": [
+        "chase",
+        "share",
+        "charge",
+        "choice"
+      ],
+      "answer": "chase"
+    },
+    {
+      "lesson": "L09",
+      "word": "brand",
+      "pos": "n.",
+      "zh": "品牌",
+      "en_def": "a type of product that has its own name made by a particular company",
+      "example": "When it comes to soft drinks, Coca-Cola is the most famous brand.",
+      "choices": [
+        "brand",
+        "trend",
+        "blend",
+        "grand"
+      ],
+      "answer": "brand"
+    },
+    {
+      "lesson": "L09",
+      "word": "image",
+      "pos": "n.",
+      "zh": "影像；形象",
+      "en_def": "a visual representation of someone or something",
+      "example": "Photoshop is used to create, modify, or combine images.",
+      "choices": [
+        "image",
+        "manage",
+        "damage",
+        "passage"
+      ],
+      "answer": "image"
+    },
+    {
+      "lesson": "L09",
+      "word": "edit",
+      "pos": "vt.",
+      "zh": "編輯",
+      "en_def": "to change something in order to improve or correct it",
+      "example": "It is important to carefully edit an essay before handing it in.",
+      "choices": [
+        "edit",
+        "emit",
+        "omit",
+        "exit"
+      ],
+      "answer": "edit"
+    },
+    {
+      "lesson": "L09",
+      "word": "modify",
+      "pos": "vt.",
+      "zh": "修改",
+      "en_def": "to make small changes to ensure something works or fits better",
+      "example": "The engineer modified the design to improve the system's performance.",
+      "choices": [
+        "modify",
+        "magnify",
+        "identify",
+        "clarify"
+      ],
+      "answer": "modify"
+    },
+    {
+      "lesson": "L09",
+      "word": "digitally",
+      "pos": "adv.",
+      "zh": "數位地",
+      "en_def": "using computer technology to record, store, or send data",
+      "example": "You can store the photos digitally on the phone and view them on screen.",
+      "choices": [
+        "digitally",
+        "manually",
+        "physically",
+        "locally"
+      ],
+      "answer": "digitally"
+    },
+    {
+      "lesson": "L09",
+      "word": "combine",
+      "pos": "vt./vi.",
+      "zh": "結合",
+      "en_def": "to use or join two or more things together",
+      "example": "To make the sauce, combine some lemon juice with a splash of vinegar.",
+      "choices": [
+        "combine",
+        "confine",
+        "decline",
+        "define"
+      ],
+      "answer": "combine"
+    },
+    {
+      "lesson": "L09",
+      "word": "standard",
+      "pos": "adj./n.",
+      "zh": "標準的；標準",
+      "en_def": "of average quality; the level of quality expected",
+      "example": "Photoshop has become the standard software used by photographers worldwide.",
+      "choices": [
+        "standard",
+        "backward",
+        "awkward",
+        "forward"
+      ],
+      "answer": "standard"
+    },
+    {
+      "lesson": "L09",
+      "word": "widespread",
+      "pos": "adj.",
+      "zh": "廣泛的",
+      "en_def": "common or occurring among large numbers of people or over a large area",
+      "example": "The typhoon has caused widespread damage in the area.",
+      "choices": [
+        "widespread",
+        "nationwide",
+        "immediate",
+        "occasional"
+      ],
+      "answer": "widespread"
+    },
+    {
+      "lesson": "L09",
+      "word": "usage",
+      "pos": "n.",
+      "zh": "用法",
+      "en_def": "the way in which the words of a language are used and understood",
+      "example": "Adobe couldn't stop the widespread usage of 'Photoshop' as a verb.",
+      "choices": [
+        "usage",
+        "shortage",
+        "damage",
+        "storage"
+      ],
+      "answer": "usage"
+    },
+    {
+      "lesson": "L09",
+      "word": "constantly",
+      "pos": "adv.",
+      "zh": "持續地",
+      "en_def": "without stopping or all the time",
+      "example": "To learn a foreign language well, you have to practice it constantly.",
+      "choices": [
+        "constantly",
+        "suddenly",
+        "recently",
+        "rarely"
+      ],
+      "answer": "constantly"
+    },
+    {
+      "lesson": "L09",
+      "word": "alternative",
+      "pos": "adj./n.",
+      "zh": "替代的；替代方案",
+      "en_def": "not the same as the common or traditional way; a choice",
+      "example": "Emma started looking for alternative ways to get to her office.",
+      "choices": [
+        "alternative",
+        "representative",
+        "cooperative",
+        "decorative"
+      ],
+      "answer": "alternative"
+    },
+    {
+      "lesson": "L09",
+      "word": "existing",
+      "pos": "adj.",
+      "zh": "現有的；現存的",
+      "en_def": "already found or in use at present",
+      "example": "Mark's goal is to improve his existing class score average.",
+      "choices": [
+        "existing",
+        "emerging",
+        "exciting",
+        "expanding"
+      ],
+      "answer": "existing"
+    },
+    {
+      "lesson": "R01",
+      "word": "delightful",
+      "pos": "adj.",
+      "zh": "令人愉快的",
+      "en_def": "causing delight; very pleasing",
+      "example": "Sipping hot tea in the afternoon is one of life's delightful customs.",
+      "choices": [
+        "delightful",
+        "dreadful",
+        "doubtful",
+        "grateful"
+      ],
+      "answer": "delightful"
+    },
+    {
+      "lesson": "R01",
+      "word": "typically",
+      "pos": "adv.",
+      "zh": "一般而言",
+      "en_def": "in a way that is usual or expected",
+      "example": "Afternoon tea can typically be described as sitting down between 3 and 6 p.m.",
+      "choices": [
+        "typically",
+        "partially",
+        "actually",
+        "formally"
+      ],
+      "answer": "typically"
+    },
+    {
+      "lesson": "R01",
+      "word": "fundamental",
+      "pos": "adj.",
+      "zh": "重要的；基礎的",
+      "en_def": "of central importance; essential",
+      "example": "Teatime has become a fundamental part of British culture.",
+      "choices": [
+        "fundamental",
+        "occasional",
+        "exceptional",
+        "traditional"
+      ],
+      "answer": "fundamental"
+    },
+    {
+      "lesson": "R01",
+      "word": "exquisite",
+      "pos": "adj.",
+      "zh": "精緻的",
+      "en_def": "extremely beautiful and delicate",
+      "example": "Hosts served high-quality teas and exquisite snacks on luxurious tables.",
+      "choices": [
+        "exquisite",
+        "excessive",
+        "exclusive",
+        "executive"
+      ],
+      "answer": "exquisite"
+    },
+    {
+      "lesson": "R01",
+      "word": "luxurious",
+      "pos": "adj.",
+      "zh": "奢華的",
+      "en_def": "very comfortable, elegant, or expensive",
+      "example": "Fine teas and snacks were served on luxurious, low tables.",
+      "choices": [
+        "luxurious",
+        "courageous",
+        "ambitious",
+        "generous"
+      ],
+      "answer": "luxurious"
+    },
+    {
+      "lesson": "R01",
+      "word": "agriculture",
+      "pos": "n.",
+      "zh": "農業",
+      "en_def": "the practice of farming",
+      "example": "In the seventeenth century, people mostly worked in agriculture.",
+      "choices": [
+        "agriculture",
+        "architecture",
+        "literature",
+        "manufacture"
+      ],
+      "answer": "agriculture"
+    },
+    {
+      "lesson": "R01",
+      "word": "restricted",
+      "pos": "adj.",
+      "zh": "受限的",
+      "en_def": "limited or controlled",
+      "example": "While high tea remains restricted to northern England, afternoon tea is enjoyed worldwide.",
+      "choices": [
+        "restricted",
+        "expected",
+        "respected",
+        "protected"
+      ],
+      "answer": "restricted"
+    },
+    {
+      "lesson": "R01",
+      "word": "spread",
+      "pos": "vi.",
+      "zh": "傳播",
+      "en_def": "to extend over a wider area or reach more people",
+      "example": "Lady Russell's idea of afternoon tea soon spread throughout British high society.",
+      "choices": [
+        "spread",
+        "speed",
+        "spend",
+        "speak"
+      ],
+      "answer": "spread"
+    },
+    {
+      "lesson": "R02",
+      "word": "technique",
+      "pos": "n.",
+      "zh": "技術；技巧",
+      "en_def": "a particular way of doing something skillfully",
+      "example": "The Cornell note-taking technique was first proposed by a university professor.",
+      "choices": [
+        "technique",
+        "technique",
+        "texture",
+        "lecture"
+      ],
+      "answer": "technique"
+    },
+    {
+      "lesson": "R02",
+      "word": "summary",
+      "pos": "n.",
+      "zh": "摘要",
+      "en_def": "a brief statement of the main points",
+      "example": "Below the two columns is a space for the Summary Section.",
+      "choices": [
+        "summary",
+        "mystery",
+        "boundary",
+        "history"
+      ],
+      "answer": "summary"
+    },
+    {
+      "lesson": "R02",
+      "word": "abbreviation",
+      "pos": "n.",
+      "zh": "縮寫",
+      "en_def": "a shortened form of a word or phrase",
+      "example": "Use symbols and abbreviations to convey noteworthy facts in your notes.",
+      "choices": [
+        "abbreviation",
+        "consideration",
+        "pronunciation",
+        "transportation"
+      ],
+      "answer": "abbreviation"
+    },
+    {
+      "lesson": "R02",
+      "word": "recite",
+      "pos": "vt.",
+      "zh": "背誦",
+      "en_def": "to say something aloud from memory",
+      "example": "Cover your Notes Section and challenge yourself to recite as much as you can.",
+      "choices": [
+        "recite",
+        "revise",
+        "review",
+        "relate"
+      ],
+      "answer": "recite"
+    },
+    {
+      "lesson": "R02",
+      "word": "frequent",
+      "pos": "adj.",
+      "zh": "頻繁的",
+      "en_def": "happening often",
+      "example": "Frequent reviews will ensure that you remember information longer.",
+      "choices": [
+        "frequent",
+        "fluent",
+        "patient",
+        "pleasant"
+      ],
+      "answer": "frequent"
+    },
+    {
+      "lesson": "R02",
+      "word": "involve",
+      "pos": "vt.",
+      "zh": "包含；涉及",
+      "en_def": "to include something as a part",
+      "example": "'Reflecting' normally involves thinking about new information and asking yourself questions.",
+      "choices": [
+        "involve",
+        "resolve",
+        "revolve",
+        "evolve"
+      ],
+      "answer": "involve"
+    },
+    {
+      "lesson": "R02",
+      "word": "reserve",
+      "pos": "vt.",
+      "zh": "保留",
+      "en_def": "to keep for a special purpose or future use",
+      "example": "The smaller column is reserved for the Cues Section.",
+      "choices": [
+        "reserve",
+        "reverse",
+        "observe",
+        "deserve"
+      ],
+      "answer": "reserve"
+    },
+    {
+      "lesson": "R02",
+      "word": "propose",
+      "pos": "vt.",
+      "zh": "提議；提出",
+      "en_def": "to put forward a plan or idea for consideration",
+      "example": "The Cornell system was first researched and proposed by a professor.",
+      "choices": [
+        "propose",
+        "dispose",
+        "compose",
+        "suppose"
+      ],
+      "answer": "propose"
+    },
+    {
+      "lesson": "R03",
+      "word": "astronaut",
+      "pos": "n.",
+      "zh": "太空人",
+      "en_def": "a person trained to travel in a spacecraft",
+      "example": "Astronauts live and work around four hundred kilometers above the Earth.",
+      "choices": [
+        "astronaut",
+        "cosmonaut",
+        "physicist",
+        "navigator"
+      ],
+      "answer": "astronaut"
+    },
+    {
+      "lesson": "R03",
+      "word": "gravity",
+      "pos": "n.",
+      "zh": "重力",
+      "en_def": "the force that attracts objects toward Earth",
+      "example": "Astronauts live where gravity is close to zero.",
+      "choices": [
+        "gravity",
+        "cavity",
+        "activity",
+        "quality"
+      ],
+      "answer": "gravity"
+    },
+    {
+      "lesson": "R03",
+      "word": "maintain",
+      "pos": "vt.",
+      "zh": "維持",
+      "en_def": "to keep something in its existing state",
+      "example": "Astronauts work out regularly to maintain muscle strength.",
+      "choices": [
+        "maintain",
+        "obtain",
+        "retain",
+        "attain"
+      ],
+      "answer": "maintain"
+    },
+    {
+      "lesson": "R03",
+      "word": "otherwise",
+      "pos": "adv.",
+      "zh": "否則",
+      "en_def": "in different circumstances; or else",
+      "example": "Sleeping bags must be firmly fixed to the cabin wall. Otherwise, astronauts might float around.",
+      "choices": [
+        "otherwise",
+        "likewise",
+        "likewise",
+        "moreover"
+      ],
+      "answer": "otherwise"
+    },
+    {
+      "lesson": "R03",
+      "word": "furthermore",
+      "pos": "adv.",
+      "zh": "除此之外",
+      "en_def": "in addition; moreover",
+      "example": "Furthermore, as the ISS travels at 17,100 miles an hour, astronauts hardly ever sleep at 'night'.",
+      "choices": [
+        "furthermore",
+        "however",
+        "therefore",
+        "otherwise"
+      ],
+      "answer": "furthermore"
+    },
+    {
+      "lesson": "R03",
+      "word": "sacrifice",
+      "pos": "n.",
+      "zh": "犧牲",
+      "en_def": "an act of giving up something valued for the sake of something else",
+      "example": "These are just some of the sacrifices space workers have to make.",
+      "choices": [
+        "sacrifice",
+        "significance",
+        "substance",
+        "surrender"
+      ],
+      "answer": "sacrifice"
+    },
+    {
+      "lesson": "R03",
+      "word": "gradually",
+      "pos": "adv.",
+      "zh": "逐漸地",
+      "en_def": "slowly and by small degrees",
+      "example": "Muscles gradually decrease in size since they aren't required to support bodies in space.",
+      "choices": [
+        "gradually",
+        "drastically",
+        "suddenly",
+        "frequently"
+      ],
+      "answer": "gradually"
+    },
+    {
+      "lesson": "R03",
+      "word": "vision",
+      "pos": "n.",
+      "zh": "視力",
+      "en_def": "the ability to see",
+      "example": "Body fluids put pressure on the eyes and affect vision in space.",
+      "choices": [
+        "vision",
+        "mission",
+        "tension",
+        "passion"
+      ],
+      "answer": "vision"
+    },
+    {
+      "lesson": "R03",
+      "word": "circulation",
+      "pos": "n.",
+      "zh": "血液循環",
+      "en_def": "the movement of blood around the body",
+      "example": "Astronauts work out to improve circulation and maintain muscle strength.",
+      "choices": [
+        "circulation",
+        "celebration",
+        "consideration",
+        "registration"
+      ],
+      "answer": "circulation"
+    }
+  ],
+  "cloze_questions": [
+    {
+      "lesson": "L07",
+      "word": "seek",
+      "pos": "vt.",
+      "zh": "尋求；尋找",
+      "passage": "Some people [BLANK] both fun and knowledge by watching TED Talks online.",
+      "passage_zh": "有些人透過觀看 TED 演講同時[BLANK]樂趣和知識。",
+      "options": {
+        "A": "avoid",
+        "B": "seek",
+        "C": "ignore",
+        "D": "reject"
+      },
+      "correct_answer": "B",
+      "explanation": {
+        "chinese_translation": "有些人透過觀看 TED 演講同時尋求樂趣和知識。",
+        "core_concept": "測試「seek」(尋求) 的詞彙運用",
+        "why_correct": "「seek」(尋求) 表示主動尋找某事物，符合句意",
+        "why_others_wrong": "avoid=避開，ignore=忽視，reject=拒絕，均與語意相反"
+      }
+    },
+    {
+      "lesson": "L07",
+      "word": "numerous",
+      "pos": "adj.",
+      "zh": "許多的",
+      "passage": "[BLANK] celebrities have given TED Talks and shared valuable insights with their audiences.",
+      "passage_zh": "[BLANK]名人已在 TED 發表演講，與觀眾分享寶貴見解。",
+      "options": {
+        "A": "Scarce",
+        "B": "Few",
+        "C": "Numerous",
+        "D": "Single"
+      },
+      "correct_answer": "C",
+      "explanation": {
+        "chinese_translation": "許多名人已在 TED 發表演講，與觀眾分享寶貴見解。",
+        "core_concept": "測試「numerous」(許多的) 的詞彙運用",
+        "why_correct": "「numerous」表示數量眾多，符合 TED 演講者多樣的語境",
+        "why_others_wrong": "scarce=稀少，few=少數，single=單一，均不符合語意"
+      }
+    },
+    {
+      "lesson": "L07",
+      "word": "conference",
+      "pos": "n.",
+      "zh": "會議；研討會",
+      "passage": "The first TED [BLANK] was held in 1984, with each speaker given eighteen minutes to present.",
+      "passage_zh": "第一屆 TED [BLANK] 於 1984 年舉行，每位講者有十八分鐘發表想法。",
+      "options": {
+        "A": "concert",
+        "B": "conference",
+        "C": "competition",
+        "D": "ceremony"
+      },
+      "correct_answer": "B",
+      "explanation": {
+        "chinese_translation": "第一屆 TED 研討會於 1984 年舉行，每位講者有十八分鐘發表想法。",
+        "core_concept": "測試「conference」(研討會) 的詞彙運用",
+        "why_correct": "「conference」指正式的大型會議或研討會，符合 TED 活動性質",
+        "why_others_wrong": "concert=音樂會，competition=競賽，ceremony=典禮，均非 TED 的活動性質"
+      }
+    },
+    {
+      "lesson": "L07",
+      "word": "launch",
+      "pos": "vt.",
+      "zh": "發行；發起",
+      "passage": "In 2007, the website TED.com was [BLANK], and many speakers' talks were uploaded for free.",
+      "passage_zh": "2007 年，TED.com 網站正式[BLANK]，許多演講免費上傳供大眾觀看。",
+      "options": {
+        "A": "closed",
+        "B": "deleted",
+        "C": "launched",
+        "D": "blocked"
+      },
+      "correct_answer": "C",
+      "explanation": {
+        "chinese_translation": "2007 年，TED.com 網站正式發行，許多演講免費上傳供大眾觀看。",
+        "core_concept": "測試「launch」(發行) 的詞彙運用",
+        "why_correct": "「launch」表示讓新產品或網站首次對外開放，符合網站上線的語境",
+        "why_others_wrong": "closed=關閉，deleted=刪除，blocked=封鎖，均與語意相反"
+      }
+    },
+    {
+      "lesson": "L07",
+      "word": "broaden one's horizons",
+      "pos": "phrase",
+      "zh": "拓展視野",
+      "passage": "Watching TED Talks is a great way to [BLANK] and even inspire you to change the world.",
+      "passage_zh": "觀看 TED 演講是[BLANK]的好方法，甚至能激勵你改變世界。",
+      "options": {
+        "A": "narrow your focus",
+        "B": "broaden your horizons",
+        "C": "waste your time",
+        "D": "lose your mind"
+      },
+      "correct_answer": "B",
+      "explanation": {
+        "chinese_translation": "觀看 TED 演講是拓展視野的好方法，甚至能激勵你改變世界。",
+        "core_concept": "測試片語「broaden one's horizons」(拓展視野) 的運用",
+        "why_correct": "「broaden one's horizons」表示擴大眼界、學習新事物，符合 TED 的主旨",
+        "why_others_wrong": "其他選項均與正面學習的語意不符"
+      }
+    },
+    {
+      "lesson": "L08",
+      "word": "originate",
+      "pos": "vi.",
+      "zh": "起源",
+      "passage": "The ban-doh custom [BLANK] in the countryside, where neighbors helped each other prepare banquets.",
+      "passage_zh": "辦桌習俗[BLANK]於鄉村，鄰居互相幫忙準備宴席。",
+      "options": {
+        "A": "originated",
+        "B": "eliminated",
+        "C": "separated",
+        "D": "operated"
+      },
+      "correct_answer": "A",
+      "explanation": {
+        "chinese_translation": "辦桌習俗起源於鄉村，鄰居互相幫忙準備宴席。",
+        "core_concept": "測試「originate」(起源) 的詞彙運用",
+        "why_correct": "「originate」表示某事物最初出現的地方或時間，符合描述辦桌由來的語境",
+        "why_others_wrong": "eliminated=消除，separated=分開，operated=操作，均不符合語意"
+      }
+    },
+    {
+      "lesson": "L08",
+      "word": "temporary",
+      "pos": "adj.",
+      "zh": "臨時的；暫時的",
+      "passage": "Put up to shelter guests from the fierce sun, a huge [BLANK] tent occupied nearly half the street.",
+      "passage_zh": "為遮蔽客人免受烈日曝曬，一頂巨大的[BLANK]帳篷占據了將近半條街。",
+      "options": {
+        "A": "permanent",
+        "B": "temporary",
+        "C": "historical",
+        "D": "personal"
+      },
+      "correct_answer": "B",
+      "explanation": {
+        "chinese_translation": "為遮蔽客人免受烈日曝曬，一頂巨大的臨時帳篷占據了將近半條街。",
+        "core_concept": "測試「temporary」(臨時的) 的詞彙運用",
+        "why_correct": "辦桌的帳篷是為特定活動而搭設的臨時設施，「temporary」最為貼切",
+        "why_others_wrong": "permanent=永久的，historical=歷史的，personal=個人的，均不符合語意"
+      }
+    },
+    {
+      "lesson": "L08",
+      "word": "cooperate",
+      "pos": "vi.",
+      "zh": "合作",
+      "passage": "When people gathered for a wedding in the old days, everyone in the neighborhood would [BLANK] to arrange a ban-doh.",
+      "passage_zh": "在過去，當人們為婚禮聚集時，鄰近所有人都會[BLANK]籌辦一場辦桌。",
+      "options": {
+        "A": "compete",
+        "B": "cooperate",
+        "C": "disagree",
+        "D": "separate"
+      },
+      "correct_answer": "B",
+      "explanation": {
+        "chinese_translation": "在過去，當人們為婚禮聚集時，鄰近所有人都會合作籌辦一場辦桌。",
+        "core_concept": "測試「cooperate」(合作) 的詞彙運用",
+        "why_correct": "「cooperate」表示為共同目標而合作，符合辦桌中鄰居互助的精神",
+        "why_others_wrong": "compete=競爭，disagree=不同意，separate=分開，均與互助語意相反"
+      }
+    },
+    {
+      "lesson": "L08",
+      "word": "take part in",
+      "pos": "phrase",
+      "zh": "參加",
+      "passage": "The author decided to [BLANK] a student exchange program to experience different cultures.",
+      "passage_zh": "作者決定[BLANK]一個學生交流計畫，以體驗不同文化。",
+      "options": {
+        "A": "take part in",
+        "B": "take care of",
+        "C": "take place of",
+        "D": "take advantage of"
+      },
+      "correct_answer": "A",
+      "explanation": {
+        "chinese_translation": "作者決定參加一個學生交流計畫，以體驗不同文化。",
+        "core_concept": "測試片語「take part in」(參加) 的運用",
+        "why_correct": "「take part in」表示參與某活動，符合語境",
+        "why_others_wrong": "take care of=照顧，take place of=取代，take advantage of=利用，均不符合語意"
+      }
+    },
+    {
+      "lesson": "L08",
+      "word": "aspect",
+      "pos": "n.",
+      "zh": "方面",
+      "passage": "Although some [BLANK] of the ban-doh have changed in modern times, the spirit of togetherness has always remained.",
+      "passage_zh": "雖然辦桌的某些[BLANK]已在現代有所改變，但凝聚在一起的精神始終未變。",
+      "options": {
+        "A": "aspects",
+        "B": "impacts",
+        "C": "objects",
+        "D": "concepts"
+      },
+      "correct_answer": "A",
+      "explanation": {
+        "chinese_translation": "雖然辦桌的某些方面已在現代有所改變，但凝聚在一起的精神始終未變。",
+        "core_concept": "測試「aspect」(方面) 的詞彙運用",
+        "why_correct": "「aspect」指某事物的特定面向，符合描述辦桌部分特色改變的語境",
+        "why_others_wrong": "impacts=影響，objects=物體，concepts=概念，均不符合語意"
+      }
+    },
+    {
+      "lesson": "L09",
+      "word": "reveal",
+      "pos": "vt.",
+      "zh": "揭露",
+      "passage": "The photographer worked with the writer to [BLANK] the secret lives of celebrities.",
+      "passage_zh": "攝影師與記者合作，[BLANK]名人的私密生活。",
+      "options": {
+        "A": "conceal",
+        "B": "reveal",
+        "C": "recall",
+        "D": "appeal"
+      },
+      "correct_answer": "B",
+      "explanation": {
+        "chinese_translation": "攝影師與記者合作，揭露名人的私密生活。",
+        "core_concept": "測試「reveal」(揭露) 的詞彙運用",
+        "why_correct": "「reveal」表示使隱藏的事物公開，符合狗仔追蹤名人的語境",
+        "why_others_wrong": "conceal=隱藏，recall=回想，appeal=吸引，均不符合語意"
+      }
+    },
+    {
+      "lesson": "L09",
+      "word": "widespread",
+      "pos": "adj.",
+      "zh": "廣泛的",
+      "passage": "Adobe was unhappy that people were using 'Photoshop' as a verb, but the [BLANK] usage was impossible to stop.",
+      "passage_zh": "Adobe 對人們將「Photoshop」當動詞使用感到不滿，但這個[BLANK]的用法已無法阻止。",
+      "options": {
+        "A": "limited",
+        "B": "widespread",
+        "C": "ancient",
+        "D": "standard"
+      },
+      "correct_answer": "B",
+      "explanation": {
+        "chinese_translation": "Adobe 對人們將「Photoshop」當動詞使用感到不滿，但這個廣泛的用法已無法阻止。",
+        "core_concept": "測試「widespread」(廣泛的) 的詞彙運用",
+        "why_correct": "「widespread」表示普遍流行，符合 Photoshop 被廣泛當動詞使用的語境",
+        "why_others_wrong": "limited=有限的，ancient=古老的，standard=標準的，均不符合語意"
+      }
+    },
+    {
+      "lesson": "L09",
+      "word": "constantly",
+      "pos": "adv.",
+      "zh": "持續地",
+      "passage": "Language is [BLANK] changing with the adoption of new words and alternative uses for existing words.",
+      "passage_zh": "語言[BLANK]隨著新詞彙的採納以及現有詞彙的另類用法而改變。",
+      "options": {
+        "A": "rarely",
+        "B": "suddenly",
+        "C": "constantly",
+        "D": "temporarily"
+      },
+      "correct_answer": "C",
+      "explanation": {
+        "chinese_translation": "語言持續地隨著新詞彙的採納以及現有詞彙的另類用法而改變。",
+        "core_concept": "測試「constantly」(持續地) 的詞彙運用",
+        "why_correct": "「constantly」表示不斷持續，符合語言演化不停的語境",
+        "why_others_wrong": "rarely=很少，suddenly=突然，temporarily=暫時，均不符合語意"
+      }
+    },
+    {
+      "lesson": "L09",
+      "word": "play a role",
+      "pos": "phrase",
+      "zh": "扮演……的角色",
+      "passage": "Eponyms [BLANK] important [BLANK] in creating new words in our society.",
+      "passage_zh": "借名成字在我們社會創造新詞彙的過程中[BLANK]重要[BLANK]。",
+      "options": {
+        "A": "play / part",
+        "B": "play / role",
+        "C": "make / impact",
+        "D": "take / effect"
+      },
+      "correct_answer": "B",
+      "explanation": {
+        "chinese_translation": "借名成字在我們社會創造新詞彙的過程中扮演著重要角色。",
+        "core_concept": "測試片語「play a role」(扮演角色) 的運用",
+        "why_correct": "「play an important role in」是固定搭配，表示在某事中扮演重要角色",
+        "why_others_wrong": "play/part、make/impact、take/effect 均非此固定片語"
+      }
+    },
+    {
+      "lesson": "R01",
+      "word": "fundamental",
+      "pos": "adj.",
+      "zh": "重要的；基礎的",
+      "passage": "Research shows that teatime has become a [BLANK] part of British culture.",
+      "passage_zh": "研究顯示，茶時間已成為英國文化中[BLANK]的一部分。",
+      "options": {
+        "A": "fundamental",
+        "B": "optional",
+        "C": "temporary",
+        "D": "unusual"
+      },
+      "correct_answer": "A",
+      "explanation": {
+        "chinese_translation": "研究顯示，茶時間已成為英國文化中重要的一部分。",
+        "core_concept": "測試「fundamental」(重要的；基礎的) 的詞彙運用",
+        "why_correct": "「fundamental」表示基本且核心重要，符合茶文化在英國的地位",
+        "why_others_wrong": "optional=可選的，temporary=暫時的，unusual=不尋常的，均不符合語意"
+      }
+    },
+    {
+      "lesson": "R01",
+      "word": "refer to",
+      "pos": "phrase",
+      "zh": "稱呼；指稱",
+      "passage": "Because fine snacks were served on luxurious low tables, people began to [BLANK] this custom as 'low tea.'",
+      "passage_zh": "因為精緻點心是在奢華的矮桌上享用，人們開始[BLANK]這個習俗為「低茶」。",
+      "options": {
+        "A": "refer to",
+        "B": "reply to",
+        "C": "belong to",
+        "D": "compare to"
+      },
+      "correct_answer": "A",
+      "explanation": {
+        "chinese_translation": "因為精緻點心是在奢華的矮桌上享用，人們開始稱呼這個習俗為「低茶」。",
+        "core_concept": "測試片語「refer to」(稱呼；指稱) 的運用",
+        "why_correct": "「refer to...as...」表示以某名稱稱呼，符合語境",
+        "why_others_wrong": "reply to=回覆，belong to=屬於，compare to=比較，均不符合語意"
+      }
+    },
+    {
+      "lesson": "R02",
+      "word": "summary",
+      "pos": "n.",
+      "zh": "摘要",
+      "passage": "After reflecting on what you've learned, you should write a [BLANK] of the main ideas in your own words.",
+      "passage_zh": "在反思你所學的內容後，你應該用自己的話寫出一份主要概念的[BLANK]。",
+      "options": {
+        "A": "summary",
+        "B": "mystery",
+        "C": "memory",
+        "D": "theory"
+      },
+      "correct_answer": "A",
+      "explanation": {
+        "chinese_translation": "在反思你所學的內容後，你應該用自己的話寫出一份主要概念的摘要。",
+        "core_concept": "測試「summary」(摘要) 的詞彙運用",
+        "why_correct": "「summary」表示簡短描述要點，符合 Cornell 筆記法摘要欄的描述",
+        "why_others_wrong": "mystery=謎，memory=記憶，theory=理論，均不符合語意"
+      }
+    },
+    {
+      "lesson": "R02",
+      "word": "make use of",
+      "pos": "phrase",
+      "zh": "利用",
+      "passage": "Continuing to [BLANK] this note-taking system from an early age will help you succeed in your future career.",
+      "passage_zh": "從小就持續[BLANK]這個筆記系統，將有助於你在未來職涯中成功。",
+      "options": {
+        "A": "make use of",
+        "B": "make fun of",
+        "C": "make sense of",
+        "D": "make room for"
+      },
+      "correct_answer": "A",
+      "explanation": {
+        "chinese_translation": "從小就持續利用這個筆記系統，將有助於你在未來職涯中成功。",
+        "core_concept": "測試片語「make use of」(利用) 的運用",
+        "why_correct": "「make use of」表示善加利用某事物，符合語境",
+        "why_others_wrong": "make fun of=取笑，make sense of=理解，make room for=騰出空間，均不符合語意"
+      }
+    },
+    {
+      "lesson": "R03",
+      "word": "maintain",
+      "pos": "vt.",
+      "zh": "維持",
+      "passage": "Astronauts work out regularly to improve circulation and [BLANK] muscle strength.",
+      "passage_zh": "太空人定期鍛鍊以促進血液循環並[BLANK]肌肉強度。",
+      "options": {
+        "A": "maintain",
+        "B": "contain",
+        "C": "obtain",
+        "D": "complain"
+      },
+      "correct_answer": "A",
+      "explanation": {
+        "chinese_translation": "太空人定期鍛鍊以促進血液循環並維持肌肉強度。",
+        "core_concept": "測試「maintain」(維持) 的詞彙運用",
+        "why_correct": "「maintain」表示保持某事物的狀態，符合維持肌肉強度的語境",
+        "why_others_wrong": "contain=包含，obtain=獲得，complain=抱怨，均不符合語意"
+      }
+    },
+    {
+      "lesson": "R03",
+      "word": "otherwise",
+      "pos": "adv.",
+      "zh": "否則",
+      "passage": "Sleeping bags must be firmly fixed to the cabin wall. [BLANK], astronauts might float around bumping into one another.",
+      "passage_zh": "睡袋必須牢固地固定在艙壁上。[BLANK]，太空人可能會四處漂浮、互相碰撞。",
+      "options": {
+        "A": "Therefore",
+        "B": "Otherwise",
+        "C": "However",
+        "D": "Furthermore"
+      },
+      "correct_answer": "B",
+      "explanation": {
+        "chinese_translation": "睡袋必須牢固地固定在艙壁上。否則，太空人可能會四處漂浮、互相碰撞。",
+        "core_concept": "測試「otherwise」(否則) 的詞彙運用",
+        "why_correct": "「otherwise」表示若不如此則會發生的後果，符合前後句的邏輯關係",
+        "why_others_wrong": "therefore=因此，however=然而，furthermore=此外，均不符合此處因果語意"
+      }
+    }
+  ],
+  "reading_comprehension": [
+    {
+      "lesson": "L07",
+      "title": "TED Talks: Spreading Ideas for a Better World",
+      "passage_excerpt": "Ever since this nonprofit foundation was established in 1984, it has provided a platform for people to share their thoughts and findings. The first conference was held that same year, with the slogan 'ideas worth spreading.' During the meeting, each speaker was given eighteen minutes to present his or her ideas. As TED conferences became increasingly popular, it was clear to the organizers that they should invite thinkers from a broader range of fields to come and speak.",
+      "questions": [
+        {
+          "q": "What is the passage mainly about?",
+          "q_zh": "這篇文章主要在說什麼？",
+          "options": {
+            "A": "The secret to making a website popular.",
+            "B": "A way for people to learn through online courses.",
+            "C": "The influence of modern technology on human society.",
+            "D": "An organization aiming to make a difference in the world."
+          },
+          "answer": "D",
+          "explanation": "文章介紹 TED 這個致力於傳播ideas、影響世界的組織，選(D)最符合主旨。"
+        },
+        {
+          "q": "Which of the following statements is true about TED Talks?",
+          "q_zh": "下列關於 TED 演講的敘述何者為真？",
+          "options": {
+            "A": "TED speakers come from all walks of life.",
+            "B": "Each TED Talk lasts more than eighteen minutes.",
+            "C": "The first TED conference was held ten years ago.",
+            "D": "The speakers are required to talk about only their own fields."
+          },
+          "answer": "A",
+          "explanation": "文章提到 TED 邀請不同領域的思想家，包括哲學、商業、醫學等，選(A)正確。(B)十八分鐘，(C)1984年，(D)不限自己領域。"
+        },
+        {
+          "q": "Why does the author say that watching TED Talks is like 'standing on the shoulders of a giant'?",
+          "q_zh": "作者為何說看 TED 演講像「站在巨人的肩膀上」？",
+          "options": {
+            "A": "The author believes that TED Talks can help viewers achieve more.",
+            "B": "The author wants to show that TED is a well-established organization.",
+            "C": "The author hopes people can learn how to deal with challenges through TED.",
+            "D": "The author is certain that TED Talks will keep growing."
+          },
+          "answer": "A",
+          "explanation": "「站在巨人的肩膀上」比喻能站得更高、看得更遠，意指 TED 能幫助觀眾獲得更多成就，選(A)。"
+        },
+        {
+          "q": "What did Bill Gates discuss in his TED Talk?",
+          "q_zh": "比爾蓋茲在他的 TED 演講中討論了什麼？",
+          "options": {
+            "A": "The importance of computer technology.",
+            "B": "How to start a food revolution.",
+            "C": "His childhood fascination with science fiction.",
+            "D": "The methods of controlling the spread of diseases."
+          },
+          "answer": "D",
+          "explanation": "文章明確說明 Bill Gates 討論了控制疾病傳播（如伊波拉）的重要性和方法，選(D)。"
+        }
+      ]
+    },
+    {
+      "lesson": "L08",
+      "title": "Ban-Doh: The Most Authentic Taiwanese Eating Experience",
+      "passage_excerpt": "The host father explained that this kind of banquet, known as a 'ban-doh' in Taiwanese, originated in the countryside. In the old days, when people gathered for a special event such as a wedding or an elder's birthday, everyone in the neighborhood would cooperate to arrange a ban-doh. The host would prepare all the ingredients for the meal, and the neighbors would help out. Some would do the cooking, while others might provide tables, chairs, and eating utensils or assist in other ways.",
+      "questions": [
+        {
+          "q": "What is the main purpose of the passage?",
+          "q_zh": "這篇文章的主要目的是什麼？",
+          "options": {
+            "A": "To introduce a wide selection of ban-doh dishes.",
+            "B": "To share a fascinating Taiwanese eating experience.",
+            "C": "To express gratitude to the author's host family in Taiwan.",
+            "D": "To show how an authentic Taiwanese wedding should be prepared."
+          },
+          "answer": "B",
+          "explanation": "文章是一名外國交換生分享他在台灣體驗辦桌的故事，主要目的是介紹這個有趣的台灣飲食文化，選(B)。"
+        },
+        {
+          "q": "How did the author feel upon arriving at the wedding banquet?",
+          "q_zh": "作者到達婚宴時有什麼感受？",
+          "options": {
+            "A": "Hungry.",
+            "B": "Amazed.",
+            "C": "Embarrassed.",
+            "D": "Disappointed."
+          },
+          "answer": "B",
+          "explanation": "文章說 'I soon realized that it was totally different from what I'd expected'，暗示作者感到驚訝，選(B)。"
+        },
+        {
+          "q": "What is the origin of the ban-doh?",
+          "q_zh": "辦桌的起源是什麼？",
+          "options": {
+            "A": "It started as a government-organized event in big cities.",
+            "B": "It originated in the countryside where neighbors helped each other.",
+            "C": "It was first held at a famous restaurant in Kaohsiung.",
+            "D": "It was introduced from a foreign country to Taiwan."
+          },
+          "answer": "B",
+          "explanation": "文章明確說明辦桌起源於鄉下，由鄰居合力籌辦，選(B)。"
+        },
+        {
+          "q": "Which of the following best describes the 'spirit' of a ban-doh?",
+          "q_zh": "下列何者最能描述辦桌的「精神」？",
+          "options": {
+            "A": "Competition and excellence in cooking.",
+            "B": "Gathering together and enjoying the banquet as a community.",
+            "C": "Serving as many dishes as possible to impress guests.",
+            "D": "Maintaining traditional recipes passed down from ancestors."
+          },
+          "answer": "B",
+          "explanation": "文章說「the ban-doh back then was all about enjoying a sense of community and togetherness」，選(B)。"
+        }
+      ]
+    },
+    {
+      "lesson": "L09",
+      "title": "The Story behind Eponyms",
+      "passage_excerpt": "An eponym is a word which usually started out as the name of someone or something but took on a more general meaning later on. Product-based eponyms such as Photoshop are brand names that are commonly used to describe other similar products, or in this case an action. Since it was first released in 1987, Photoshop has become the standard software used by photographers and designers around the world.",
+      "questions": [
+        {
+          "q": "What is an eponym?",
+          "q_zh": "什麼是借名成字（eponym）？",
+          "options": {
+            "A": "A word borrowed from another language.",
+            "B": "A word that combines two or more existing words.",
+            "C": "A word that originated from a person's or product's name.",
+            "D": "A word created by adding a prefix or suffix to an old word."
+          },
+          "answer": "C",
+          "explanation": "文章定義 eponym 是「a word which usually started out as the name of someone or something」，選(C)。"
+        },
+        {
+          "q": "Why did people start using the word 'paparazzi'?",
+          "q_zh": "人們為什麼開始使用「paparazzi」這個詞？",
+          "options": {
+            "A": "It was invented by professional photographers as their job title.",
+            "B": "It came from a character's name in a 1960 Italian film.",
+            "C": "It was first used in a British newspaper column.",
+            "D": "It was the brand name of a famous camera company."
+          },
+          "answer": "B",
+          "explanation": "文章說明 paparazzi 源自 1960 年義大利電影《甜蜜的生活》中角色 Paparazzo 的名字，選(B)。"
+        },
+        {
+          "q": "How did Adobe react when 'Photoshop' became a product eponym?",
+          "q_zh": "當「Photoshop」成為產品借名詞時，Adobe 有何反應？",
+          "options": {
+            "A": "They were pleased and encouraged people to use it as a verb.",
+            "B": "They were not pleased but could not stop its widespread usage.",
+            "C": "They immediately changed the name of their software.",
+            "D": "They sued other companies for using their product name."
+          },
+          "answer": "B",
+          "explanation": "文章說「Adobe was not pleased that people were using their product name... but the eponym has become too popular for them to stop」，選(B)。"
+        },
+        {
+          "q": "What does the author suggest about language?",
+          "q_zh": "作者對語言有何看法？",
+          "options": {
+            "A": "Language should be protected from unnecessary changes.",
+            "B": "Only experts can decide which new words are acceptable.",
+            "C": "Language is constantly evolving with new words and usages.",
+            "D": "The creation of new words will eventually cause confusion."
+          },
+          "answer": "C",
+          "explanation": "文章結尾說「Language is constantly changing with the adoption of new words」，選(C)。"
+        }
+      ]
+    },
+    {
+      "lesson": "R01",
+      "title": "How Do You Take Your Tea, High or Low?",
+      "passage_excerpt": "In England, afternoon tea can typically be described as sitting down for some time between 3 and 6 p.m. to enjoy not only tea but also snacks such as sandwiches, scones, and cakes. Some believe that the English duchess Anna Russell started this pleasant pastime in the mid-1800s. High tea, by comparison, functioned as one of the main meals during the day for the working class in northern England.",
+      "questions": [
+        {
+          "q": "Who is believed to have started the custom of 'low tea'?",
+          "q_zh": "據信是誰開創了「低茶」的習俗？",
+          "options": {
+            "A": "A working-class woman in northern England.",
+            "B": "The English duchess Anna Russell.",
+            "C": "A factory owner during the Industrial Revolution.",
+            "D": "A famous chef who enjoyed afternoon tea."
+          },
+          "answer": "B",
+          "explanation": "文章明確說明「Some believe that the English duchess Anna Russell started this pleasant pastime」，選(B)。"
+        },
+        {
+          "q": "Why was 'high tea' established for the working class?",
+          "q_zh": "「高茶」為何是為工人階級而設立的？",
+          "options": {
+            "A": "To fill the gap between a light lunch and a late dinner.",
+            "B": "To provide energy after long working hours in factories.",
+            "C": "To celebrate the end of the agricultural season.",
+            "D": "To help workers relax before going to bed."
+          },
+          "answer": "B",
+          "explanation": "文章說明工人在工廠長時間工作後需要補充能量，下班後即享用高茶，選(B)。"
+        },
+        {
+          "q": "What does the term 'high tea' refer to?",
+          "q_zh": "「高茶」一詞指的是什麼？",
+          "options": {
+            "A": "Tea served on high tables with elegant snacks.",
+            "B": "A light meal enjoyed by the upper class in the afternoon.",
+            "C": "A substantial meal with hearty food served on high-backed chairs.",
+            "D": "Tea prepared with high-quality imported tea leaves."
+          },
+          "answer": "C",
+          "explanation": "文章說明 high tea 是工人在高背椅的餐桌上享用豐盛食物（肉類、蔬菜等）的正餐，選(C)。"
+        }
+      ]
+    },
+    {
+      "lesson": "R02",
+      "title": "Note How to Really Learn",
+      "passage_excerpt": "The Cornell note-taking system typically requires breaking your page up into three parts: one for notes, another for cues, and the other for a summary. The Notes Section, a wide column on the right side of the page, is where you can record important information during class. The Cues Section should be completed within a day or two. In this part, rewrite your notes using simpler key words and phrases.",
+      "questions": [
+        {
+          "q": "What is the Cornell note-taking system mainly designed to do?",
+          "q_zh": "Cornell 筆記法主要的設計目的是什麼？",
+          "options": {
+            "A": "To make notes look neat and organized.",
+            "B": "To help students remember and process information better.",
+            "C": "To reduce the amount of writing students need to do.",
+            "D": "To allow students to share notes with each other easily."
+          },
+          "answer": "B",
+          "explanation": "文章說明 Cornell 筆記法的主要優點是幫助記憶與處理新資訊，選(B)。"
+        },
+        {
+          "q": "What should be written in the Cues Section?",
+          "q_zh": "線索欄應該寫什麼內容？",
+          "options": {
+            "A": "A summary of the entire lesson in your own words.",
+            "B": "Main notes and details recorded during class.",
+            "C": "Simpler key words, phrases, and possible exam questions.",
+            "D": "Your personal opinions about the lesson content."
+          },
+          "answer": "C",
+          "explanation": "文章說明線索欄用於課後重寫更簡單的關鍵字詞，也可寫下老師可能考的問題，選(C)。"
+        },
+        {
+          "q": "When should the Summary Section be filled in?",
+          "q_zh": "摘要欄應該在什麼時候填寫？",
+          "options": {
+            "A": "During class, along with the main notes.",
+            "B": "Before class, to prepare for the lesson.",
+            "C": "After reflecting on what you've learned.",
+            "D": "Once a week, when reviewing all your notes."
+          },
+          "answer": "C",
+          "explanation": "文章說明摘要欄是在「reflect on what you've learned」之後填寫，選(C)。"
+        }
+      ]
+    },
+    {
+      "lesson": "R03",
+      "title": "Living above the Earth—and Beyond",
+      "passage_excerpt": "Despite living under such special conditions, astronauts get hungry just like everyone else. Since everything floats, eating utensils all contain magnets to ensure that they remain stuck to the dining table! Compared with people on earth, astronauts need to exercise more regularly because microgravity also has a major effect on their bodies. To limit these physical effects and avoid injury, astronauts work out regularly to improve circulation and maintain muscle strength.",
+      "questions": [
+        {
+          "q": "Why do eating utensils in space contain magnets?",
+          "q_zh": "太空中的餐具為何含有磁鐵？",
+          "options": {
+            "A": "To keep food from getting too cold.",
+            "B": "To ensure they remain stuck to the dining table.",
+            "C": "To measure the weight of food in microgravity.",
+            "D": "To prevent astronauts from losing their utensils."
+          },
+          "answer": "B",
+          "explanation": "文章明確說明餐具含有磁鐵是為了讓它們「remain stuck to the dining table」，選(B)。"
+        },
+        {
+          "q": "What physical problem does microgravity cause for astronauts' bodies?",
+          "q_zh": "微重力對太空人身體造成什麼問題？",
+          "options": {
+            "A": "Their bones become stronger than normal.",
+            "B": "Their muscles grow larger without exercise.",
+            "C": "Body fluids gather in the upper parts of the body, affecting vision.",
+            "D": "Their hearts stop functioning properly in space."
+          },
+          "answer": "C",
+          "explanation": "文章說明微重力下體液聚集於上半身，對眼睛造成壓力並影響視力，選(C)。"
+        },
+        {
+          "q": "Why do astronauts have to ignore sunrises and sunsets when sleeping?",
+          "q_zh": "太空人睡覺時為何必須忽略日出和日落？",
+          "options": {
+            "A": "The ISS windows are too small to see the sun.",
+            "B": "The ISS circles Earth about sixteen times a day, making day and night meaningless.",
+            "C": "The ISS travels at a speed that keeps it always in the shade.",
+            "D": "Sunlight in space can damage astronauts' eyes."
+          },
+          "answer": "B",
+          "explanation": "文章說明 ISS 一天繞地球約 16 次，因此頻繁日出日落使傳統作息失去意義，選(B)。"
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "total_vocab_questions": 83,
+    "total_cloze_questions": 20,
+    "total_reading_passages": 6,
+    "total_reading_questions": 21
+  }
+}

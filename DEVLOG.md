@@ -1,0 +1,702 @@
+# 開發過程紀錄（DEVLOG）
+
+---
+
+## 2026-06-06（整理資料夾結構）
+
+**時間**：2026-06-06 10:00 CST
+
+### 操作內容
+
+傑克反映 `~/` 資料夾太亂，英文單字 App 相關檔案分散在三個資料夾，難以分辨。
+進行資料夾整併，把所有相關檔案集中到 `~/vocab-app/`。
+
+### 整併前狀態
+
+```
+~/vocab-app/         ← 主程式
+~/english-vocab-app/ ← 只有 DEVLOG.md、PROJECT_NOTES.md
+~/英文第三次月考題庫/ ← JS 題庫（vocab-app 裡已有副本）+ english-course-structure.json
+```
+
+### 執行操作
+
+1. 將 `~/english-vocab-app/DEVLOG.md` 移入 `~/vocab-app/`
+2. 將 `~/english-vocab-app/PROJECT_NOTES.md` 移入 `~/vocab-app/`
+3. 將 `~/英文第三次月考題庫/english-course-structure.json` 移入 `~/vocab-app/`
+4. 刪除已清空的 `~/english-vocab-app/`
+5. 刪除 `~/英文第三次月考題庫/`（.js 題庫在 vocab-app 已有副本）
+
+### 整併後狀態
+
+```
+~/vocab-app/
+├── index.html                    ← 主程式
+├── style.css
+├── app.js
+├── vocab-data.js
+├── cloze-data.js
+├── math-data.js
+├── auth.js                       ← 舊登入模組，未載入
+├── vocab-exam3.js                ← John 第三次月考單字題
+├── cloze-exam3.js                ← John 第三次月考克漏字
+├── reading-exam3.js              ← John 第三次月考閱讀
+├── english-course-structure.json ← 月考課程結構
+├── PROJECT_NOTES.md              ← 專案說明文件
+└── DEVLOG.md                     ← 本開發紀錄
+```
+
+### 注意事項
+
+- `~/vocab-app/` 資料夾名稱**不可更改、不可移動**
+- 原因：GitHub Pages 網址 `https://jackchan1973.github.io/vocab-app/` 與資料夾名稱綁定
+- 程式功能完全不受此次整理影響
+
+---
+
+## 2026-06-03（第三天 — 接手整理與方向調整）
+
+### 今日確認狀態
+
+**時間**：2026-06-03 19:55 UTC+8
+
+**目前線上網址**：
+- https://jackchan1973.github.io/vocab-app/
+- GitHub Pages 回應正常，狀態為 `200 OK`
+- 線上檔案大小約 424KB，與本機 `index.html` 相符
+
+**目前本機程式位置**：
+```
+/Users/jackchan/vocab-app/
+├── index.html   ← 主程式，目前實際上線版本
+└── auth.js      ← 舊登入模組，目前 index.html 沒有載入
+```
+
+**目前開發紀錄位置**：
+```
+/Users/jackchan/english-vocab-app/
+├── PROJECT_NOTES.md
+└── DEVLOG.md
+```
+
+**Codex 接手紀錄位置**：
+```
+/Users/jackchan/Jack-Codex-開發紀錄/
+└── vocab-app-接手資訊.md
+```
+
+---
+
+### 今日已知版本變更
+
+#### 1. 產品方向調整
+
+**新方向**：
+- 暫時不考慮 Ivy 的使用情境
+- 目前主要服務對象改為 John
+- John 目前就讀上海台商子女學校，高一
+- App 用途是幫 John 平時學習與複習
+- 長期目標是幫 John 準備高三參加台灣學測考試
+- 功能設計以「高一學生」「學測準備」「可持續練習」為核心
+
+**原因**：
+- John 是目前主要學習與開發陪跑對象
+- App 已經逐步往學測複習工具發展
+- 若同時照顧小學生操作難度，會讓功能設計變得分散
+
+---
+
+#### 2. 五科切換架構已加入
+
+**目前科目列**：
+- 英文
+- 國文
+- 數學
+- 社會
+- 自然
+
+**目前完成度**：
+- 英文：功能最完整
+- 數學：已有選擇題練習雛形
+- 國文 / 社會 / 自然：目前是開發中占位頁
+
+---
+
+#### 3. 數學科選擇題練習已加入
+
+**目前題庫**：
+- 共 20 題
+- 分類：代數、幾何、函數、統計、三角
+
+**目前功能**：
+- 隨機抽題
+- 分類篩選
+- 答對 / 答錯統計
+- 測驗完成顯示百分比
+
+**後續建議**：
+- 擴充到至少 100 題
+- 每題加入解析
+- 加入錯題本
+- 加入難度：基礎 / 中等 / 挑戰
+
+---
+
+#### 4. 登入系統暫時移除
+
+**目前狀態**：
+- `auth.js` 還在資料夾中
+- `index.html` 目前沒有載入 `auth.js`
+- 線上版本實際是無帳號模式
+
+**目前判斷**：
+- 暫時不恢復登入
+- 先保持 John 使用方便
+- 等未來真的需要「多人獨立進度」或「雲端同步」時，再重新考慮 Supabase
+
+---
+
+#### 5. 專案健康檢查
+
+**Git 狀態**：
+- 工作區乾淨，沒有未提交修改
+- 目前分支：`main`
+- 遠端 repository：`https://github.com/jackchan1973/vocab-app.git`
+
+**最近 commit**：
+```
+7f7511f 新增數學科選擇題練習功能
+741b008 加入學測五科科目切換列
+3ed8090 移除登入系統，回到無帳號模式
+4f566f2 加入註冊功能與 Supabase Auth 設定
+```
+
+**語法檢查**：
+- 已抽出 `index.html` 內的 JavaScript 做 `node --check`
+- 檢查結果：無語法錯誤
+
+---
+
+### 接下來開發計畫
+
+#### 第一階段：穩定整理
+
+- [x] 補 2026-06-03 開發紀錄
+- [x] 確認 Git 狀態
+- [x] 確認 GitHub Pages 正常
+- [x] 確認主程式語法正常
+- [x] 補充 `PROJECT_NOTES.md` 的目前方向
+
+#### 第二階段：整理架構
+
+**目標**：把目前 5000 多行的 `index.html` 拆成較好維護的檔案。
+
+建議拆法：
+```
+index.html
+style.css
+app.js
+vocab-data.js
+cloze-data.js
+math-data.js
+```
+
+**注意**：
+- 這是重要開發，動手前要先給詹爸簡要計畫並等待確認
+- 拆檔後要確認 GitHub Pages 仍可正常載入
+- 拆檔後要做基本瀏覽器測試與 JavaScript 語法檢查
+
+#### 第三階段：英文品質升級
+
+- 克漏字題目品質優化
+- 拼字測驗放寬接受
+- 連勝計數器
+- 答對 / 答錯音效
+- 家長查看報告加強
+
+#### 第四階段：數學擴充
+
+- 題庫擴充到 100 題以上
+- 每題加入解析
+- 加入錯題本
+- 加入難度分類
+
+---
+
+## 2026-06-03（第三天 — 拆分單檔架構）
+
+### 今日開發重點
+
+#### 1. 將 `index.html` 拆成多檔案架構
+
+**目標**：
+- 原本 `index.html` 超過 5000 行，後續要擴充英文、數學、國文、社會、自然會越來越難維護
+- 先不改主要功能，只把程式整理成較清楚的檔案分工
+
+**拆分前**：
+```
+/Users/jackchan/vocab-app/
+├── index.html   ← 內含 HTML、CSS、JS、英文單字、克漏字題庫、數學題庫
+└── auth.js
+```
+
+**拆分後**：
+```
+/Users/jackchan/vocab-app/
+├── index.html       ← 頁面骨架
+├── style.css        ← 所有畫面樣式
+├── app.js           ← 主要互動功能
+├── vocab-data.js    ← 3005 個英文單字資料
+├── cloze-data.js    ← 300 題克漏字題庫
+├── math-data.js     ← 數學選擇題題庫
+└── auth.js          ← 舊登入模組，目前未載入
+```
+
+**行數變化**：
+- `index.html`：約 5186 行 → 約 255 行
+- `style.css`：約 648 行
+- `app.js`：約 1240 行
+- `vocab-data.js`：約 3009 行
+- `cloze-data.js`：資料量大，目前為單行 JSON 格式
+- `math-data.js`：約 23 行
+
+---
+
+#### 2. 克漏字出題穩定化
+
+**問題**：
+- 原本克漏字出題會優先嘗試本機 Ollama
+- 若本機 Ollama 沒有回應，按下「出題」後可能等待太久，造成按鈕像是卡住
+
+**修正**：
+- 線上版本預設改為直接使用內建克漏字題庫
+- 不再預設等待本機 Ollama
+- Loading 文字從「AI 正在出題中」改為「正在準備題目」
+
+**原因**：
+- 目前 App 主要是 John 每天可穩定使用
+- 內建題庫比本機 AI 即時出題更穩定
+- Ollama 功能未來可再做成獨立開關，不適合作為預設流程
+
+---
+
+#### 3. 備份處理
+
+拆檔前已備份原始單檔版本，並移到集中紀錄資料夾：
+
+```
+/Users/jackchan/Jack-Codex-開發紀錄/vocab-app-index-before-split-2026-06-03-2000.html
+```
+
+---
+
+### 驗證結果
+
+- [x] JavaScript 語法檢查通過
+- [x] 本機預覽網站可正常打開
+- [x] 首頁 / 單字卡正常顯示
+- [x] 英文測驗可正常啟動
+- [x] 克漏字可正常出題
+- [x] 克漏字可正常作答與交卷
+- [x] 數學科可正常切換與出題
+- [x] 已提交 Git：`65b105a 拆分單檔架構`
+- [x] 已推送 GitHub Pages
+- [x] 線上網址已確認載入拆檔後版本
+
+---
+
+## 2026-06-02（第二天 — 下午續）
+
+### 今日開發重點（續）
+
+#### 6. 部署 GitHub Pages
+
+**目標**：讓 John（華為）和 Ivy（iPad）不需要傳檔案，直接用網址開啟 App。
+
+**步驟**：
+1. 安裝 GitHub CLI：`brew install gh`
+2. 詹爸申請 GitHub 帳號：`jackchan1973`
+3. 執行 `gh auth login` 登入（瀏覽器授權，代碼：D28C-5217）
+4. `git init` + 第一次 commit
+5. `gh repo create vocab-app --public --source=. --push` 建立 repository 並推送
+6. `gh api` 開啟 GitHub Pages
+
+**結果**：
+- 公開網址：`https://jackchan1973.github.io/vocab-app/`
+- 所有裝置直接用瀏覽器開，不需傳檔案、不需啟動伺服器
+
+**遇到的問題**：
+- `git push` 時出現 `could not read Username` → 解法：`gh auth setup-git` 設定 credential helper
+
+---
+
+#### 7. 克漏字防洩題修正（三處）
+
+**問題**：目標單字在做題過程中就出現，等於直接告訴答案
+
+**修正位置**：
+
+| 位置 | 原本 | 修改後 |
+|------|------|--------|
+| 出題 loading 畫面 | 顯示「正在為「commerce」出題…」 | 改為「正在出題中…」 |
+| 出題 loading（Ollama）| 顯示「Ollama 出題中：「commerce」…」 | 改為「🤖 Ollama 出題中…」 |
+| 題目上方提示區 | 顯示「📌 本題目標單字：commerce (n.) 商業」 | 清空，交卷後才顯示 |
+
+**實作方式**：
+- 新增全域變數 `clozeCurrentTarget`，出題時存入 target 物件
+- `renderClozeQuestion` 改為清空 `clozeWordHint`
+- `submitCloze` 交卷後才填入目標單字內容
+
+---
+
+#### 8. 克漏字解析加入中文句子翻譯
+
+**問題**：交卷後「完整句子」顯示英文，不夠直覺
+
+**解法**：
+- 統計題庫中共有 **25 種不同句子模板**
+- 手動為每個模板加上繁體中文翻譯
+- 用 Python 腳本批次更新 300 題，每題加入 `passage_zh` 欄位
+- 交卷後顯示中文句子，空格位置替換為**橘色粗體中文單字**
+
+**顯示效果（交卷後）**：
+```
+完整句子：她透過在不同領域工作獲得了寶貴的商業。
+📌 目標單字：commerce (n.) 商業
+核心觀念：測試「commerce」(商業) 的詞彙運用
+✓ 為什麼正確：…
+✗ 其他選項為何錯誤：…
+```
+
+---
+
+### 今日完成清單（續）
+
+- [x] GitHub 帳號申請（jackchan1973）
+- [x] GitHub CLI 安裝與登入
+- [x] Git 初始化 + 第一次 commit
+- [x] GitHub Pages 部署上線
+- [x] 公開網址：https://jackchan1973.github.io/vocab-app/
+- [x] 克漏字出題階段隱藏目標單字（loading 文字 + 題目提示區）
+- [x] 克漏字交卷後才顯示目標單字
+- [x] 克漏字解析加入 25 種中文句子翻譯（Python 批次更新 300 題）
+- [x] 所有修改同步推送至 GitHub Pages
+
+---
+
+## 2026-06-02（第二天）
+
+### 今日開發重點
+
+#### 1. 新增「克漏字 + 答題卡」模組
+
+**目標**：讓 John 練習學測克漏字題型，模擬考場答題卡作答方式。
+
+**UI 設計（雙欄）**：
+- **左欄**：英文段落（空格為藍色底線）+ A/B/C/D 選項列表
+- **右欄**：仿真答題卡，圓形氣泡按鈕，可按鍵盤 A/B/C/D 快速塗卡
+- 選完後按「交卷」才顯示結果（模擬真實考場）
+- 交卷後：右欄氣泡變色（綠=正確，紅=錯誤），左欄展開 AI 解析
+
+---
+
+#### 2. 出題方式的三次轉折（重要！）
+
+**第一版：Anthropic API（✗ 放棄）**
+```
+原因：在上海需要 VPN 才能連 api.anthropic.com，不方便
+```
+
+**第二版：本地 Ollama（✗ 有問題）**
+```
+計劃：呼叫 http://localhost:11434，用 gemma4 即時出題
+問題 1：用 file:// 開 HTML 時，瀏覽器 CORS 政策擋住 localhost 呼叫
+問題 2：gemma4 出題成功率低（JSON 格式不穩定，約 3/16 成功）
+問題 3：每題 15-20 秒，100 題需 30 分鐘
+解法嘗試：
+  - 改用 python3 -m http.server 8888 → 修了 CORS，但模型品質問題仍在
+  - 改寫 prompt 格式提高成功率 → 仍不穩定
+```
+
+**第三版：程式自動出題（✓ 採用）**
+```
+原理：
+  - 從現有 3005 個 LIVE ABC 單字直接產生題目
+  - 句子模板依詞性分類（動詞/名詞/形容詞/副詞各 5-8 個模板）
+  - 干擾選項從同詞性的其他單字隨機抽取
+  - 0 秒完成，完全離線，支援所有裝置
+
+優點：不需要 AI、不需要網路、不需要 VPN
+缺點：句子模板通用，個別單字可能文意不完全自然
+```
+
+---
+
+#### 3. 發現並修復 CORS 問題
+
+```
+問題：HTML 用 file:// 開啟時，瀏覽器視 origin 為 "null"
+     呼叫 localhost:11434（Ollama）被 CORS 政策封鎖
+修法：改用 Python HTTP 伺服器，用 http:// 開啟
+指令：cd ~/vocab-app && python3 -m http.server 8888
+網址：http://localhost:8888/index.html
+
+重要：John 和 Ivy 的設備目前仍用 file:// 開 HTML 檔案
+     最終解法是 GitHub Pages 部署
+```
+
+---
+
+#### 4. 題庫現況
+
+- 已嵌入 **300 題**到 HTML（Level 2/3/4 各 100 題）
+- 完整 3005 題存於 `/tmp/cloze_bank.json`（電腦重開後消失，需重新產生）
+- 重新產題指令：
+  ```bash
+  python3 /tmp/gen_v2.py   # 用 Ollama gemma4 產，品質較好但慢
+  # 或直接用程式自動出題（速度快，見 PROJECT_NOTES）
+  ```
+
+---
+
+#### 5. 共用分享現況
+
+| 裝置 | 目前方式 | 問題 |
+|------|---------|------|
+| Jack 的 Mac | http://localhost:8888/index.html | 需先啟動伺服器 |
+| John 的華為 | 微信傳 index.html，雙擊開啟 | 克漏字可用（題庫已嵌入），Ollama 不可用 |
+| Ivy 的 iPad | 尚未分享 | 需 GitHub Pages 或 AirDrop |
+
+**終極解法：GitHub Pages（待做）**
+- 所有設備用同一個網址
+- 手機、iPad、任何電腦都能用
+- 不需要啟動任何伺服器
+
+---
+
+### 今日完成清單
+
+- [x] 克漏字模組（雙欄答題卡 UI）
+- [x] 鍵盤 A/B/C/D 快捷作答
+- [x] 交卷後才顯示結果 + 詳細解析
+- [x] 改為程式自動出題（完全離線）
+- [x] 300 題題庫嵌入 HTML
+- [x] 修 CORS（改用 HTTP 伺服器）
+- [x] 程式大小：400KB，共 4912 行
+
+---
+
+### 待辦事項（按優先順序）
+
+1. **GitHub Pages 部署**（最重要）→ John 和 Ivy 才能方便用
+2. 題庫句子品質優化（用 Ollama 批次改善）
+3. 連勝計數器 + 音效
+4. Ollama AI 功能：解釋單字、出例句（第三階段）
+
+---
+
+> 給詹爸和 John 的開發日誌：記錄每次做了什麼、遇到什麼問題、怎麼解決的。
+> 未來繼續開發時可以快速看懂目前狀態。
+
+---
+
+## 2026-06-01（第一天）
+
+### 下午（詹爸自己規劃）
+
+**做了什麼：**
+- 建立 `~/english-vocab-app/` 專案資料夾
+- 寫下 `PROJECT_NOTES.md` 規劃文件
+- 確認電腦工具：Node.js、Git、Ollama（qwen3 + gemma4 模型）都已就緒
+- 原本規劃單字來源是「台灣國中課程 2000 字」
+
+---
+
+### 晚上（John 放學後，和 Claude Code 一起開發）
+
+#### 第 1 輪：確定單字來源
+
+**問題：** 不想自己打單字，希望直接找到課本內容
+**過程：**
+- 搜尋「英語核心字彙完全攻略 LIVE ABC」
+- 發現 Quizlet 有人整理但需要登入
+- 改找教育部官方來源，找到大考中心「高中英文參考詞彙表（111學年度）」
+- 有人把 6005 個單字整理成 Google Sheets，提供 TSV 格式下載連結
+- 課本 LIVE ABC 對應 Level 2-4，共 3,005 個單字
+
+**學到什麼（John）：**
+> 不用自己整理資料，先找看看有沒有人已經做過 → 這叫「站在巨人的肩膀上」
+
+---
+
+#### 第 2 輪：第一版程式（單檔網頁）
+
+**做了什麼：**
+- 用 Python 下載 TSV 資料並篩選 Level 2-4
+- 用 Bash 把資料和程式碼合併成一個 `index.html`
+- 功能：單字卡、測驗（4選1）、進度追蹤、TTS 發音
+
+**遇到的 Bug #1：按鈕完全沒反應**
+
+```
+症狀：網頁有顯示，但點任何按鈕都沒用
+原因：Google Sheets 下載的 TSV 是 Windows 格式（\r\n 換行）
+     每個中文翻譯後面都夾了一個隱藏的 \r 字元
+     \r 放進 JavaScript 字串裡就變成「非法控制字元」
+     一個語法錯誤 → 整個 JS 停擺
+診斷：用 Node.js --check 驗證 JS 語法，找到問題位置
+修法：awk 處理時加 gsub(/\r/, "", ...) 去除 \r
+驗證：用 Python json.loads() + Node.js --check 雙重確認
+```
+
+**學到什麼（John）：**
+> 一個小小的看不見的字元，可以讓整個程式壞掉
+> 這就是為什麼工程師要學會「用工具診斷問題」，不能只靠肉眼
+
+---
+
+#### 第 3 輪：修 switchPage 的 Safari 相容問題
+
+**遇到的 Bug #2：頁面切換按鈕沒反應**
+
+```
+症狀：點「測驗」「進度」頁籤沒有切換
+原因：function switchPage(page) 裡面用了 event.target
+     在 Safari 上，onclick 觸發的函數無法取得全域 event 物件
+修法：改成 onclick="switchPage('quiz', this)"
+     函數參數加 btn，用 btn.classList.add('active') 取代 event.target
+```
+
+**學到什麼（John）：**
+> 同一段程式在不同瀏覽器（Chrome / Safari）行為可能不一樣
+> 這叫「跨瀏覽器相容性問題」，是前端工程師的日常挑戰
+
+---
+
+#### 第 4 輪：功能升級（詹爸提出 4 個需求）
+
+**需求：**
+1. 測驗加拼字模式（看中文打英文）
+2. 真人美式發音（現在的 TTS 聲音很差）
+3. 每日至少學 10 個字，加強上次困難字
+4. 測驗加計時，用速度判斷熟練度
+
+**拼字測驗實作方式：**
+- 新增「選擇題 / 拼字測驗」切換按鈕
+- 拼字模式：顯示中文，用鍵盤輸入英文，Enter 確認
+- 自動接受斜線分隔的複數寫法（如 `witch/wizard`）
+- 有 💡 提示按鈕（顯示首字母）
+
+**真人發音實作方式：**
+- 使用 FreeDictionary API：`https://api.dictionaryapi.dev/api/v2/entries/en/{word}`
+- 完全免費，不需要 API 金鑰
+- 優先找美式（URL 含 `-us`）
+- 找不到錄音才備援瀏覽器 TTS
+- 有快取機制，同一個字不重複查詢
+
+```javascript
+// 重要：複合字/片語要先處理，取第一個字
+const clean = word.split('/')[0].split('(')[0].trim();
+```
+
+**計時功能實作方式：**
+- 每題 12 秒，用 CSS transition 做動態進度條
+- 用 setInterval 每秒更新倒數顯示
+- 時間到 → 自動答錯，標為困難
+- 根據回應時間分熟練度：
+  - ≤ 3 秒 → ⚡ 快速
+  - ≤ 7 秒 → 👍 普通
+  - > 7 秒 → 📚 需加強
+
+**每日目標實作方式：**
+- 頂部加綠色進度條
+- 每翻一張單字卡就記錄「今日已看」
+- 「開始今日學習」按鈕：先放之前標為「困難」的字，再補新字到 10 個
+- 資料存在 `vocab_daily` LocalStorage，key 是今日日期字串
+
+---
+
+### 今日完成清單
+
+- [x] 3,005 個 Level 2-4 單字資料
+- [x] 單字卡翻轉（3D 動畫）
+- [x] 真人美式發音
+- [x] 選擇題測驗（4 選 1）
+- [x] 拼字測驗（看中文打英文）
+- [x] 12 秒計時 + 熟練度評分
+- [x] 每日學習目標（10 字）
+- [x] 困難字優先複習
+- [x] 家長查看進度（詹爸專用）
+- [x] 級別篩選（Level 2 / 3 / 4）
+- [x] LocalStorage 進度持久化
+
+---
+
+## 下一步待辦
+
+### 近期
+- [ ] 加入連勝計數器
+- [ ] 答對/答錯音效
+- [ ] 初始化 Git，開始版本控制
+
+### Ollama AI 功能（第三階段）
+- [ ] 按「解釋這個字」→ 呼叫本地 qwen3 模型
+- [ ] 按「出例句」→ AI 生成生活化例句
+- [ ] 按「記憶技巧」→ AI 出有趣聯想
+
+API 呼叫範例：
+```javascript
+const res = await fetch('http://localhost:11434/api/generate', {
+  method: 'POST',
+  body: JSON.stringify({
+    model: 'qwen3',
+    prompt: `用繁體中文解釋英文單字「${word}」，包含詞性和例句，100字以內`,
+    stream: false
+  })
+});
+const data = await res.json();
+console.log(data.response);
+```
+
+### 部署上線
+- [ ] `git init` + 第一次 commit
+- [ ] 建立 GitHub repository
+- [ ] GitHub Pages 設定
+- [ ] 取得網址，手機可開
+
+---
+
+## 重要技術備忘
+
+### 資料儲存結構
+```javascript
+// localStorage keys:
+'vocab_progress'  → { "word": "known"|"hard", ... }
+'vocab_daily'     → { "2026-6-1": { "word": {seen, correct, wrong, bestTime}, ... } }
+'vocab_quiz_scores' → [ {correct, total, time}, ... ]  // 最近 30 次
+'vocab_log'       → [ {word, action, time}, ... ]      // 最近 500 筆
+```
+
+### 發音 API 使用方式
+```
+GET https://api.dictionaryapi.dev/api/v2/entries/en/{word}
+回傳：[{ phonetics: [{audio: "https://...mp3", text: "/..."}, ...], ... }]
+美式發音：URL 包含 "-us"
+```
+
+### 注意事項
+1. 複合字（如 `a/an`）呼叫發音 API 前要先取第一個字
+2. 資料來源 TSV 如重新下載，要用 `gsub(/\r/, "", field)` 去除 Windows 換行
+3. 新增功能後務必用 `node --check` 驗證 JS 語法
+4. `switchPage` 函數要傳入 `this`，不能用全域 `event`（Safari 不支援）
+
+---
+
+## 檔案位置
+
+```
+~/vocab-app/
+├── index.html        ← 主程式
+├── PROJECT_NOTES.md  ← 專案說明（本說明文件）
+└── DEVLOG.md         ← 開發過程紀錄（本檔案）
+```

@@ -299,5 +299,133 @@ const EXAM3_READING = [
       }
     ],
     "passage_zh": "儘管生活在如此特殊的環境中，太空人和普通人一樣會感到飢餓，但由於太空中的極低重力（稱為微重力），他們的飲食方式有所不同。由於所有東西都會漂浮，餐具都含有磁鐵以固定在餐桌上；調味料也只能使用液體形式。與地球上的人相比，太空人需要更規律地運動，以抵抗微重力對身體的影響——如肌肉萎縮和視力下降。他們的睡袋必須固定在艙壁上，且由於國際太空站每天繞行地球約十六圈，他們必須按照特定時程入睡，而非依據自然日夜。"
+  },
+{
+    "lesson": "U09",
+    "title": "The Street Store Allows the Homeless to Shop with Pride",
+    "passage_excerpt": "There's a saying that \"beggars can't be choosers.\" Some charities offer clothes to the needy for free, but there is usually little in terms of choice. A project called The Street Store is trying a different approach.\n\nThe Street Store was founded in Cape Town, South Africa, by two people who worked in advertising. Noticing many homeless people near their offices, they wanted to give them the opportunity to choose what clothing they want and need. This way, they can have the same dignity as paying customers.",
+    "questions": [
+      {
+        "q": "Where was the first Street Store opened?",
+        "q_zh": "第一間街頭商店在哪裡開幕？",
+        "options": {
+          "A": "USA",
+          "B": "France",
+          "C": "Egypt",
+          "D": "South Africa"
+        },
+        "answer": "D",
+        "explanation": "文章第二段提到 The Street Store 由兩位在廣告業工作的人在南非開普敦（Cape Town, South Africa）創立，故選(D)。"
+      },
+      {
+        "q": "What is necessary to open a Street Store?",
+        "q_zh": "開設街頭商店必須具備什麼條件？",
+        "options": {
+          "A": "You must own a computer.",
+          "B": "You must team up with a local organization.",
+          "C": "You must set up your shop in a park.",
+          "D": "You must recycle items from your home."
+        },
+        "answer": "B",
+        "explanation": "步驟二說明必須與幫助遊民的當地組織合作（partner with a local organization），故選(B)。"
+      }
+    ],
+    "passage_zh": "有句諺語說「乞丐不能挑三揀四」。有些慈善機構免費提供衣物給有需要的人，但通常幾乎沒有選擇的餘地。一個名為「街頭商店」的計畫正嘗試用不同的方式解決這個問題。街頭商店由兩位在廣告業工作的人在南非開普敦創立。他們注意到辦公室附近有許多遊民，想給他們機會選擇自己想要和需要的衣物，讓他們能擁有與付費顧客同樣的尊嚴。此外，也有志工在場協助他們找到合適的款式、尺寸和風格。街頭商店已改變了許多人的生活——一位穿著破鞋即將去面試的男子，恰好在街頭商店找到一雙符合尺碼的皮鞋。街頭商店的美妙之處在於它是開源的，任何人都可以免費取得設置所需的材料。步驟如下：填寫申請表並下載檔案；與當地組織合作並組建志工團隊；找合適地點並取得許可，張貼海報並設置衣物投放箱。自2014年成立以來，全球各城市已陸續舉辦活動，讓給予與接受的過程簡單而有尊嚴。"
+  },
+  {
+    "lesson": "U10",
+    "title": "Quarantine's Dark History",
+    "passage_excerpt": "Before 2020, the word \"quarantine\" was one that people usually only heard in Hollywood movies about out-of-control viruses. COVID-19 changed all that, and it has since become a part of our everyday vocabulary. Let's take a look at how quarantine became a familiar theme when it comes to prevention of virus circulation.\n\nIt turns out that there were a number of instances of quarantine long before it actually had a name. The Bible describes several situations involving lepers—people suffering from a terrible skin disease that seemed to spread through contact—being separated from healthy people.",
+    "questions": [
+      {
+        "q": "What does the word \"lepers\" from the second paragraph refer to?",
+        "q_zh": "第二段中「lepers」這個字指的是什麼？",
+        "options": {
+          "A": "A disease that is only mentioned in the Bible",
+          "B": "People who suffered from the yellow fever virus",
+          "C": "Those who recovered from the Black Death in Europe",
+          "D": "Individuals who have a serious skin condition"
+        },
+        "answer": "D",
+        "explanation": "第二段說 lepers 是 people suffering from a terrible skin disease（患有嚴重皮膚病的人），故選(D)。"
+      },
+      {
+        "q": "Based on the passage, which period most needed to remind people to wash their hands for disease prevention?",
+        "q_zh": "根據文章，哪個時期最需要提醒人們洗手以預防疾病？",
+        "options": {
+          "A": "1346（Black Death in Europe）",
+          "B": "1793（Yellow fever in Philadelphia）",
+          "C": "1907（Mary Mallon / Typhoid fever）",
+          "D": "2003（SARS in Toronto）"
+        },
+        "answer": "B",
+        "explanation": "1793年費城黃熱病流行，用隔離限制傳播，此時期最強調洗手等個人衛生習慣，故選(B)。"
+      }
+    ],
+    "passage_zh": "2020年以前，「隔離」這個詞通常只出現在好萊塢失控病毒電影中。COVID-19改變了這一切，隔離從此成為日常詞彙的一部分。讓我們來看看隔離如何成為預防病毒傳播的熟悉做法。事實上，在隔離有正式名稱之前就已有許多例子。聖經描述了幾種麻瘋病人（透過接觸傳播的嚴重皮膚病患者）與健康人隔離的情況。1346年黑死病席捲歐洲時，病患被帶到城外特定區域自生自滅。兩年後，威尼斯為抵港船隻設計隔離系統，計算出船隻應在海上待40天，取名quarantino（源自義大利文quaranta，即四十）。歷史上每當疾病出現危險，隔離便是解決之道。1793年費城用隔離限制黃熱病蔓延。1907年愛爾蘭廚師瑪麗・馬倫被發現攜帶傷寒細菌，起訴後隔離，答應不再烹飪後獲釋，卻再度被發現煮飯，從此永久隔離。2003年加拿大多倫多有25,000名SARS患者被隔離。不管喜不喜歡，隔離有一個重要目的：它能救人一命。"
+  },
+  {
+    "lesson": "U11",
+    "title": "A Penguin's Best Friend",
+    "passage_excerpt": "Australia has long had problems with animals that are not native coming to the continent and weakening or eliminating the population of domestic animals that had already lived there for a long time. One example is the red fox, which was introduced in the 1830s by British settlers who wanted to continue their tradition of fox-hunting. Throughout the 1990s, these foxes attacked native penguins on Middle Island in southeast Australia. By 2006, there were fewer than ten healthy penguins remaining from a population of eight hundred.",
+    "questions": [
+      {
+        "q": "What is true of red foxes?",
+        "q_zh": "下列關於紅狐的敘述何者為真？",
+        "options": {
+          "A": "They are native to Australia.",
+          "B": "They were trained to protect other animals.",
+          "C": "The British brought them to Australia.",
+          "D": "There are none left in Australia."
+        },
+        "answer": "C",
+        "explanation": "文章說 red fox was introduced in the 1830s by British settlers（英國移民在1830年代引進紅狐），故選(C)。"
+      },
+      {
+        "q": "What does the passage say about the guardians on Middle Island?",
+        "q_zh": "根據文章，關於米德爾島上的守護者有什麼描述？",
+        "options": {
+          "A": "Any other animal could do the same job as them.",
+          "B": "They are only able to protect one type of animal.",
+          "C": "They didn't do their job well.",
+          "D": "New ones will need to be trained."
+        },
+        "answer": "D",
+        "explanation": "文章提到 the current guardians are close to retirement, and a new pair must be acquired and trained（目前的守護者即將退休，必須再取得並訓練一對新的），故選(D)。"
+      }
+    ],
+    "passage_zh": "澳洲長期面臨外來動物入侵的問題，這些動物會削弱或消滅已在當地生活多年的本土動物族群。其中一例是紅狐，在1830年代被希望延續狐狩獵傳統的英國移民引入澳洲。整個1990年代，這些狐狸攻擊澳洲東南部米德爾島的本地企鵝，到了2006年，一個原本八百隻的企鵝族群只剩下不到十隻健康的。情況看起來很絕望，有些人甚至建議徹底消滅紅狐，但大多數人認為一定有辦法維持平衡。後來，一位當地農民建議使用馬雷瑪牧羊犬來保護企鵝。這個品種的狗天生具有守護牲畜的本能，起初他的想法不被認真看待，但最終還是有一對狗被安置在島上。實驗取得了積極成果——企鵝數量增加到超過150隻，甚至有一部關於這些狗的電影問世，讓更多人知道這個計畫。目前的守護者即將退休，必須再取得並訓練一對新的狗，同時也在規劃訓練牧羊犬保護其他瀕臨絕種物種的計畫。"
+  },
+  {
+    "lesson": "U12",
+    "title": "Finding Fortune with New Year's Traditions",
+    "passage_excerpt": "All around the world, New Year's Day is celebrated with great enthusiasm, and many countries have their own New Year's traditions. Let's have a look at a few unique ways of celebrating the new year!\n\nDanish people honor their friends by breaking dishes in front of their houses. Finding a big pile of broken dishes at your door on January 1 means that you have many friends and will have good fortune in the new year.",
+    "questions": [
+      {
+        "q": "What might a lucky person from Greece find in a piece of New Year's bread?",
+        "q_zh": "來自希臘的幸運者可能在新年麵包中找到什麼？",
+        "options": {
+          "A": "A swim cap",
+          "B": "A piece of coal",
+          "C": "A dish",
+          "D": "A coin"
+        },
+        "answer": "D",
+        "explanation": "文章說希臘人在麵包（vasilopita）裡藏一枚硬幣（hide a single coin），得到幸運切片的人就拿到這枚硬幣，故選(D)。"
+      },
+      {
+        "q": "What might people in Denmark need to do in January?",
+        "q_zh": "丹麥人在一月份可能需要做什麼？",
+        "options": {
+          "A": "Clean up a mess in front of their house",
+          "B": "Be careful when biting into bread",
+          "C": "Let a man with black hair into their house",
+          "D": "Dry cold water off their body"
+        },
+        "answer": "A",
+        "explanation": "丹麥人習俗是把碗盤摔在朋友家門口，1月1日發現一堆碎盤子代表朋友多、有好運，收到後需要清理門前的碎盤子，故選(A)。"
+      }
+    ],
+    "passage_zh": "世界各地的人們都以極大的熱忱慶祝新年，許多國家都有自己獨特的新年傳統。讓我們來看看幾種慶祝新年的獨特方式！丹麥人會把碗盤摔在朋友家門前以表達敬意，1月1日在家門口發現一大堆碎盤子，代表朋友很多、新年有好運。希臘人在特別的麵包（vasilopita）裡藏一枚硬幣，象徵好運與財富，拿到幸運切片的人也必然得到成功一年的獎賞。蘇格蘭人相信好運的承諾取決於誰第一個踏進家門，屋主高興地等待「first-foot」帶著鹽巴、銀子和煤炭上門，象徵豐盛的食物和溫暖。依照傳統，first-foot 應是深色頭髮男性，有些人認為淺色頭髮或女性是不吉利的。在荷蘭，人們每年一月跳進北海冰冷的海水，洗去舊有的過去、以清爽心態迎接新年；加拿大北極熊游泳俱樂部自1920年起也在遵循這個傳統。儘管各有不同，所有傳統都有一個相似的目的：以好運開始新的一年。舊的不去，新的不來！"
   }
 ];
