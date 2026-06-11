@@ -2014,6 +2014,25 @@ function prepareWenCianzeData(data) {
   };
 }
 
+function getWenCianzeTranslation(data) {
+  if (!data) return '';
+  if (data.passage_zh) return data.passage_zh;
+  if (data.translation) return data.translation;
+  if (typeof WENCIANZE_TRANSLATIONS === 'undefined') return '';
+  return WENCIANZE_TRANSLATIONS[`${wcCurrentUnit}|${data.title}`] ||
+    WENCIANZE_TRANSLATIONS[`${data.unit}|${data.title}`] ||
+    '';
+}
+
+function renderTranslationParagraphs(text) {
+  return escapeHtml(text)
+    .split(/\n{2,}/)
+    .map(paragraph => paragraph.trim())
+    .filter(Boolean)
+    .map(paragraph => `<p style="font-size:0.9rem;line-height:1.85;color:#2d3748;margin:0 0 10px;">${paragraph.replace(/\n/g, '<br>')}</p>`)
+    .join('');
+}
+
 function renderWenCianzeQuestion() {
   const d = wcCurrentData;
   const el = document.getElementById('wencianzeContent');
@@ -2117,6 +2136,7 @@ function submitWenCianze() {
 
   const pct = Math.round(correct / d.blanks.length * 100);
   const emoji = pct >= 90 ? '🎉' : pct >= 70 ? '👍' : pct >= 50 ? '💪' : '📚';
+  const translationHtml = renderTranslationParagraphs(getWenCianzeTranslation(d));
 
   document.getElementById('wcSubmitBtn').style.display = 'none';
   const resultEl = document.getElementById('wcResult');
@@ -2137,6 +2157,11 @@ function submitWenCianze() {
         <tbody>${resultRows}</tbody>
       </table>
     </div>
+    ${translationHtml ? `
+      <div style="background:white;border-radius:12px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);margin-top:14px;">
+        <div style="font-size:0.74rem;color:#2b6cb0;letter-spacing:1px;font-weight:800;margin-bottom:10px;">中文翻譯</div>
+        ${translationHtml}
+      </div>` : ''}
     <button onclick="startWenCianze('${wcCurrentUnit}')" class="quiz-restart" style="margin-top:14px;">再練一次</button>
     <button onclick="renderWenCianzeMenu()" class="quiz-restart" style="margin-top:8px;margin-left:8px;">選其他課次</button>`;
   resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
