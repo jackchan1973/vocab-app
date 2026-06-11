@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>英語核心字彙學習工具</title>
+<title>學測複習工具</title>
 <!-- Supabase Auth SDK -->
 
 <link rel="stylesheet" href="style.css">
@@ -13,7 +13,7 @@
 <header>
   <div>
     <h1>學測複習工具</h1>
-    <div class="subtitle" id="headerSubtitle">英文 ｜ 第三次月考 ｜ L07 / L08 / L09 / R03 / U09-U12</div>
+    <div class="subtitle" id="headerSubtitle">首頁 ｜ 選擇科目開始學習</div>
   </div>
   <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
     <button onclick="openParentModal()" style="background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.6);color:white;padding:6px 12px;border-radius:8px;cursor:pointer;font-size:0.82rem;">👨‍👦 家長查看</button>
@@ -32,15 +32,53 @@
 
 <!-- 科目選擇列 -->
 <div id="subjectBar" style="display:flex;gap:8px;padding:10px 16px;background:#2a4a7f;border-bottom:1px solid rgba(255,255,255,0.1);overflow-x:auto;-webkit-overflow-scrolling:touch;">
-  <button onclick="switchSubject('english', this)" class="subject-btn active-subject" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:none;font-size:0.9rem;font-weight:700;cursor:pointer;background:white;color:#2b6cb0;">英文</button>
+  <button onclick="showHome(this)" class="subject-btn active-subject" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:none;font-size:0.9rem;font-weight:700;cursor:pointer;background:white;color:#2b6cb0;">首頁</button>
   <button onclick="switchSubject('chinese', this)" class="subject-btn" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.5);font-size:0.9rem;font-weight:700;cursor:pointer;background:transparent;color:white;">國文</button>
+  <button onclick="switchSubject('english', this)" class="subject-btn" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.5);font-size:0.9rem;font-weight:700;cursor:pointer;background:transparent;color:white;">英文</button>
   <button onclick="switchSubject('math', this)" class="subject-btn" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.5);font-size:0.9rem;font-weight:700;cursor:pointer;background:transparent;color:white;">數學</button>
   <button onclick="switchSubject('social', this)" class="subject-btn" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.5);font-size:0.9rem;font-weight:700;cursor:pointer;background:transparent;color:white;">社會</button>
   <button onclick="switchSubject('science', this)" class="subject-btn" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.5);font-size:0.9rem;font-weight:700;cursor:pointer;background:transparent;color:white;">自然</button>
 </div>
 
+<!-- 首頁 -->
+<main id="homePage" class="home-page">
+  <section class="home-hero">
+    <div>
+      <h2>John 的學測複習入口</h2>
+      <p>先選科目，再進入對應的學習畫面。之後各科會分開擴充，避免英文開發影響其他科目。</p>
+    </div>
+  </section>
+  <section class="subject-grid" aria-label="科目入口">
+    <button class="subject-card chinese" onclick="switchSubject('chinese', document.querySelectorAll('.subject-btn')[1])">
+      <span class="subject-icon">文</span>
+      <strong>國文</strong>
+      <small>字音字形、成語、文言文</small>
+    </button>
+    <button class="subject-card english ready" onclick="switchSubject('english', document.querySelectorAll('.subject-btn')[2])">
+      <span class="subject-icon">英</span>
+      <strong>英文</strong>
+      <small>單字、文意選填、閱讀理解</small>
+    </button>
+    <button class="subject-card math" onclick="switchSubject('math', document.querySelectorAll('.subject-btn')[3])">
+      <span class="subject-icon">數</span>
+      <strong>數學</strong>
+      <small>選擇題與詳解雛形</small>
+    </button>
+    <button class="subject-card social" onclick="switchSubject('social', document.querySelectorAll('.subject-btn')[4])">
+      <span class="subject-icon">社</span>
+      <strong>社會</strong>
+      <small>重點卡與題庫待建</small>
+    </button>
+    <button class="subject-card science" onclick="switchSubject('science', document.querySelectorAll('.subject-btn')[5])">
+      <span class="subject-icon">自</span>
+      <strong>自然</strong>
+      <small>觀念整理與練習待建</small>
+    </button>
+  </section>
+</main>
+
 <!-- 英文科目內容 -->
-<div id="subject-english">
+<div id="subject-english" style="display:none;">
 
 <div class="stats-bar" id="globalStats">
   <span>載入中...</span>
@@ -50,6 +88,7 @@
   <span class="label">📅 今日目標</span>
   <div class="bar-outer"><div class="bar-inner" id="dailyBarInner" style="width:0%"></div></div>
   <span class="count" id="dailyCount">0 / 10</span>
+  <span class="today-detail" id="dailyDetail">答對 0 ｜ 答錯 0</span>
   <button class="daily-study-btn" onclick="startDailyStudy()">開始今日學習</button>
 </div>
 
@@ -65,14 +104,9 @@
 <div class="filter-bar">
   <span>課次：</span>
   <button class="filter-btn active" onclick="setFilter(0)">全部</button>
-  <button class="filter-btn" onclick="setLessonFilter('L07',this)">L07</button>
-  <button class="filter-btn" onclick="setLessonFilter('L08',this)">L08</button>
-  <button class="filter-btn" onclick="setLessonFilter('L09',this)">L09</button>
-  <button class="filter-btn" onclick="setLessonFilter('R03',this)">R03</button>
-  <button class="filter-btn" onclick="setLessonFilter('U09',this)">U09</button>
-  <button class="filter-btn" onclick="setLessonFilter('U10',this)">U10</button>
-  <button class="filter-btn" onclick="setLessonFilter('U11',this)">U11</button>
-  <button class="filter-btn" onclick="setLessonFilter('U12',this)">U12</button>
+  <select id="lessonSelect" class="lesson-select" onchange="setLessonFilterFromSelect(this.value)">
+    <option value="">選擇課次</option>
+  </select>
   <button class="filter-btn" onclick="setFilter(-1)" id="hardOnlyBtn">困難單字</button>
 </div>
 
@@ -253,6 +287,7 @@
 <script src="cloze-data.js"></script>
 <script src="math-data.js"></script>
 <script src="reading-exam3.js"></script>
+<script src="wencianze-l07-l08.js"></script>
 <script src="cloze-u9.js"></script>
 <script src="cloze-u10.js"></script>
 <script src="cloze-u11.js"></script>

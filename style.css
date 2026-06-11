@@ -19,6 +19,79 @@
   header h1 { font-size: 1.2rem; font-weight: 700; }
   header .subtitle { font-size: 0.75rem; opacity: 0.85; }
 
+  .home-page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px 16px 40px;
+  }
+  .home-hero {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 22px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+  .home-hero h2 {
+    font-size: 1.35rem;
+    color: #1a365d;
+    margin-bottom: 8px;
+  }
+  .home-hero p {
+    color: #718096;
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+  .subject-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+  }
+  .subject-card {
+    min-height: 150px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    background: #ffffff;
+    padding: 18px 14px;
+    text-align: left;
+    cursor: pointer;
+    color: #2d3748;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .subject-card:hover {
+    transform: translateY(-2px);
+    border-color: #3182ce;
+    box-shadow: 0 6px 18px rgba(49,130,206,0.14);
+  }
+  .subject-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background: #ebf8ff;
+    color: #2b6cb0;
+    font-weight: 800;
+    margin-bottom: 14px;
+  }
+  .subject-card strong {
+    display: block;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+  .subject-card small {
+    display: block;
+    color: #718096;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+  .subject-card.ready {
+    border-color: #90cdf4;
+    background: linear-gradient(180deg, #ffffff, #ebf8ff);
+  }
+
   .stats-bar {
     background: #2c5282;
     color: white;
@@ -79,6 +152,21 @@
     color: white;
   }
   .filter-btn:hover:not(.active) { border-color: #3182ce; color: #3182ce; }
+  .lesson-select {
+    min-width: 132px;
+    padding: 6px 32px 6px 12px;
+    border: 1.5px solid #cbd5e0;
+    border-radius: 8px;
+    background: white;
+    color: #2d3748;
+    font-size: 0.86rem;
+    cursor: pointer;
+  }
+  .lesson-select:focus {
+    outline: none;
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(49,130,206,0.14);
+  }
 
   .page { display: none; padding: 16px; }
   .page.active { display: block; }
@@ -553,6 +641,11 @@
     transition: width 0.4s;
   }
   .daily-bar .count { color: #276749; white-space: nowrap; }
+  .daily-bar .today-detail {
+    color: #276749;
+    white-space: nowrap;
+    opacity: 0.9;
+  }
   .daily-study-btn {
     padding: 5px 12px;
     background: #38a169;
@@ -584,6 +677,11 @@
     header { padding: 10px 14px; }
     header h1 { font-size: 1rem; }
     header .subtitle { display: none; }
+
+    .home-page { padding: 14px 10px 28px; }
+    .home-hero { padding: 16px; }
+    .home-hero h2 { font-size: 1.1rem; }
+    .subject-grid { grid-template-columns: 1fr; }
 
     /* Nav：4 個頁籤字體縮小，確保不換行 */
     nav button { font-size: 0.8rem; padding: 13px 4px; }

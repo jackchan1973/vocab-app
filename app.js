@@ -3,6 +3,7 @@ let currentFilter = 0;
 let currentDeck = [];
 let currentCardIndex = 0;
 let isFlipped = false;
+let currentSubject = 'home';
 
 // 進度存在 localStorage
 const STORAGE_KEY = 'vocab_progress';
@@ -71,10 +72,31 @@ function getFilteredDeck() {
   return [...VOCAB_ALL];
 }
 
+function getLessonList() {
+  return [...new Set(VOCAB_ALL.map(v => v.lesson).filter(Boolean))].sort((a, b) => {
+    const order = ['L', 'R', 'U'];
+    const pa = order.indexOf(a[0]);
+    const pb = order.indexOf(b[0]);
+    if (pa !== pb) return pa - pb;
+    return a.localeCompare(b, 'en', { numeric: true });
+  });
+}
+
+function populateLessonSelect() {
+  const select = document.getElementById('lessonSelect');
+  if (!select) return;
+  const currentValue = select.value;
+  select.innerHTML = '<option value="">選擇課次</option>' +
+    getLessonList().map(lesson => `<option value="${lesson}">${lesson}</option>`).join('');
+  select.value = currentValue && getLessonList().includes(currentValue) ? currentValue : '';
+}
+
 function setFilter(level) {
   currentFilter = level;
   currentLessonFilter = '';
   document.querySelectorAll('#subject-english .filter-btn').forEach(b => b.classList.remove('active'));
+  const lessonSelect = document.getElementById('lessonSelect');
+  if (lessonSelect) lessonSelect.value = '';
   // 全部按鈕 active
   if (level === 0) document.querySelector('#subject-english .filter-btn').classList.add('active');
   if (level === -1) document.getElementById('hardOnlyBtn').classList.add('active');
@@ -98,7 +120,9 @@ function setLessonFilter(lesson, btn) {
   currentFilter = 99;
   currentLessonFilter = lesson;
   document.querySelectorAll('#subject-english .filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  if (btn) btn.classList.add('active');
+  const lessonSelect = document.getElementById('lessonSelect');
+  if (lessonSelect) lessonSelect.value = lesson;
   currentDeck = VOCAB_ALL.filter(v => v.lesson === lesson);
   currentCardIndex = 0;
   isFlipped = false;
@@ -108,7 +132,39 @@ function setLessonFilter(lesson, btn) {
   if (document.getElementById('page-progress').classList.contains('active')) renderProgress();
 }
 
+function setLessonFilterFromSelect(lesson) {
+  if (!lesson) {
+    setFilter(0);
+    return;
+  }
+  setLessonFilter(lesson);
+}
+
 // ===== 頁面切換 =====
+function setSubjectButtonActive(btn) {
+  document.querySelectorAll('.subject-btn').forEach(b => {
+    b.style.background = 'transparent';
+    b.style.color = 'white';
+    b.style.border = '1.5px solid rgba(255,255,255,0.5)';
+  });
+  if (!btn) return;
+  btn.style.background = 'white';
+  btn.style.color = '#2b6cb0';
+  btn.style.border = 'none';
+}
+
+function showHome(btn) {
+  currentSubject = 'home';
+  const home = document.getElementById('homePage');
+  if (home) home.style.display = '';
+  ['english','chinese','math','social','science'].forEach(s => {
+    const el = document.getElementById('subject-' + s);
+    if (el) el.style.display = 'none';
+  });
+  setSubjectButtonActive(btn || document.querySelector('.subject-btn'));
+  document.getElementById('headerSubtitle').textContent = '首頁 ｜ 選擇科目開始學習';
+}
+
 function switchSubject(subject, btn) {
   const subjects = ['english','chinese','math','social','science'];
   const subtitles = {
@@ -118,18 +174,15 @@ function switchSubject(subject, btn) {
     social:  '社會 ｜ 開發中',
     science: '自然 ｜ 開發中',
   };
+  currentSubject = subject;
+  const home = document.getElementById('homePage');
+  if (home) home.style.display = 'none';
   subjects.forEach(s => {
     document.getElementById('subject-' + s).style.display = s === subject ? '' : 'none';
   });
-  document.querySelectorAll('.subject-btn').forEach(b => {
-    b.style.background = 'transparent';
-    b.style.color = 'white';
-    b.style.border = '1.5px solid rgba(255,255,255,0.5)';
-  });
-  btn.style.background = 'white';
-  btn.style.color = '#2b6cb0';
-  btn.style.border = 'none';
+  setSubjectButtonActive(btn);
   document.getElementById('headerSubtitle').textContent = subtitles[subject];
+  if (subject === 'english') updateDailyBar();
   if (subject === 'math') startMathQuiz();
 }
 
@@ -253,8 +306,10 @@ function renderCard() {
     scene.classList.remove('flipped');
   }
 
-  // 記錄今日已看過這個字
-  markWordSeen(v.word);
+  // 只有真的在英文單字卡頁面時，才記錄今日已看過這個字。
+  if (currentSubject === 'english' && document.getElementById('page-flashcard').classList.contains('active')) {
+    markWordSeen(v.word);
+  }
 }
 
 function flipCard() {
@@ -456,7 +511,7 @@ function renderProgress() {
 
   // 各課次進度
   let barsHTML = '';
-  ['L07','L08','L09','R03','U09','U10','U11','U12'].forEach(lesson => {
+  getLessonList().forEach(lesson => {
     const lvWords = VOCAB_ALL.filter(v => v.lesson === lesson);
     if (!lvWords.length) return;
     const lvKnown = lvWords.filter(v => p[v.word] === 'known').length;
@@ -822,6 +877,7 @@ function submitCloze() {
   const q = clozePendingQuestion;
   if (q) {
     setWordStatus(q.word, isCorrect ? 'known' : 'hard');
+    recordDailyResult(q.word, isCorrect, 0);
     updateGlobalStats();
   }
 
@@ -914,7 +970,12 @@ function openParentModal() {
   const todayLog = log.filter(l => l.time >= todayStart.getTime());
   const todayKnown = todayLog.filter(l => l.action === 'known').length;
   const todayHard = todayLog.filter(l => l.action === 'hard').length;
-  const todayWords = new Set(todayLog.map(l => l.word)).size;
+  const todayDaily = getTodayWords();
+  const todayWords = Object.keys(todayDaily).length;
+  const todayViews = Object.values(todayDaily).reduce((sum, w) => sum + (w.seen || 0), 0);
+  const todayCorrect = Object.values(todayDaily).reduce((sum, w) => sum + (w.correct || 0), 0);
+  const todayWrong = Object.values(todayDaily).reduce((sum, w) => sum + (w.wrong || 0), 0);
+  const todayPct = Math.min(100, Math.round(todayWords / DAILY_TARGET * 100));
 
   // 近期測驗
   const recentScores = scores.slice(-5).reverse();
@@ -968,11 +1029,18 @@ function openParentModal() {
 
     <div style="background:#f0fff4;border-radius:12px;padding:16px;margin-bottom:16px;">
       <h3 style="font-size:0.95rem;margin-bottom:10px;">📅 今日學習（${todayStr}）</h3>
-      <div style="display:flex;gap:16px;font-size:0.88rem;">
-        <span>接觸單字：<strong>${todayWords}</strong> 個</span>
+      <div style="height:10px;background:#9ae6b4;border-radius:5px;overflow:hidden;margin-bottom:10px;">
+        <div style="height:100%;width:${todayPct}%;background:#38a169;border-radius:5px;"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.88rem;">
+        <span>今日接觸：<strong>${todayWords}</strong> / ${DAILY_TARGET} 字</span>
+        <span>翻卡次數：<strong>${todayViews}</strong></span>
+        <span>今日答對：<strong style="color:#38a169;">${todayCorrect}</strong></span>
+        <span>今日答錯：<strong style="color:#e53e3e;">${todayWrong}</strong></span>
         <span>標為已學：<strong style="color:#38a169;">${todayKnown}</strong></span>
         <span>標為困難：<strong style="color:#e53e3e;">${todayHard}</strong></span>
       </div>
+      <p style="font-size:0.76rem;color:#718096;margin-top:8px;">這一格只看今天，不使用累積完成度。</p>
     </div>
 
     <div style="background:white;border:1px solid #e2e8f0;border-radius:12px;padding:16px;margin-bottom:16px;">
@@ -1074,6 +1142,7 @@ function handleTimeout() {
   quizWrong++;
   const q = quizQuestions[quizIndex];
   setWordStatus(q.word, 'hard');
+  recordDailyResult(q.word, false, QUIZ_TIME_LIMIT);
   updateGlobalStats();
 
   if (quizMode === 'spelling') {
@@ -1143,36 +1212,42 @@ function getTodayWords() {
 function getDailyPlan() {
   const p = loadProgress();
   const seenToday = new Set(Object.keys(getTodayWords()));
-  const hardWords = VOCAB_ALL.filter(v => p[v.word] === 'hard');
+  const hardWords = VOCAB_ALL.filter(v => p[v.word] === 'hard' && !seenToday.has(v.word));
   const newWords = VOCAB_ALL.filter(v => !p[v.word] && !seenToday.has(v.word));
-  const plan = [...hardWords];
-  const needed = Math.max(DAILY_TARGET - plan.length, 5);
-  plan.push(...newWords.slice(0, needed));
-  return plan.slice(0, Math.max(DAILY_TARGET + hardWords.length, DAILY_TARGET));
+  const reviewWords = VOCAB_ALL.filter(v => p[v.word] === 'known' && !seenToday.has(v.word));
+  return [...hardWords, ...newWords, ...reviewWords].slice(0, DAILY_TARGET);
 }
 
 function updateDailyBar() {
   const todayWords = getTodayWords();
-  const p = loadProgress();
-  const learnedToday = Object.keys(todayWords).filter(w => p[w] === 'known').length;
-  const pct = Math.min(100, Math.round(learnedToday / DAILY_TARGET * 100));
+  const studiedToday = Object.keys(todayWords).length;
+  const correctToday = Object.values(todayWords).reduce((sum, w) => sum + (w.correct || 0), 0);
+  const wrongToday = Object.values(todayWords).reduce((sum, w) => sum + (w.wrong || 0), 0);
+  const pct = Math.min(100, Math.round(studiedToday / DAILY_TARGET * 100));
   const el = document.getElementById('dailyBarInner');
   const cnt = document.getElementById('dailyCount');
   if (el) el.style.width = pct + '%';
-  if (cnt) cnt.textContent = `${learnedToday} / ${DAILY_TARGET}`;
+  if (cnt) cnt.textContent = `${studiedToday} / ${DAILY_TARGET}`;
+  const detail = document.getElementById('dailyDetail');
+  if (detail) detail.textContent = `答對 ${correctToday} ｜ 答錯 ${wrongToday}`;
+  const btn = document.querySelector('.daily-study-btn');
+  if (btn) btn.textContent = studiedToday >= DAILY_TARGET ? '繼續複習' : '開始今日學習';
 }
 
 function startDailyStudy() {
   const plan = getDailyPlan();
   if (plan.length === 0) {
-    alert('今日目標已完成！繼續保持 💪');
+    alert('今天已經完成一輪 10 個單字。可以繼續自由複習或做測驗。');
     return;
   }
   currentDeck = plan;
   currentCardIndex = 0;
   isFlipped = false;
   currentFilter = 99; // 自定義篩選標記
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  currentLessonFilter = '';
+  document.querySelectorAll('#subject-english .filter-btn').forEach(b => b.classList.remove('active'));
+  const lessonSelect = document.getElementById('lessonSelect');
+  if (lessonSelect) lessonSelect.value = '';
   switchPage('flashcard', document.querySelector('nav button'));
   renderCard();
   updateGlobalStats();
@@ -1379,10 +1454,12 @@ document.addEventListener('keydown', e => {
 });
 
 // ===== 初始化 =====
+populateLessonSelect();
 currentDeck = getFilteredDeck();
 renderCard();
 updateGlobalStats();
 updateDailyBar();
+showHome(document.querySelector('.subject-btn'));
 
 // ===== 閱讀理解 =====
 let readingCurrentPassage = null;
@@ -1499,6 +1576,8 @@ function nextReadingQ() {
 // ===== 文意選填 =====
 // 只收錄「文意選填」格式（頂層有 options 陣列）；U10 是選擇題克漏字，格式不同，暫不列入
 const WENCIANZE_DATA = [
+  { unit: 'L07課', label: 'L07 📖 課文篇', data: typeof clozeL07Text !== 'undefined' ? clozeL07Text : null },
+  { unit: 'L08課', label: 'L08 📖 課文篇', data: typeof clozeL08Text !== 'undefined' ? clozeL08Text : null },
   { unit: 'U09課', label: 'U09 📖 課文篇', data: typeof clozeU9Text !== 'undefined' ? clozeU9Text : null },
   { unit: 'U09',   label: 'U09 ✏️ 練習篇', data: typeof clozeU9 !== 'undefined' ? clozeU9 : null },
   { unit: 'U10課', label: 'U10 📖 課文篇', data: typeof clozeU10Text !== 'undefined' ? clozeU10Text : null },
