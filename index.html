@@ -6,7 +6,7 @@
 <title>學測複習工具</title>
 <!-- Supabase Auth SDK -->
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=20260611c">
 </head>
 <body>
 
@@ -16,6 +16,7 @@
     <div class="subtitle" id="headerSubtitle">首頁 ｜ 選擇科目開始學習</div>
   </div>
   <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+    <button id="homeBackBtn" onclick="showHome()" style="display:none;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.6);color:white;padding:6px 12px;border-radius:8px;cursor:pointer;font-size:0.82rem;">首頁</button>
     <button onclick="openParentModal()" style="background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.6);color:white;padding:6px 12px;border-radius:8px;cursor:pointer;font-size:0.82rem;">👨‍👦 家長查看</button>
   </div>
 </header>
@@ -30,16 +31,6 @@
   </div>
 </div>
 
-<!-- 科目選擇列 -->
-<div id="subjectBar" style="display:flex;gap:8px;padding:10px 16px;background:#2a4a7f;border-bottom:1px solid rgba(255,255,255,0.1);overflow-x:auto;-webkit-overflow-scrolling:touch;">
-  <button onclick="showHome(this)" class="subject-btn active-subject" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:none;font-size:0.9rem;font-weight:700;cursor:pointer;background:white;color:#2b6cb0;">首頁</button>
-  <button onclick="switchSubject('chinese', this)" class="subject-btn" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.5);font-size:0.9rem;font-weight:700;cursor:pointer;background:transparent;color:white;">國文</button>
-  <button onclick="switchSubject('english', this)" class="subject-btn" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.5);font-size:0.9rem;font-weight:700;cursor:pointer;background:transparent;color:white;">英文</button>
-  <button onclick="switchSubject('math', this)" class="subject-btn" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.5);font-size:0.9rem;font-weight:700;cursor:pointer;background:transparent;color:white;">數學</button>
-  <button onclick="switchSubject('social', this)" class="subject-btn" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.5);font-size:0.9rem;font-weight:700;cursor:pointer;background:transparent;color:white;">社會</button>
-  <button onclick="switchSubject('science', this)" class="subject-btn" style="flex-shrink:0;padding:7px 18px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.5);font-size:0.9rem;font-weight:700;cursor:pointer;background:transparent;color:white;">自然</button>
-</div>
-
 <!-- 首頁 -->
 <main id="homePage" class="home-page">
   <section class="home-hero">
@@ -49,27 +40,27 @@
     </div>
   </section>
   <section class="subject-grid" aria-label="科目入口">
-    <button class="subject-card chinese" onclick="switchSubject('chinese', document.querySelectorAll('.subject-btn')[1])">
+    <button class="subject-card chinese" onclick="switchSubject('chinese')">
       <span class="subject-icon">文</span>
       <strong>國文</strong>
       <small>字音字形、成語、文言文</small>
     </button>
-    <button class="subject-card english ready" onclick="switchSubject('english', document.querySelectorAll('.subject-btn')[2])">
+    <button class="subject-card english ready" onclick="switchSubject('english')">
       <span class="subject-icon">英</span>
       <strong>英文</strong>
       <small>單字、文意選填、閱讀理解</small>
     </button>
-    <button class="subject-card math" onclick="switchSubject('math', document.querySelectorAll('.subject-btn')[3])">
+    <button class="subject-card math" onclick="switchSubject('math')">
       <span class="subject-icon">數</span>
       <strong>數學</strong>
       <small>選擇題與詳解雛形</small>
     </button>
-    <button class="subject-card social" onclick="switchSubject('social', document.querySelectorAll('.subject-btn')[4])">
+    <button class="subject-card social" onclick="switchSubject('social')">
       <span class="subject-icon">社</span>
       <strong>社會</strong>
       <small>重點卡與題庫待建</small>
     </button>
-    <button class="subject-card science" onclick="switchSubject('science', document.querySelectorAll('.subject-btn')[5])">
+    <button class="subject-card science" onclick="switchSubject('science')">
       <span class="subject-icon">自</span>
       <strong>自然</strong>
       <small>觀念整理與練習待建</small>
@@ -283,15 +274,15 @@
   <p style="color:#a0aec0;">開發中，敬請期待</p>
 </div>
 
-<script src="vocab-data.js?v=20260611b"></script>
-<script src="cloze-data.js?v=20260611b"></script>
-<script src="math-data.js?v=20260611b"></script>
-<script src="reading-exam3.js?v=20260611b"></script>
-<script src="wencianze-l07-l08.js?v=20260611b"></script>
-<script src="cloze-u9.js?v=20260611b"></script>
-<script src="cloze-u10.js?v=20260611b"></script>
-<script src="cloze-u11.js?v=20260611b"></script>
-<script src="cloze-u12.js?v=20260611b"></script>
-<script src="app.js?v=20260611b"></script>
+<script src="vocab-data.js?v=20260611c"></script>
+<script src="cloze-data.js?v=20260611c"></script>
+<script src="math-data.js?v=20260611c"></script>
+<script src="reading-exam3.js?v=20260611c"></script>
+<script src="wencianze-l07-l08.js?v=20260611c"></script>
+<script src="cloze-u9.js?v=20260611c"></script>
+<script src="cloze-u10.js?v=20260611c"></script>
+<script src="cloze-u11.js?v=20260611c"></script>
+<script src="cloze-u12.js?v=20260611c"></script>
+<script src="app.js?v=20260611c"></script>
 </body>
 </html>

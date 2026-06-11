@@ -4,6 +4,7 @@ let currentDeck = [];
 let currentCardIndex = 0;
 let isFlipped = false;
 let currentSubject = 'home';
+let suppressSeenRecord = false;
 
 // 進度存在 localStorage
 const STORAGE_KEY = 'vocab_progress';
@@ -72,6 +73,15 @@ function getFilteredDeck() {
   return [...VOCAB_ALL];
 }
 
+function shuffleDeck(deck) {
+  const shuffled = [...deck];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 function getLessonList() {
   return [...new Set(VOCAB_ALL.map(v => v.lesson).filter(Boolean))].sort((a, b) => {
     const order = ['L', 'R', 'U'];
@@ -100,7 +110,7 @@ function setFilter(level) {
   // 全部按鈕 active
   if (level === 0) document.querySelector('#subject-english .filter-btn').classList.add('active');
   if (level === -1) document.getElementById('hardOnlyBtn').classList.add('active');
-  currentDeck = getFilteredDeck();
+  currentDeck = level === 0 ? shuffleDeck(getFilteredDeck()) : getFilteredDeck();
   currentCardIndex = 0;
   isFlipped = false;
   renderCard();
@@ -142,18 +152,11 @@ function setLessonFilterFromSelect(lesson) {
 
 // ===== 頁面切換 =====
 function setSubjectButtonActive(btn) {
-  document.querySelectorAll('.subject-btn').forEach(b => {
-    b.style.background = 'transparent';
-    b.style.color = 'white';
-    b.style.border = '1.5px solid rgba(255,255,255,0.5)';
-  });
-  if (!btn) return;
-  btn.style.background = 'white';
-  btn.style.color = '#2b6cb0';
-  btn.style.border = 'none';
+  const backBtn = document.getElementById('homeBackBtn');
+  if (backBtn) backBtn.style.display = currentSubject === 'home' ? 'none' : '';
 }
 
-function showHome(btn) {
+function showHome() {
   currentSubject = 'home';
   const home = document.getElementById('homePage');
   if (home) home.style.display = '';
@@ -161,11 +164,11 @@ function showHome(btn) {
     const el = document.getElementById('subject-' + s);
     if (el) el.style.display = 'none';
   });
-  setSubjectButtonActive(btn || document.querySelector('.subject-btn'));
+  setSubjectButtonActive();
   document.getElementById('headerSubtitle').textContent = '首頁 ｜ 選擇科目開始學習';
 }
 
-function switchSubject(subject, btn) {
+function switchSubject(subject) {
   const subjects = ['english','chinese','math','social','science'];
   const subtitles = {
     english: '英文 ｜ 第三次月考 ｜ L07 / L08 / L09 / R03 / U09-U12',
@@ -180,9 +183,17 @@ function switchSubject(subject, btn) {
   subjects.forEach(s => {
     document.getElementById('subject-' + s).style.display = s === subject ? '' : 'none';
   });
-  setSubjectButtonActive(btn);
+  setSubjectButtonActive();
   document.getElementById('headerSubtitle').textContent = subtitles[subject];
-  if (subject === 'english') updateDailyBar();
+  if (subject === 'english') {
+    currentDeck = shuffleDeck(getFilteredDeck());
+    currentCardIndex = 0;
+    isFlipped = false;
+    suppressSeenRecord = true;
+    renderCard();
+    suppressSeenRecord = false;
+    updateDailyBar();
+  }
   if (subject === 'math') startMathQuiz();
 }
 
@@ -307,7 +318,7 @@ function renderCard() {
   }
 
   // 只有真的在英文單字卡頁面時，才記錄今日已看過這個字。
-  if (currentSubject === 'english' && document.getElementById('page-flashcard').classList.contains('active')) {
+  if (!suppressSeenRecord && currentSubject === 'english' && document.getElementById('page-flashcard').classList.contains('active')) {
     markWordSeen(v.word);
   }
 }
@@ -343,10 +354,7 @@ function markCard(status) {
 }
 
 function shuffleCards() {
-  for (let i = currentDeck.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [currentDeck[i], currentDeck[j]] = [currentDeck[j], currentDeck[i]];
-  }
+  currentDeck = shuffleDeck(currentDeck);
   currentCardIndex = 0;
   isFlipped = false;
   renderCard();
