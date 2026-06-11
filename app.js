@@ -592,6 +592,8 @@ let clozeCurrentTarget = null;
 let clozeSubmitted = false;
 let clozeSessionCount = 0;
 let clozeCorrectCount = 0;
+let clozeQuestionQueue = [];
+let clozeLastQuestionKey = '';
 
 function escapeHtml(value) {
   return String(value)
@@ -617,7 +619,7 @@ function clozePrimaryWord(word) {
 
 function clozePosType(pos) {
   const p = String(pos).toLowerCase();
-  if (p.includes('v.')) return 'verb';
+  if (p.includes('v.') || p.includes('vt.') || p.includes('vi.')) return 'verb';
   if (p.includes('adj.')) return 'adj';
   if (p.includes('adv.')) return 'adv';
   if (p.includes('prep.')) return 'prep';
@@ -750,19 +752,129 @@ function buildClozeQuestion(target) {
   };
 }
 
-async function generateClozeQuestion() {
-  const target = pickTargetWord();
+function clozeQuestionKey(q) {
+  return `${q.lesson || ''}:${q.word || ''}:${q.passage || ''}`;
+}
 
+function getExamClozePool() {
+  const source = typeof EXAM3_CLOZE !== 'undefined' ? EXAM3_CLOZE : [];
+  const allowedLessons = ['L07', 'L08', 'L09', 'R03'];
+  let pool = source.filter(q =>
+    allowedLessons.includes(q.lesson) &&
+    q.passage &&
+    q.options &&
+    q.correct_answer
+  );
+
+  if (currentLessonFilter) {
+    const lessonPool = pool.filter(q => q.lesson === currentLessonFilter);
+    if (lessonPool.length) pool = lessonPool;
+  }
+
+  return pool;
+}
+
+function getNextExamClozeQuestion() {
+  const pool = getExamClozePool();
+  if (!pool.length) return null;
+
+  if (!clozeQuestionQueue.length) {
+    clozeQuestionQueue = shuffleArray(pool);
+    if (
+      clozeQuestionQueue.length > 1 &&
+      clozeQuestionKey(clozeQuestionQueue[0]) === clozeLastQuestionKey
+    ) {
+      clozeQuestionQueue.push(clozeQuestionQueue.shift());
+    }
+  }
+
+  const question = clozeQuestionQueue.shift();
+  clozeLastQuestionKey = clozeQuestionKey(question);
+  return question;
+}
+
+function normalizeExamClozeQuestion(source) {
+  const lesson = source.lesson || '';
+  const word = source.word || '';
+  const pos = source.pos || '';
+  const zh = source.zh || '';
+  return {
+    word,
+    pos,
+    zh,
+    level: source.level || 3,
+    lesson,
+    passage: source.passage,
+    passage_zh: source.passage_zh || '',
+    options: source.options,
+    correct_answer: source.correct_answer,
+    explanation: source.explanation || {
+      chinese_translation: source.passage_zh || '',
+      core_concept: `${lesson} 課文克漏字複習`,
+      why_correct: `依照句意與課文脈絡，這裡最適合填入 ${word}。`,
+      why_others_wrong: '其他選項放入句中時，語意或句型不自然。'
+    }
+  };
+}
+
+function getClozeCorrectOption(q) {
+  return q && q.options && q.correct_answer
+    ? q.options[q.correct_answer]
+    : '';
+}
+
+function fillClozeBlanks(passage, answer, wrapPart) {
+  if (!passage) return '';
+  const blankCount = (passage.match(/\[BLANK\]/g) || []).length;
+  if (!blankCount) return passage;
+
+  const answerParts = String(answer || '___')
+    .split('/')
+    .map(part => part.trim())
+    .filter(Boolean);
+  const replacements = answerParts.length === blankCount
+    ? answerParts
+    : Array(blankCount).fill(answer || '___');
+  let index = 0;
+
+  return passage.replace(/\[BLANK\]/g, () => {
+    const part = replacements[index] || replacements[replacements.length - 1] || '___';
+    index += 1;
+    return wrapPart ? wrapPart(part) : part;
+  });
+}
+
+async function generateClozeQuestion() {
   document.getElementById('clozeMain').style.display = 'none';
   document.getElementById('clozeError').style.display = 'none';
   document.getElementById('clozeLoading').style.display = 'block';
-  document.getElementById('clozeLoadingWord').textContent = `正在準備 ${target.word} 的題目…`;
   document.getElementById('clozeBtnGenerate').disabled = true;
 
   try {
+    const examQuestion = getNextExamClozeQuestion();
+
+    if (examQuestion) {
+      const q = normalizeExamClozeQuestion(examQuestion);
+      const target = {
+        word: q.word,
+        pos: q.pos,
+        zh: q.zh,
+        level: q.level,
+        lesson: q.lesson
+      };
+      document.getElementById('clozeLoadingWord').textContent =
+        `正在準備 ${q.lesson || '英文'} 課文克漏字…`;
+      const badge = document.getElementById('clozeSourceBadge');
+      if (badge) badge.textContent = `${q.lesson || '英文'} 課文題庫`;
+      renderClozeQuestion(q, target);
+      return;
+    }
+
+    const target = pickTargetWord();
+    document.getElementById('clozeLoadingWord').textContent = `正在準備 ${target.word} 的題目…`;
     const q = buildClozeQuestion(target);
     const badge = document.getElementById('clozeSourceBadge');
-    if (badge) badge.textContent = `Level ${target.level}`;
+    if (badge) badge.textContent = `Level ${target.level} 緊急備用`;
     renderClozeQuestion(q, target);
   } catch(e) {
     document.getElementById('clozeLoading').style.display = 'none';
@@ -794,9 +906,11 @@ function renderClozeQuestion(q, target) {
   document.getElementById('clozeWordHint').innerHTML = '';
 
   // 段落（高亮 [BLANK]）
-  document.getElementById('clozePassage').innerHTML =
-    q.passage.replace('[BLANK]',
-      '<span style="display:inline-block;background:#bee3f8;border-bottom:2px solid #3182ce;padding:0 8px;border-radius:4px;font-weight:700;color:#2b6cb0;min-width:80px;text-align:center;">&nbsp;&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;</span>');
+  document.getElementById('clozePassage').innerHTML = fillClozeBlanks(
+    q.passage,
+    '?',
+    () => '<span style="display:inline-block;background:#bee3f8;border-bottom:2px solid #3182ce;padding:0 8px;border-radius:4px;font-weight:700;color:#2b6cb0;min-width:80px;text-align:center;">&nbsp;&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;</span>'
+  );
 
   // 選項列表
   const letters = ['A','B','C','D'];
@@ -913,14 +1027,22 @@ function showClozeExplanation(expl) {
   const t = clozeCurrentTarget;
   const zhPassage = clozePendingQuestion && clozePendingQuestion.passage_zh
     ? clozePendingQuestion.passage_zh : null;
+  const correctOption = getClozeCorrectOption(clozePendingQuestion) || (t ? t.word : '___');
   const fullSentenceEn = clozePendingPassage
-    ? clozePendingPassage.replace('[BLANK]',
-        `<strong style="color:#2b6cb0;border-bottom:2px solid #3182ce;">${t ? t.word : '___'}</strong>`)
+    ? fillClozeBlanks(
+        clozePendingPassage,
+        correctOption,
+        part => `<strong style="color:#2b6cb0;border-bottom:2px solid #3182ce;">${escapeHtml(part)}</strong>`
+      )
     : '';
-  const fullSentenceZh = zhPassage
-    ? zhPassage.replace('[BLANK]',
-        `<strong style="color:#c05621;border-bottom:2px solid #dd6b20;">${t ? t.zh : '___'}</strong>`)
-    : '';
+  const translatedSentence = expl.chinese_translation || '';
+  const fullSentenceZh = translatedSentence || (zhPassage
+    ? fillClozeBlanks(
+        zhPassage,
+        t ? t.zh : '___',
+        part => `<strong style="color:#c05621;border-bottom:2px solid #dd6b20;">${escapeHtml(part)}</strong>`
+      )
+    : '');
   const fullSentence = fullSentenceZh || fullSentenceEn;
   const wordBlock = t ? `
     <div style="background:#fefcbf;border-radius:10px;padding:14px;margin-bottom:12px;">
@@ -1597,6 +1719,7 @@ const WENCIANZE_DATA = [
 ].filter(u => u.data && Array.isArray(u.data.options));
 
 let wcCurrentData = null;
+let wcCurrentUnit = '';
 let wcUserAnswers = {};
 let wcSubmitted = false;
 
@@ -1623,10 +1746,32 @@ function renderWenCianzeMenu() {
 function startWenCianze(unit) {
   const found = WENCIANZE_DATA.find(u => u.unit === unit);
   if (!found) return;
-  wcCurrentData = found.data;
+  wcCurrentUnit = found.unit;
+  wcCurrentData = prepareWenCianzeData(found.data);
   wcUserAnswers = {};
   wcSubmitted = false;
   renderWenCianzeQuestion();
+}
+
+function prepareWenCianzeData(data) {
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const shuffledOptions = shuffleArray(data.options).map((option, index) => ({
+    ...option,
+    letter: letters[index]
+  }));
+  const letterByWord = {};
+  shuffledOptions.forEach(option => {
+    letterByWord[option.word] = option.letter;
+  });
+
+  return {
+    ...data,
+    options: shuffledOptions,
+    blanks: data.blanks.map(blank => ({
+      ...blank,
+      answer: letterByWord[blank.word] || blank.answer
+    }))
+  };
 }
 
 function renderWenCianzeQuestion() {
@@ -1678,7 +1823,7 @@ function renderWenCianzeQuestion() {
       <p style="font-size:0.92rem;line-height:2.1;color:#2d3748;">${passageHtml}</p>
     </div>
     <div style="background:white;border-radius:12px;padding:12px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);margin-bottom:12px;">
-      <div style="font-size:0.7rem;color:#a0aec0;letter-spacing:1px;margin-bottom:6px;">選項參考</div>
+      <div style="font-size:0.7rem;color:#a0aec0;letter-spacing:1px;margin-bottom:6px;">選項參考（每次練習隨機排列）</div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 14px;line-height:1.9;">${optRef}</div>
     </div>
     <div style="background:white;border-radius:12px;padding:14px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);margin-bottom:14px;">
@@ -1752,7 +1897,7 @@ function submitWenCianze() {
         <tbody>${resultRows}</tbody>
       </table>
     </div>
-    <button onclick="startWenCianze('${d.unit}')" class="quiz-restart" style="margin-top:14px;">再練一次</button>
+    <button onclick="startWenCianze('${wcCurrentUnit}')" class="quiz-restart" style="margin-top:14px;">再練一次</button>
     <button onclick="renderWenCianzeMenu()" class="quiz-restart" style="margin-top:8px;margin-left:8px;">選其他課次</button>`;
   resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
