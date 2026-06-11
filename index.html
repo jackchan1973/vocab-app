@@ -6,7 +6,7 @@
 <title>學測複習工具</title>
 <!-- Supabase Auth SDK -->
 
-<link rel="stylesheet" href="style.css?v=20260611f">
+<link rel="stylesheet" href="style.css?v=20260611g">
 </head>
 <body>
 
@@ -86,6 +86,7 @@
 <nav>
   <button class="active" onclick="switchPage('flashcard', this)">單字卡</button>
   <button onclick="switchPage('quiz', this)">測驗</button>
+  <button onclick="switchPage('englishreview', this)">📘 課文複習</button>
   <button onclick="switchPage('cloze', this)">📝 克漏字</button>
   <button onclick="switchPage('wencianze', this)">✏️ 文意選填</button>
   <button onclick="switchPage('reading', this)">📖 閱讀理解</button>
@@ -137,6 +138,11 @@
     <div class="timer-bar" id="timerBar"></div>
   </div>
   <div id="quizContent"></div>
+</div>
+
+<!-- 課文複習 -->
+<div id="page-englishreview" class="page">
+  <div id="englishReviewContent"></div>
 </div>
 
 <!-- 克漏字 -->
@@ -274,16 +280,17 @@
   <p style="color:#a0aec0;">開發中，敬請期待</p>
 </div>
 
-<script src="vocab-data.js?v=20260611f"></script>
-<script src="cloze-data.js?v=20260611f"></script>
-<script src="cloze-exam3.js?v=20260611f"></script>
-<script src="math-data.js?v=20260611f"></script>
-<script src="reading-exam3.js?v=20260611f"></script>
-<script src="wencianze-l07-l08.js?v=20260611f"></script>
-<script src="cloze-u9.js?v=20260611f"></script>
-<script src="cloze-u10.js?v=20260611f"></script>
-<script src="cloze-u11.js?v=20260611f"></script>
-<script src="cloze-u12.js?v=20260611f"></script>
-<script src="app.js?v=20260611f"></script>
+<script src="vocab-data.js?v=20260611g"></script>
+<script src="cloze-data.js?v=20260611g"></script>
+<script src="cloze-exam3.js?v=20260611g"></script>
+<script src="english-review-data.js?v=20260611g"></script>
+<script src="math-data.js?v=20260611g"></script>
+<script src="reading-exam3.js?v=20260611g"></script>
+<script src="wencianze-l07-l08.js?v=20260611g"></script>
+<script src="cloze-u9.js?v=20260611g"></script>
+<script src="cloze-u10.js?v=20260611g"></script>
+<script src="cloze-u11.js?v=20260611g"></script>
+<script src="cloze-u12.js?v=20260611g"></script>
+<script src="app.js?v=20260611g"></script>
 </body>
 </html>

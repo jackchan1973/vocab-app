@@ -204,6 +204,7 @@ function switchPage(page, btn) {
   if (btn) btn.classList.add('active');
 
   if (page === 'quiz') startQuiz();
+  if (page === 'englishreview') renderEnglishReview();
   if (page === 'progress') renderProgress();
   if (page === 'reading') renderReadingMenu();
   if (page === 'wencianze') renderWenCianzeMenu();
@@ -1701,6 +1702,245 @@ function answerReading(btn, chosen, correct) {
 function nextReadingQ() {
   readingQIndex++;
   renderReadingQ();
+}
+
+// ===== 英文課文複習 =====
+let erLessonFilter = 'all';
+let erTypeFilter = 'all';
+let erQueue = [];
+let erCurrentQuestion = null;
+let erSelectedIndex = null;
+let erSubmitted = false;
+let erSessionCount = 0;
+let erCorrectCount = 0;
+
+function getEnglishReviewBank() {
+  return typeof ENGLISH_REVIEW_BANK !== 'undefined' ? ENGLISH_REVIEW_BANK : [];
+}
+
+function getEnglishReviewLessons() {
+  return [...new Set(getEnglishReviewBank().map(q => q.lesson).filter(Boolean))].sort((a, b) =>
+    a.localeCompare(b, 'en', { numeric: true })
+  );
+}
+
+function getEnglishReviewTypes() {
+  const order = ['grammar', 'pattern', 'vocab', 'translation', 'context'];
+  return [...new Set(getEnglishReviewBank().map(q => q.type).filter(Boolean))]
+    .sort((a, b) => order.indexOf(a) - order.indexOf(b));
+}
+
+function getEnglishReviewPool() {
+  let pool = getEnglishReviewBank();
+  if (erLessonFilter !== 'all') pool = pool.filter(q => q.lesson === erLessonFilter);
+  if (erTypeFilter !== 'all') pool = pool.filter(q => q.type === erTypeFilter);
+  return pool;
+}
+
+function renderEnglishReview() {
+  const el = document.getElementById('englishReviewContent');
+  if (!el) return;
+  const bank = getEnglishReviewBank();
+
+  if (!bank.length) {
+    el.innerHTML = `
+      <div style="padding:32px 16px;text-align:center;color:#718096;">
+        <div style="font-size:2rem;margin-bottom:10px;">📘</div>
+        <div style="font-weight:700;color:#2d3748;">課文複習題庫尚未載入</div>
+      </div>`;
+    return;
+  }
+
+  const lessons = getEnglishReviewLessons();
+  const types = getEnglishReviewTypes();
+  const pool = getEnglishReviewPool();
+  const typeNames = {
+    grammar: '文法句型',
+    pattern: '課文句型',
+    vocab: '單字用法',
+    translation: '翻譯理解',
+    context: '課文脈絡'
+  };
+
+  el.innerHTML = `
+    <div style="padding:14px 16px;background:white;border-bottom:1px solid #e2e8f0;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+        <div>
+          <h2 style="font-size:1.05rem;color:#2d3748;margin-bottom:4px;">📘 英文課文複習模式</h2>
+          <p style="font-size:0.8rem;color:#718096;">課文句型、文法、單字、翻譯並行，題目會隨機出現。</p>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <select id="erLessonSelect" onchange="setEnglishReviewLesson(this.value)" style="border:1.5px solid #cbd5e0;border-radius:8px;padding:7px 10px;font-size:0.86rem;background:white;">
+            <option value="all">全部課次</option>
+            ${lessons.map(lesson => `<option value="${lesson}" ${erLessonFilter === lesson ? 'selected' : ''}>${lesson}</option>`).join('')}
+          </select>
+          <select id="erTypeSelect" onchange="setEnglishReviewType(this.value)" style="border:1.5px solid #cbd5e0;border-radius:8px;padding:7px 10px;font-size:0.86rem;background:white;">
+            <option value="all">全部題型</option>
+            ${types.map(type => `<option value="${type}" ${erTypeFilter === type ? 'selected' : ''}>${typeNames[type] || type}</option>`).join('')}
+          </select>
+          <button onclick="startEnglishReview()" style="padding:8px 18px;background:#3182ce;color:white;border:none;border-radius:8px;font-size:0.88rem;font-weight:700;cursor:pointer;">開始練習</button>
+        </div>
+      </div>
+    </div>
+    <div id="erMain" style="padding:16px;max-width:880px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:14px;">
+        <div style="background:white;border-radius:10px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+          <div style="font-size:0.72rem;color:#a0aec0;margin-bottom:4px;">目前題庫</div>
+          <div style="font-size:1.1rem;font-weight:800;color:#2d3748;">${pool.length} 題</div>
+        </div>
+        <div style="background:white;border-radius:10px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+          <div style="font-size:0.72rem;color:#a0aec0;margin-bottom:4px;">本次練習</div>
+          <div style="font-size:1.1rem;font-weight:800;color:#2d3748;">${erSessionCount} 題</div>
+        </div>
+        <div style="background:white;border-radius:10px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+          <div style="font-size:0.72rem;color:#a0aec0;margin-bottom:4px;">答對</div>
+          <div style="font-size:1.1rem;font-weight:800;color:#38a169;">${erCorrectCount} 題</div>
+        </div>
+      </div>
+      <div id="erQuestionWrap">
+        ${erCurrentQuestion ? renderEnglishReviewQuestionHtml() : renderEnglishReviewIntroHtml(pool.length)}
+      </div>
+    </div>`;
+}
+
+function renderEnglishReviewIntroHtml(count) {
+  return `
+    <div style="background:white;border-radius:14px;padding:26px 22px;box-shadow:0 2px 12px rgba(0,0,0,0.07);text-align:center;">
+      <div style="font-size:2.2rem;margin-bottom:10px;">📚</div>
+      <h3 style="font-size:1.05rem;color:#2d3748;margin-bottom:8px;">準備開始課文複習</h3>
+      <p style="font-size:0.86rem;color:#718096;line-height:1.8;margin-bottom:18px;">
+        目前篩選共有 ${count} 題。點「開始練習」後會隨機出題，答完會顯示翻譯與解析。
+      </p>
+      <button onclick="startEnglishReview()" style="padding:10px 22px;background:#3182ce;color:white;border:none;border-radius:10px;font-size:0.95rem;font-weight:700;cursor:pointer;">開始練習</button>
+    </div>`;
+}
+
+function setEnglishReviewLesson(value) {
+  erLessonFilter = value || 'all';
+  erQueue = [];
+  erCurrentQuestion = null;
+  renderEnglishReview();
+}
+
+function setEnglishReviewType(value) {
+  erTypeFilter = value || 'all';
+  erQueue = [];
+  erCurrentQuestion = null;
+  renderEnglishReview();
+}
+
+function prepareEnglishReviewQuestion(source) {
+  const options = shuffleArray(source.options).map((text, index) => ({
+    text,
+    index,
+    isCorrect: text === source.answer
+  }));
+  return { ...source, shuffledOptions: options };
+}
+
+function startEnglishReview() {
+  const pool = getEnglishReviewPool();
+  if (!pool.length) {
+    alert('目前篩選沒有題目，請換課次或題型。');
+    return;
+  }
+  erQueue = shuffleArray(pool);
+  erSessionCount = 0;
+  erCorrectCount = 0;
+  nextEnglishReviewQuestion();
+}
+
+function nextEnglishReviewQuestion() {
+  if (!erQueue.length) {
+    erQueue = shuffleArray(getEnglishReviewPool());
+  }
+  const next = erQueue.shift();
+  erCurrentQuestion = prepareEnglishReviewQuestion(next);
+  erSelectedIndex = null;
+  erSubmitted = false;
+  erSessionCount++;
+  renderEnglishReview();
+}
+
+function renderEnglishReviewQuestionHtml() {
+  const q = erCurrentQuestion;
+  const selectedOption = erSelectedIndex === null ? null : q.shuffledOptions[erSelectedIndex];
+  const isCorrect = erSubmitted && selectedOption && selectedOption.isCorrect;
+
+  return `
+    <div style="background:white;border-radius:14px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,0.07);">
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px;">
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span style="background:#ebf8ff;color:#2b6cb0;border-radius:999px;padding:4px 10px;font-size:0.76rem;font-weight:800;">${q.lesson}</span>
+          <span style="background:#faf5ff;color:#6b46c1;border-radius:999px;padding:4px 10px;font-size:0.76rem;font-weight:800;">${q.typeLabel}</span>
+          <span style="font-size:0.78rem;color:#718096;">${q.focus}</span>
+        </div>
+        <div style="font-size:0.78rem;color:#718096;">第 ${erSessionCount} 題</div>
+      </div>
+
+      <div style="font-size:1.02rem;line-height:1.8;color:#2d3748;font-weight:700;margin-bottom:16px;">${escapeHtml(q.prompt)}</div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
+        ${q.shuffledOptions.map((option, index) => {
+          const selected = erSelectedIndex === index;
+          let border = selected ? '#3182ce' : '#e2e8f0';
+          let bg = selected ? '#ebf8ff' : 'white';
+          let color = '#2d3748';
+          if (erSubmitted && option.isCorrect) {
+            border = '#38a169'; bg = '#f0fff4'; color = '#22543d';
+          } else if (erSubmitted && selected && !option.isCorrect) {
+            border = '#e53e3e'; bg = '#fff5f5'; color = '#742a2a';
+          }
+          return `
+            <button onclick="selectEnglishReviewOption(${index})"
+              style="text-align:left;padding:12px 14px;border:1.8px solid ${border};background:${bg};color:${color};border-radius:10px;font-size:0.92rem;font-weight:700;cursor:${erSubmitted ? 'default' : 'pointer'};">
+              ${String.fromCharCode(65 + index)}. ${escapeHtml(option.text)}
+            </button>`;
+        }).join('')}
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button onclick="submitEnglishReview()" id="erSubmitBtn"
+          style="flex:1;min-width:140px;padding:11px;background:${erSelectedIndex === null || erSubmitted ? '#e2e8f0' : '#3182ce'};color:${erSelectedIndex === null || erSubmitted ? '#718096' : 'white'};border:none;border-radius:10px;font-size:0.95rem;font-weight:800;cursor:${erSelectedIndex === null || erSubmitted ? 'not-allowed' : 'pointer'};">
+          ${erSubmitted ? '已交卷' : '交卷'}
+        </button>
+        <button onclick="nextEnglishReviewQuestion()"
+          style="flex:1;min-width:140px;padding:11px;background:#2d3748;color:white;border:none;border-radius:10px;font-size:0.95rem;font-weight:800;cursor:pointer;">
+          下一題 →
+        </button>
+      </div>
+
+      ${erSubmitted ? `
+        <div style="margin-top:16px;border-radius:12px;padding:16px;background:${isCorrect ? '#f0fff4' : '#fff5f5'};">
+          <div style="font-size:1rem;font-weight:800;color:${isCorrect ? '#276749' : '#9b2c2c'};margin-bottom:8px;">
+            ${isCorrect ? '✓ 答對了' : `✗ 答錯了，正解是：${escapeHtml(q.answer)}`}
+          </div>
+          <div style="background:white;border-radius:10px;padding:12px;margin-bottom:10px;">
+            <div style="font-size:0.72rem;color:#a0aec0;letter-spacing:1px;margin-bottom:5px;">中文翻譯</div>
+            <div style="font-size:0.92rem;color:#2d3748;line-height:1.7;">${escapeHtml(q.translation)}</div>
+          </div>
+          <div style="background:white;border-radius:10px;padding:12px;">
+            <div style="font-size:0.72rem;color:#a0aec0;letter-spacing:1px;margin-bottom:5px;">考點解析</div>
+            <div style="font-size:0.88rem;color:#4a5568;line-height:1.7;">${escapeHtml(q.explanation)}</div>
+          </div>
+        </div>` : ''}
+    </div>`;
+}
+
+function selectEnglishReviewOption(index) {
+  if (erSubmitted) return;
+  erSelectedIndex = index;
+  renderEnglishReview();
+}
+
+function submitEnglishReview() {
+  if (!erCurrentQuestion || erSelectedIndex === null || erSubmitted) return;
+  erSubmitted = true;
+  const selectedOption = erCurrentQuestion.shuffledOptions[erSelectedIndex];
+  const isCorrect = !!selectedOption && selectedOption.isCorrect;
+  if (isCorrect) erCorrectCount++;
+  recordDailyResult(`課文複習-${erCurrentQuestion.id}`, isCorrect, 0);
+  renderEnglishReview();
 }
 
 // ===== 文意選填 =====
