@@ -15,12 +15,12 @@ const EXAM3_CLOZE = [
     },
     "correct_answer": "B",
     "explanation": {
-      "chinese_translation": "有些人透過觀看 TED 演講同時尋求樂趣和知識。",
+      "chinese_translation": "有些人透過線上觀看 TED 演講，同時尋求樂趣與知識。",
       "core_concept": "測試「seek」(尋求) 的詞彙運用",
       "why_correct": "「seek」(尋求) 表示主動尋找某事物，符合句意",
       "why_others_wrong": "avoid=避開，ignore=忽視，reject=拒絕，均與語意相反"
     },
-    "passage_zh": "有些人透過觀看 TED 演講同時[BLANK]樂趣和知識。"
+    "passage_zh": "有些人透過線上觀看 TED 演講，同時[BLANK]樂趣與知識。"
   },
   {
     "word": "numerous",
@@ -59,12 +59,12 @@ const EXAM3_CLOZE = [
     },
     "correct_answer": "B",
     "explanation": {
-      "chinese_translation": "第一屆 TED 研討會於 1984 年舉行，每位講者有十八分鐘發表想法。",
+      "chinese_translation": "第一屆 TED 研討會於 1984 年舉行，每位講者有十八分鐘發表內容。",
       "core_concept": "測試「conference」(研討會) 的詞彙運用",
       "why_correct": "「conference」指正式的大型會議或研討會，符合 TED 活動性質",
       "why_others_wrong": "concert=音樂會，competition=競賽，ceremony=典禮，均非 TED 的活動性質"
     },
-    "passage_zh": "第一屆 TED [BLANK] 於 1984 年舉行，每位講者有十八分鐘發表想法。"
+    "passage_zh": "第一屆 TED [BLANK] 於 1984 年舉行，每位講者有十八分鐘發表內容。"
   },
   {
     "word": "launch",
@@ -82,7 +82,7 @@ const EXAM3_CLOZE = [
     "correct_answer": "C",
     "explanation": {
       "chinese_translation": "2007 年，TED.com 網站正式上線，許多演講免費上傳供大眾觀看。",
-      "core_concept": "測試「launch」(發行) 的詞彙運用",
+      "core_concept": "測試「launch」(推出；上線) 的詞彙運用",
       "why_correct": "「launch」表示讓新產品或網站首次對外開放，符合網站上線的語境",
       "why_others_wrong": "closed=關閉，deleted=刪除，blocked=封鎖，均與語意相反"
     },
@@ -147,12 +147,12 @@ const EXAM3_CLOZE = [
     },
     "correct_answer": "B",
     "explanation": {
-      "chinese_translation": "為遮蔽客人免受烈日曝曬，一頂巨大的臨時帳篷占據了將近半條街。",
+      "chinese_translation": "為了替客人遮蔽烈日，一頂巨大的臨時帳篷占據了將近半條街。",
       "core_concept": "測試「temporary」(臨時的) 的詞彙運用",
       "why_correct": "辦桌的帳篷是為特定活動而搭設的臨時設施，「temporary」最為貼切",
       "why_others_wrong": "permanent=永久的，historical=歷史的，personal=個人的，均不符合語意"
     },
-    "passage_zh": "為遮蔽客人免受烈日曝曬，一頂巨大的[BLANK]帳篷占據了將近半條街。"
+    "passage_zh": "為了替客人遮蔽烈日，一頂巨大的[BLANK]帳篷占據了將近半條街。"
   },
   {
     "word": "cooperate",
@@ -169,12 +169,12 @@ const EXAM3_CLOZE = [
     },
     "correct_answer": "B",
     "explanation": {
-      "chinese_translation": "在過去，當人們為婚禮聚集時，鄰近所有人都會合作籌辦一場辦桌。",
+      "chinese_translation": "在過去，當人們為婚禮聚集時，鄰里間所有人都會合作籌辦一場辦桌。",
       "core_concept": "測試「cooperate」(合作) 的詞彙運用",
       "why_correct": "「cooperate」表示為共同目標而合作，符合辦桌中鄰居互助的精神",
       "why_others_wrong": "compete=競爭，disagree=不同意，separate=分開，均與互助語意相反"
     },
-    "passage_zh": "在過去，當人們為婚禮聚集時，鄰近所有人都會[BLANK]籌辦一場辦桌。"
+    "passage_zh": "在過去，當人們為婚禮聚集時，鄰里間所有人都會[BLANK]籌辦一場辦桌。"
   },
   {
     "word": "take part in",
@@ -213,12 +213,12 @@ const EXAM3_CLOZE = [
     },
     "correct_answer": "A",
     "explanation": {
-      "chinese_translation": "雖然辦桌的某些方面已在現代有所改變，但凝聚在一起的精神始終未變。",
+      "chinese_translation": "雖然辦桌的某些面向在現代已經改變，但團結互助的精神始終不變。",
       "core_concept": "測試「aspect」(方面) 的詞彙運用",
-      "why_correct": "「aspect」指某事物的特定面向，符合描述辦桌部分特色改變的語境",
+      "why_correct": "「aspect」指某事物的特定面向，符合描述辦桌部分特色在現代改變的語境",
       "why_others_wrong": "impacts=影響，objects=物體，concepts=概念，均不符合語意"
     },
-    "passage_zh": "雖然辦桌的某些[BLANK]已在現代有所改變，但凝聚在一起的精神始終未變。"
+    "passage_zh": "雖然辦桌的某些[BLANK]在現代已經改變，但團結互助的精神始終不變。"
   },
   {
     "word": "reveal",
@@ -235,12 +235,12 @@ const EXAM3_CLOZE = [
     },
     "correct_answer": "B",
     "explanation": {
-      "chinese_translation": "攝影師與記者合作，揭露名人的私密生活。",
+      "chinese_translation": "攝影師與作家合作，揭露名人不為人知的生活。",
       "core_concept": "測試「reveal」(揭露) 的詞彙運用",
-      "why_correct": "「reveal」表示使隱藏的事物公開，符合狗仔追蹤名人的語境",
+      "why_correct": "「reveal」表示使隱藏的事物公開，符合揭開名人生活面貌的語境",
       "why_others_wrong": "conceal=隱藏，recall=回想，appeal=吸引，均不符合語意"
     },
-    "passage_zh": "攝影師與記者合作，[BLANK]名人的私密生活。"
+    "passage_zh": "攝影師與作家合作，[BLANK]名人不為人知的生活。"
   },
   {
     "word": "widespread",
@@ -257,12 +257,12 @@ const EXAM3_CLOZE = [
     },
     "correct_answer": "B",
     "explanation": {
-      "chinese_translation": "Adobe 對人們將「Photoshop」當動詞使用感到不滿，但這個廣泛的用法已無法阻止。",
+      "chinese_translation": "Adobe 對人們把「Photoshop」當成動詞使用感到不滿，但這種廣泛流傳的用法已經無法阻止。",
       "core_concept": "測試「widespread」(廣泛的) 的詞彙運用",
       "why_correct": "「widespread」表示普遍流行，符合 Photoshop 被廣泛當動詞使用的語境",
       "why_others_wrong": "limited=有限的，ancient=古老的，standard=標準的，均不符合語意"
     },
-    "passage_zh": "Adobe 對人們將「Photoshop」當動詞使用感到不滿，但這個[BLANK]的用法已無法阻止。"
+    "passage_zh": "Adobe 對人們把「Photoshop」當成動詞使用感到不滿，但這種[BLANK]用法已經無法阻止。"
   },
   {
     "word": "constantly",
@@ -279,12 +279,12 @@ const EXAM3_CLOZE = [
     },
     "correct_answer": "C",
     "explanation": {
-      "chinese_translation": "語言持續地隨著新詞彙的採納以及現有詞彙的另類用法而改變。",
+      "chinese_translation": "語言會隨著新詞彙的採用，以及既有詞彙的新用法而不斷改變。",
       "core_concept": "測試「constantly」(持續地) 的詞彙運用",
       "why_correct": "「constantly」表示不斷持續，符合語言演化不停的語境",
       "why_others_wrong": "rarely=很少，suddenly=突然，temporarily=暫時，均不符合語意"
     },
-    "passage_zh": "語言[BLANK]隨著新詞彙的採納以及現有詞彙的另類用法而改變。"
+    "passage_zh": "語言會隨著新詞彙的採用，以及既有詞彙的新用法而[BLANK]改變。"
   },
   {
     "word": "play a role",
@@ -301,12 +301,12 @@ const EXAM3_CLOZE = [
     },
     "correct_answer": "B",
     "explanation": {
-      "chinese_translation": "借名成字在我們社會創造新詞彙的過程中扮演著重要角色。",
+      "chinese_translation": "源自人名的詞彙在我們社會創造新詞彙的過程中扮演重要角色。",
       "core_concept": "測試片語「play a role」(扮演角色) 的運用",
       "why_correct": "「play an important role in」是固定搭配，表示在某事中扮演重要角色",
       "why_others_wrong": "play/part、make/impact、take/effect 均非此固定片語"
     },
-    "passage_zh": "借名成字在我們社會創造新詞彙的過程中[BLANK]重要[BLANK]。"
+    "passage_zh": "源自人名的詞彙在我們社會創造新詞彙的過程中[BLANK]重要[BLANK]。"
   },
   {
     "word": "fundamental",
@@ -323,12 +323,12 @@ const EXAM3_CLOZE = [
     },
     "correct_answer": "A",
     "explanation": {
-      "chinese_translation": "研究顯示，茶時間已成為英國文化中重要的一部分。",
+      "chinese_translation": "研究顯示，喝茶時光已成為英國文化中重要的一部分。",
       "core_concept": "測試「fundamental」(重要的；基礎的) 的詞彙運用",
       "why_correct": "「fundamental」表示基本且核心重要，符合茶文化在英國的地位",
       "why_others_wrong": "optional=可選的，temporary=暫時的，unusual=不尋常的，均不符合語意"
     },
-    "passage_zh": "研究顯示，茶時間已成為英國文化中[BLANK]的一部分。"
+    "passage_zh": "研究顯示，喝茶時光已成為英國文化中[BLANK]的一部分。"
   },
   {
     "word": "refer to",
@@ -345,12 +345,12 @@ const EXAM3_CLOZE = [
     },
     "correct_answer": "A",
     "explanation": {
-      "chinese_translation": "因為精緻點心是在奢華的矮桌上享用，人們開始稱呼這個習俗為「低茶」。",
+      "chinese_translation": "因為精緻點心是在豪華的矮桌上享用，人們開始把這個習俗稱為「低茶」。",
       "core_concept": "測試片語「refer to」(稱呼；指稱) 的運用",
       "why_correct": "「refer to...as...」表示以某名稱稱呼，符合語境",
       "why_others_wrong": "reply to=回覆，belong to=屬於，compare to=比較，均不符合語意"
     },
-    "passage_zh": "因為精緻點心是在奢華的矮桌上享用，人們開始[BLANK]這個習俗為「低茶」。"
+    "passage_zh": "因為精緻點心是在豪華的矮桌上享用，人們開始[BLANK]這個習俗為「低茶」。"
   },
   {
     "word": "summary",
@@ -367,12 +367,12 @@ const EXAM3_CLOZE = [
     },
     "correct_answer": "A",
     "explanation": {
-      "chinese_translation": "在反思你所學的內容後，你應該用自己的話寫出一份主要概念的摘要。",
+      "chinese_translation": "反思自己學到的內容後，你應該用自己的話寫出主要概念的摘要。",
       "core_concept": "測試「summary」(摘要) 的詞彙運用",
       "why_correct": "「summary」表示簡短描述要點，符合 Cornell 筆記法摘要欄的描述",
       "why_others_wrong": "mystery=謎，memory=記憶，theory=理論，均不符合語意"
     },
-    "passage_zh": "在反思你所學的內容後，你應該用自己的話寫出一份主要概念的[BLANK]。"
+    "passage_zh": "反思自己學到的內容後，你應該用自己的話寫出主要概念的[BLANK]。"
   },
   {
     "word": "make use of",
@@ -389,12 +389,12 @@ const EXAM3_CLOZE = [
     },
     "correct_answer": "A",
     "explanation": {
-      "chinese_translation": "從小就持續利用這個筆記系統，將有助於你在未來職涯中成功。",
+      "chinese_translation": "從年紀還小時就持續善用這套筆記系統，將有助於你未來的職涯成功。",
       "core_concept": "測試片語「make use of」(利用) 的運用",
-      "why_correct": "「make use of」表示善加利用某事物，符合語境",
+      "why_correct": "「make use of」表示善加利用某事物，符合使用筆記系統的語境",
       "why_others_wrong": "make fun of=取笑，make sense of=理解，make room for=騰出空間，均不符合語意"
     },
-    "passage_zh": "從小就持續[BLANK]這個筆記系統，將有助於你在未來職涯中成功。"
+    "passage_zh": "從年紀還小時就持續[BLANK]這套筆記系統，將有助於你未來的職涯成功。"
   },
   {
     "word": "maintain",
@@ -411,12 +411,12 @@ const EXAM3_CLOZE = [
     },
     "correct_answer": "A",
     "explanation": {
-      "chinese_translation": "太空人定期鍛鍊以促進血液循環並維持肌肉強度。",
+      "chinese_translation": "太空人會定期運動，以促進血液循環並維持肌肉強度。",
       "core_concept": "測試「maintain」(維持) 的詞彙運用",
       "why_correct": "「maintain」表示保持某事物的狀態，符合維持肌肉強度的語境",
       "why_others_wrong": "contain=包含，obtain=獲得，complain=抱怨，均不符合語意"
     },
-    "passage_zh": "太空人定期鍛鍊以促進血液循環並[BLANK]肌肉強度。"
+    "passage_zh": "太空人會定期運動，以促進血液循環並[BLANK]肌肉強度。"
   },
   {
     "word": "otherwise",
