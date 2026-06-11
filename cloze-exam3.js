@@ -81,7 +81,7 @@ const EXAM3_CLOZE = [
     },
     "correct_answer": "C",
     "explanation": {
-      "chinese_translation": "2007 年，TED.com 網站正式發行，許多演講免費上傳供大眾觀看。",
+      "chinese_translation": "2007 年，TED.com 網站正式上線，許多演講免費上傳供大眾觀看。",
       "core_concept": "測試「launch」(發行) 的詞彙運用",
       "why_correct": "「launch」表示讓新產品或網站首次對外開放，符合網站上線的語境",
       "why_others_wrong": "closed=關閉，deleted=刪除，blocked=封鎖，均與語意相反"
