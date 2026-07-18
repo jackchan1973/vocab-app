@@ -153,7 +153,7 @@ function setLessonFilterFromSelect(lesson) {
 // ===== 頁面切換 =====
 function setSubjectButtonActive(btn) {
   const backBtn = document.getElementById('homeBackBtn');
-  if (backBtn) backBtn.style.display = currentSubject === 'home' ? 'none' : '';
+  if (backBtn) backBtn.style.display = 'none';
 }
 
 function showHome() {
@@ -1590,7 +1590,7 @@ currentDeck = getFilteredDeck();
 renderCard();
 updateGlobalStats();
 updateDailyBar();
-showHome(document.querySelector('.subject-btn'));
+switchSubject('english');
 
 // ===== 閱讀理解 =====
 let readingCurrentPassage = null;
