@@ -1,12 +1,14 @@
 # 開發過程紀錄（DEVLOG）
 
+> 這份文件只保留歷史開發流水帳。最新專案狀態、功能清單、檔案結構與測試方式，請看 `README.md`。
+
 ---
 
 ## 2026-06-11（首頁、每日進度、文意選填補強）
 
 ### 22:25 新增英文課文複習模式
 
-- 新增「📘 課文複習」頁籤，介於單字測驗與克漏字之間，讓 John 可用選擇題方式快速複習課文考點。
+- 新增「📘 課文複習」頁籤，介於單字測驗與克漏字之間，讓 學生 可用選擇題方式快速複習課文考點。
 - 新增獨立題庫檔 `english-review-data.js`，先收錄 L07、L08、L09、R03，共 24 題。
 - 題型混合文法句型、課文句型、單字用法、翻譯理解、課文脈絡，難度比單字卡高，作為考前加強複習。
 - 課文複習可依課次與題型篩選，題目與選項會隨機排列，交卷後顯示中文翻譯與考點解析。
@@ -15,12 +17,12 @@
 ### 22:35 文意選填增加中文翻譯
 
 - 新增獨立翻譯資料檔 `wencianze-translations.js`。
-- 文意選填交卷後，答案表下方會顯示整篇中文翻譯，方便 John 對完答案後理解文章。
+- 文意選填交卷後，答案表下方會顯示整篇中文翻譯，方便 學生 對完答案後理解文章。
 - 目前翻譯覆蓋 L07、L08、U09、U10、U11、U12 的課文篇與練習篇文意選填。
 
 ### 12:20 克漏字救急調整
 
-- 登入帳號密碼先暫緩，優先讓 John 考前可以開始複習。
+- 登入帳號密碼先暫緩，優先讓 學生 考前可以開始複習。
 - 克漏字停止優先使用通用模板造句，改為優先使用 `cloze-exam3.js` 內的課次題庫。
 - 目前克漏字題庫先開放 L07、L08、L09、R03，暫不納入 R01、R02。
 - 解析中的完整英文句改用正確選項實際字詞，避免 `launch/launched`、`aspect/aspects` 這類字形被顯示錯。
@@ -93,9 +95,9 @@
 ├── cloze-data.js
 ├── math-data.js
 ├── auth.js                       ← 舊登入模組，未載入
-├── vocab-exam3.js                ← John 第三次月考單字題
-├── cloze-exam3.js                ← John 第三次月考克漏字
-├── reading-exam3.js              ← John 第三次月考閱讀
+├── vocab-exam3.js                ← 學生 第三次月考單字題
+├── cloze-exam3.js                ← 學生 第三次月考克漏字
+├── reading-exam3.js              ← 學生 第三次月考閱讀
 ├── english-course-structure.json ← 月考課程結構
 ├── PROJECT_NOTES.md              ← 專案說明文件
 └── DEVLOG.md                     ← 本開發紀錄
@@ -147,15 +149,15 @@
 #### 1. 產品方向調整
 
 **新方向**：
-- 暫時不考慮 Ivy 的使用情境
-- 目前主要服務對象改為 John
-- John 目前就讀上海台商子女學校，高一
-- App 用途是幫 John 平時學習與複習
-- 長期目標是幫 John 準備高三參加台灣學測考試
+- 暫時不考慮 妹妹 的使用情境
+- 目前主要服務對象改為 學生
+- 學生 目前就讀學校，高一
+- App 用途是幫 學生 平時學習與複習
+- 長期目標是幫 學生 準備高三參加台灣學測考試
 - 功能設計以「高一學生」「學測準備」「可持續練習」為核心
 
 **原因**：
-- John 是目前主要學習與開發陪跑對象
+- 學生 是目前主要學習與開發陪跑對象
 - App 已經逐步往學測複習工具發展
 - 若同時照顧小學生操作難度，會讓功能設計變得分散
 
@@ -206,7 +208,7 @@
 
 **目前判斷**：
 - 暫時不恢復登入
-- 先保持 John 使用方便
+- 先保持 學生 使用方便
 - 等未來真的需要「多人獨立進度」或「雲端同步」時，再重新考慮 Supabase
 
 ---
@@ -329,7 +331,7 @@ math-data.js
 - Loading 文字從「AI 正在出題中」改為「正在準備題目」
 
 **原因**：
-- 目前 App 主要是 John 每天可穩定使用
+- 目前 App 主要是 學生 每天可穩定使用
 - 內建題庫比本機 AI 即時出題更穩定
 - Ollama 功能未來可再做成獨立開關，不適合作為預設流程
 
@@ -366,7 +368,7 @@ math-data.js
 
 #### 6. 部署 GitHub Pages
 
-**目標**：讓 John（華為）和 Ivy（iPad）不需要傳檔案，直接用網址開啟 App。
+**目標**：讓 學生（華為）和 妹妹（iPad）不需要傳檔案，直接用網址開啟 App。
 
 **步驟**：
 1. 安裝 GitHub CLI：`brew install gh`
@@ -445,7 +447,7 @@ math-data.js
 
 #### 1. 新增「克漏字 + 答題卡」模組
 
-**目標**：讓 John 練習學測克漏字題型，模擬考場答題卡作答方式。
+**目標**：讓 學生 練習學測克漏字題型，模擬考場答題卡作答方式。
 
 **UI 設計（雙欄）**：
 - **左欄**：英文段落（空格為藍色底線）+ A/B/C/D 選項列表
@@ -496,7 +498,7 @@ math-data.js
 指令：cd ~/vocab-app && python3 -m http.server 8888
 網址：http://localhost:8888/index.html
 
-重要：John 和 Ivy 的設備目前仍用 file:// 開 HTML 檔案
+重要：學生 和 妹妹 的設備目前仍用 file:// 開 HTML 檔案
      最終解法是 GitHub Pages 部署
 ```
 
@@ -519,8 +521,8 @@ math-data.js
 | 裝置 | 目前方式 | 問題 |
 |------|---------|------|
 | Jack 的 Mac | http://localhost:8888/index.html | 需先啟動伺服器 |
-| John 的華為 | 微信傳 index.html，雙擊開啟 | 克漏字可用（題庫已嵌入），Ollama 不可用 |
-| Ivy 的 iPad | 尚未分享 | 需 GitHub Pages 或 AirDrop |
+| 學生的華為 | 微信傳 index.html，雙擊開啟 | 克漏字可用（題庫已嵌入），Ollama 不可用 |
+| 妹妹 的 iPad | 尚未分享 | 需 GitHub Pages 或 AirDrop |
 
 **終極解法：GitHub Pages（待做）**
 - 所有設備用同一個網址
@@ -543,14 +545,14 @@ math-data.js
 
 ### 待辦事項（按優先順序）
 
-1. **GitHub Pages 部署**（最重要）→ John 和 Ivy 才能方便用
+1. **GitHub Pages 部署**（最重要）→ 學生 和 妹妹 才能方便用
 2. 題庫句子品質優化（用 Ollama 批次改善）
 3. 連勝計數器 + 音效
 4. Ollama AI 功能：解釋單字、出例句（第三階段）
 
 ---
 
-> 給詹爸和 John 的開發日誌：記錄每次做了什麼、遇到什麼問題、怎麼解決的。
+> 給詹爸和 學生的開發日誌：記錄每次做了什麼、遇到什麼問題、怎麼解決的。
 > 未來繼續開發時可以快速看懂目前狀態。
 
 ---
@@ -567,7 +569,7 @@ math-data.js
 
 ---
 
-### 晚上（John 放學後，和 Claude Code 一起開發）
+### 晚上（學生 放學後，和 Claude Code 一起開發）
 
 #### 第 1 輪：確定單字來源
 
@@ -579,7 +581,7 @@ math-data.js
 - 有人把 6005 個單字整理成 Google Sheets，提供 TSV 格式下載連結
 - 課本 LIVE ABC 對應 Level 2-4，共 3,005 個單字
 
-**學到什麼（John）：**
+**學到什麼（學生）：**
 > 不用自己整理資料，先找看看有沒有人已經做過 → 這叫「站在巨人的肩膀上」
 
 ---
@@ -604,7 +606,7 @@ math-data.js
 驗證：用 Python json.loads() + Node.js --check 雙重確認
 ```
 
-**學到什麼（John）：**
+**學到什麼（學生）：**
 > 一個小小的看不見的字元，可以讓整個程式壞掉
 > 這就是為什麼工程師要學會「用工具診斷問題」，不能只靠肉眼
 
@@ -622,7 +624,7 @@ math-data.js
      函數參數加 btn，用 btn.classList.add('active') 取代 event.target
 ```
 
-**學到什麼（John）：**
+**學到什麼（學生）：**
 > 同一段程式在不同瀏覽器（Chrome / Safari）行為可能不一樣
 > 這叫「跨瀏覽器相容性問題」，是前端工程師的日常挑戰
 
@@ -687,71 +689,8 @@ const clean = word.split('/')[0].split('(')[0].trim();
 
 ---
 
-## 下一步待辦
+## 2026-06-01 當日後續備忘（歷史）
 
-### 近期
-- [ ] 加入連勝計數器
-- [ ] 答對/答錯音效
-- [ ] 初始化 Git，開始版本控制
+這一段原本包含「下一步待辦、Ollama AI 功能、部署上線、重要技術備忘、檔案位置」等內容。由於後續已完成 GitHub Pages 上線、拆檔與多科入口，這些內容已不再代表最新狀態。
 
-### Ollama AI 功能（第三階段）
-- [ ] 按「解釋這個字」→ 呼叫本地 qwen3 模型
-- [ ] 按「出例句」→ AI 生成生活化例句
-- [ ] 按「記憶技巧」→ AI 出有趣聯想
-
-API 呼叫範例：
-```javascript
-const res = await fetch('http://localhost:11434/api/generate', {
-  method: 'POST',
-  body: JSON.stringify({
-    model: 'qwen3',
-    prompt: `用繁體中文解釋英文單字「${word}」，包含詞性和例句，100字以內`,
-    stream: false
-  })
-});
-const data = await res.json();
-console.log(data.response);
-```
-
-### 部署上線
-- [ ] `git init` + 第一次 commit
-- [ ] 建立 GitHub repository
-- [ ] GitHub Pages 設定
-- [ ] 取得網址，手機可開
-
----
-
-## 重要技術備忘
-
-### 資料儲存結構
-```javascript
-// localStorage keys:
-'vocab_progress'  → { "word": "known"|"hard", ... }
-'vocab_daily'     → { "2026-6-1": { "word": {seen, correct, wrong, bestTime}, ... } }
-'vocab_quiz_scores' → [ {correct, total, time}, ... ]  // 最近 30 次
-'vocab_log'       → [ {word, action, time}, ... ]      // 最近 500 筆
-```
-
-### 發音 API 使用方式
-```
-GET https://api.dictionaryapi.dev/api/v2/entries/en/{word}
-回傳：[{ phonetics: [{audio: "https://...mp3", text: "/..."}, ...], ... }]
-美式發音：URL 包含 "-us"
-```
-
-### 注意事項
-1. 複合字（如 `a/an`）呼叫發音 API 前要先取第一個字
-2. 資料來源 TSV 如重新下載，要用 `gsub(/\r/, "", field)` 去除 Windows 換行
-3. 新增功能後務必用 `node --check` 驗證 JS 語法
-4. `switchPage` 函數要傳入 `this`，不能用全域 `event`（Safari 不支援）
-
----
-
-## 檔案位置
-
-```
-~/vocab-app/
-├── index.html        ← 主程式
-├── PROJECT_NOTES.md  ← 專案說明（本說明文件）
-└── DEVLOG.md         ← 開發過程紀錄（本檔案）
-```
+最新專案入口請看 `README.md`；需要追溯當時開發決策時，再閱讀上方 2026-06-01 至 2026-06-11 的流水帳。
