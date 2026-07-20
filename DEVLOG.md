@@ -65,7 +65,7 @@
 
 ### 操作內容
 
-傑克反映 `~/` 資料夾太亂，英文單字 App 相關檔案分散在三個資料夾，難以分辨。
+開發者反映 `~/` 資料夾太亂，英文單字 App 相關檔案分散在三個資料夾，難以分辨。
 進行資料夾整併，把所有相關檔案集中到 `~/vocab-app/`。
 
 ### 整併前狀態
@@ -138,7 +138,7 @@
 
 **Codex 接手紀錄位置**：
 ```
-/Users/jackchan/Jack-Codex-開發紀錄/
+/Users/jackchan/開發者-Codex-開發紀錄/
 └── vocab-app-接手資訊.md
 ```
 
@@ -259,7 +259,7 @@ math-data.js
 ```
 
 **注意**：
-- 這是重要開發，動手前要先給詹爸簡要計畫並等待確認
+- 這是重要開發，動手前要先給開發者簡要計畫並等待確認
 - 拆檔後要確認 GitHub Pages 仍可正常載入
 - 拆檔後要做基本瀏覽器測試與 JavaScript 語法檢查
 
@@ -342,7 +342,7 @@ math-data.js
 拆檔前已備份原始單檔版本，並移到集中紀錄資料夾：
 
 ```
-/Users/jackchan/Jack-Codex-開發紀錄/vocab-app-index-before-split-2026-06-03-2000.html
+/Users/jackchan/開發者-Codex-開發紀錄/vocab-app-index-before-split-2026-06-03-2000.html
 ```
 
 ---
@@ -372,7 +372,7 @@ math-data.js
 
 **步驟**：
 1. 安裝 GitHub CLI：`brew install gh`
-2. 詹爸申請 GitHub 帳號：`jackchan1973`
+2. 開發者申請 GitHub 帳號：`jackchan1973`
 3. 執行 `gh auth login` 登入（瀏覽器授權，代碼：D28C-5217）
 4. `git init` + 第一次 commit
 5. `gh repo create vocab-app --public --source=. --push` 建立 repository 並推送
@@ -520,7 +520,7 @@ math-data.js
 
 | 裝置 | 目前方式 | 問題 |
 |------|---------|------|
-| Jack 的 Mac | http://localhost:8888/index.html | 需先啟動伺服器 |
+| 開發者 的 Mac | http://localhost:8888/index.html | 需先啟動伺服器 |
 | 學生的華為 | 微信傳 index.html，雙擊開啟 | 克漏字可用（題庫已嵌入），Ollama 不可用 |
 | 妹妹 的 iPad | 尚未分享 | 需 GitHub Pages 或 AirDrop |
 
@@ -552,14 +552,14 @@ math-data.js
 
 ---
 
-> 給詹爸和 學生的開發日誌：記錄每次做了什麼、遇到什麼問題、怎麼解決的。
+> 給開發者和 學生的開發日誌：記錄每次做了什麼、遇到什麼問題、怎麼解決的。
 > 未來繼續開發時可以快速看懂目前狀態。
 
 ---
 
 ## 2026-06-01（第一天）
 
-### 下午（詹爸自己規劃）
+### 下午（開發者自己規劃）
 
 **做了什麼：**
 - 建立 `~/english-vocab-app/` 專案資料夾
@@ -630,7 +630,7 @@ math-data.js
 
 ---
 
-#### 第 4 輪：功能升級（詹爸提出 4 個需求）
+#### 第 4 輪：功能升級（開發者提出 4 個需求）
 
 **需求：**
 1. 測驗加拼字模式（看中文打英文）
@@ -683,7 +683,7 @@ const clean = word.split('/')[0].split('(')[0].trim();
 - [x] 12 秒計時 + 熟練度評分
 - [x] 每日學習目標（10 字）
 - [x] 困難字優先複習
-- [x] 家長查看進度（詹爸專用）
+- [x] 家長查看進度（開發者專用）
 - [x] 級別篩選（Level 2 / 3 / 4）
 - [x] LocalStorage 進度持久化
 

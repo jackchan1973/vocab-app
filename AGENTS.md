@@ -47,7 +47,7 @@ cd ~/開發項目/高中學習程式 && python3 -m http.server 8888
 
 ## 發佈
 
-本機測試 OK → 只 `git add` 改到的檔 → `git commit` → `git push`，GitHub Pages 約 1–2 分鐘生效，傑克線上檢查。
+本機測試 OK → 只 `git add` 改到的檔 → `git commit` → `git push`，GitHub Pages 約 1–2 分鐘生效，開發者線上檢查。
 
 ## 文件分工
 
